@@ -1,2 +1,2 @@
 # Modern-C-Study
-Modern C++ library Practice
+Modern C++ library practice repository
