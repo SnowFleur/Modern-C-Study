@@ -6,7 +6,7 @@ int Cacluate() {
     return 123;
 }
 
-
+//[CES] test push
 int main() {
 
     auto myFuture = std::async(Cacluate);
