@@ -2,7 +2,7 @@
 Modern C++11, 14, 17, 20... library R&D repository
 
 
-작성 규칙
+## 작성 규칙
 
 - 각 폴더의 이름은 해당하는 기능의 이름을 사용 
   ex) C++11 SmartPointer의 내용이면 C++11 폴더에 SmartPointer폴더 생성
