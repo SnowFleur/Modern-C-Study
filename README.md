@@ -2,23 +2,10 @@
 Modern C++11, 14, 17, 20... library R&D repository
 
 
-## 작성 규칙
+작성 규칙
 
-- 각 폴더의 이름은 해당하는 기능의 이름을 사용 
-  ex) C++11 SmartPointer의 내용이면 C++11 폴더에 SmartPointer폴더 생성
+- 본인의 브랜치를 따서 작업을 진행한다. Main Branch에는 커밋하지 않으며 Merge 또한 하지 않는다.
 
-- 이미 존재하는 폴더가 있다면 폴더 안에 cpp 파일만 업로드(파일 이름은 해당하는 기능의 이름 + 본인 깃 아이디) 
-  ex) uniquePtr의 내용이면 uniquePtr-SnowFleur.cpp 
+- 공통 규칙으로는 주석을 많이 작성해서 기능 소개 등 다른 사람이 봤을 때 쉽게 이해할 수 있도록 코드를 작성한다.
 
-- cpp파일 상단 주석에 사용한 Compiler version, 사용한 IDE, 해당 기능, 작성자(깃 아이디) 등을 코드 상단에 기입한다.
-  ex) 
-  
-    /*
-    - Compiler Ver: C++17
-    - IDE: Visual Stduio 2019
-    - Developer: SnowFleur
-    
-    */
-    
-    
-- 주석을 많이 작성해서 기능 소개 등 다른 사람이 봤을 때 쉽게 이해할 수 있도록 코드를 작성한다.
+- 그 외에는 자유롭게 R&D를 한다. C++이 외 기능도 가능 
