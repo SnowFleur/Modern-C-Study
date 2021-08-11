@@ -10,4 +10,5 @@
 
 - 주석을 많이 작성해서 기능 소개 등 다른 사람이 봤을 때 쉽게 이해할 수 있도록 코드를 작성한다.
 
-- 그 외에는 자유롭게 R&D를 한다. Ex) C++, C#, DirectX, OpenGL, Data Struct, Algorithm, Coding Test, Multi Thread, Network, UE4  ...
+- 그 외에는 자유롭게 R&D를 한다. 
+- Ex) C++, C#, DirectX, OpenGL, Data Struct, Algorithm, Coding Test, Multi Thread, Network, UE4  ...
