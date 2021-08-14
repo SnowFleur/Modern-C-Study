@@ -152,12 +152,6 @@ public class BakeTextureWindow : EditorWindow
         {
             ImageMaterial.SetTexture("_MainTex", TargetTexture);
         }
-
-        if (!bNoUseMaterial)
-        {
-            SourceTexture = null;
-        }
-
     }
 
     protected virtual void BakeTexture()
@@ -205,7 +199,7 @@ public class BakeTextureWindow : EditorWindow
         }
     }
 
-    public string GetAllFilePath()
+    static public string GetAllFilePath()
     {
         return SaveFilePath + "/" + SaveFileName + GetEncodeExtextion(EncodeType);
     }
