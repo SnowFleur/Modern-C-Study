@@ -50,9 +50,9 @@ Shader "Custom/3DDefaultShader"
 				return o;
 			}
 
-			fixed4 frag(v2f i) : SV_TARGET
+			half4 frag(v2f i) : SV_TARGET
 			{
-				fixed4 color = tex3D(_MainTex, float3(i.uv, _Height));
+				half4 color = tex3D(_MainTex, float3(i.uv, _Height));
 				color = _Color;
 				return color;
 			}

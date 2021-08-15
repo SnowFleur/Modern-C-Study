@@ -16,7 +16,6 @@ public class BackTexture3DWindow : BakeTextureWindow
     protected static ETextureType TextureType;
 
     private static bool bHasHegiht;
-    private static bool bHasMaterial;
 
     [MenuItem("Tools/Bake material to texture/Default Texture3D")]
     static void OpenWindow()
@@ -42,11 +41,6 @@ public class BackTexture3DWindow : BakeTextureWindow
         {
             EditorGUILayout.HelpBox("Please set height a size bigger than zero", MessageType.Warning);
         }
-
-        if (!bHasMaterial)
-        {
-            EditorGUILayout.HelpBox("You're still misiing a material to bake", MessageType.Warning);
-        }
     }
 
     protected override void CheckVariables()
@@ -54,12 +48,11 @@ public class BackTexture3DWindow : BakeTextureWindow
         base.CheckVariables();
 
         bHasHegiht = (Height > 0);
-        bHasMaterial = (ImageMaterial != null);
     }
 
     protected override bool IsEnabled()
     {
-        return base.IsEnabled() && bHasHegiht && bHasMaterial;
+        return base.IsEnabled() && bHasHegiht;
     }
 
     protected override void BakeTexture()
@@ -104,5 +97,10 @@ public class BackTexture3DWindow : BakeTextureWindow
         RenderTexture.ReleaseTemporary(NewRenderTexture);
         DestroyImmediate(NewVolumeTexture);
         DestroyImmediate(TempTexture);
+    }
+
+    protected override bool ShouldCheckMaterial()
+    {
+        return true;
     }
 }

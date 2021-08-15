@@ -1,51 +1,33 @@
-Shader "Custom/ConvertRangeColor"
+Shader "Custom/CombineShader"
 {
 	Properties
 	{
-		_TargetColor("TargetColor", Color) = (0, 0, 0, 1)
-		_ConvertColor("ConvertColor", Color) = (0, 0, 0, 1)
-		_Margin("Margin", float) = 0.0
-		[Toggle(USE_Convert_Color)] _UseConvertColor("Use Convert Color", Float) = 0
-		[Toggle(USE_Convert_Alpha)] _UseConvertAlpha("Use Convert Alpha", Float) = 0
 		_MainTex("Texture", 2D) = "white" {}
+		_CombineTex("Combine Texture", 2D) = "white" {}
+		[Toggle(USE_Combine_Color)] _UseCombineColor("Use Combine Color", Float) = 1
+		[Toggle(USE_Combine_Alpha)] _UseCombineAlpha("Use Combine Alpha", Float) = 1
 	}
 
-		SubShader
+	SubShader
 	{
 		//the material is completely non-transparent and is rendered at the same time as the other opaque geometry
 		Tags{ "RenderType" = "Opaque" "Queue" = "Geometry"}
 
 		Pass
 		{
+			Blend One One
+
 			CGPROGRAM
 			#include "UnityCG.cginc"
 
 			#pragma vertex vert
 			#pragma fragment frag
 
-			#pragma shader_feature USE_Convert_Color
-			#pragma shader_feature USE_Convert_Alpha
+			#pragma shader_feature USE_Combine_Color
+			#pragma shader_feature USE_Combine_Alpha
 
-			sampler2D _MainTex;
+			sampler2D _MainTex, _CombineTex;
 			float4 _MainTex_ST;
-			float4 _TargetColor;
-			float4 _MaxColor;
-			float _Margin;
-
-			fixed4 ConvertColor(fixed4 InColor)
-			{
-				if (length(InColor.rgb - _TargetColor.rgb) <= _Margin)
-				{
-#ifdef USE_Convert_Color
-					InColor.rgb = _TargetColor.rgb;
-#endif // USE_Convert_Color
-#ifdef USE_Convert_Alpha
-					InColor.a = _TargetColor.a;
-#endif // USE_Convert_Alpha
-				}
-
-				return InColor;
-			}
 
 			//the object data that's put into the vertex shader
 			struct appdata
@@ -73,8 +55,22 @@ Shader "Custom/ConvertRangeColor"
 
 			half4 frag(v2f i) : SV_TARGET
 			{
-				half4 color = tex2D(_MainTex, i.uv);
-				return ConvertColor(color);
+				half4 color1 = tex2D(_MainTex, i.uv);
+				half4 color2 = tex2D(_CombineTex, i.uv);
+				half4 result = half4(0, 0, 0, 1);
+
+#ifdef USE_Combine_Color
+				result.rgb = color1.rgb + color2.rgb;
+#else // USE_Combine_Color
+				result.rgb = color1.rgb;
+#endif // USE_Combine_Color
+#ifdef USE_Combine_Alpha
+				result.a = color1.a + color2.a;
+#else // USE_Combine_Alpha
+				result.a = color1.a;
+#endif // USE_Combine_Alpha
+
+				return result;
 			}
 
 			ENDCG

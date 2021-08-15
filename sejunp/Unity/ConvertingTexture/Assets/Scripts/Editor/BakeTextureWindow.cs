@@ -20,9 +20,9 @@ public class BakeTextureWindow : EditorWindow
     protected static string SaveFileName = "BakdedImage";
     protected static Vector2Int Resolution;
     protected static EEncodeType EncodeType;
-    protected static Texture2D SourceTexture;
     protected static Texture2D TargetTexture;
     protected static bool bNoUseMaterial;
+    protected static bool bUseTargetTextureAsSource;
 
     private static bool bHasMaterial;
     private static bool bHasResolution;
@@ -75,8 +75,8 @@ public class BakeTextureWindow : EditorWindow
         ImageMaterial = (Material)EditorGUILayout.ObjectField("Material", ImageMaterial, typeof(Material), false);
         Resolution = EditorGUILayout.Vector2IntField("Resolution", Resolution);
         TargetTexture = (Texture2D)EditorGUILayout.ObjectField("Target Texture", TargetTexture, typeof(Texture2D), false);
-        SourceTexture = (Texture2D)EditorGUILayout.ObjectField("Source Texture", SourceTexture, typeof(Texture2D), false);
         bNoUseMaterial = EditorGUILayout.Toggle("No Use Mateterial", bNoUseMaterial);
+        bUseTargetTextureAsSource = EditorGUILayout.Toggle("Use Target Texture As Source", bUseTargetTextureAsSource);
     }
     
     protected virtual void ShowWarnings()
@@ -90,17 +90,37 @@ public class BakeTextureWindow : EditorWindow
         {
             EditorGUILayout.HelpBox("No file to save the image to given", MessageType.Warning);
         }
+
+        if (ShouldCheckMaterial())
+        {
+            if (!bHasMaterial)
+            {
+                EditorGUILayout.HelpBox("You're still misiing a material to bake", MessageType.Warning);
+            }
+        }
     }
 
     protected virtual void CheckVariables()
     {
         bHasResolution = (Resolution.x > 0 && Resolution.y > 0);
         bHasImageFile = (!string.IsNullOrEmpty(SaveFilePath) && !string.IsNullOrEmpty(SaveFileName));
+
+        if (ShouldCheckMaterial())
+        {
+            bHasMaterial = (ImageMaterial != null);
+        }
     }
 
     protected virtual bool IsEnabled()
     {
-        return bHasResolution && bHasImageFile;
+        bool bResult = bHasResolution && bHasImageFile;
+
+        if (ShouldCheckMaterial())
+        {
+            bResult = bResult && bHasMaterial;
+        }
+
+        return bResult;
     }
 
     protected string ChooseFilePath(string InPath)
@@ -148,7 +168,7 @@ public class BakeTextureWindow : EditorWindow
 
     protected virtual void ReadyToBake()
     {
-        if (TargetTexture != null && ImageMaterial != null)
+        if (TargetTexture != null && ImageMaterial != null && !bUseTargetTextureAsSource)
         {
             ImageMaterial.SetTexture("_MainTex", TargetTexture);
         }
@@ -158,15 +178,7 @@ public class BakeTextureWindow : EditorWindow
     {
         // render material to rendertexture
         RenderTexture NewRenderTexture = RenderTexture.GetTemporary(Resolution.x, Resolution.y);
-
-        if(ImageMaterial != null)
-        {
-            Graphics.Blit(SourceTexture, NewRenderTexture, ImageMaterial);
-        }
-        else
-        {
-            Graphics.Blit(SourceTexture, NewRenderTexture);
-        }
+        BlitTexture(bUseTargetTextureAsSource ? TargetTexture : null, NewRenderTexture, ImageMaterial);
 
         // transfer image from rendertexture to texture2d
         Texture2D NewTexture = new Texture2D(Resolution.x, Resolution.y);
@@ -196,6 +208,23 @@ public class BakeTextureWindow : EditorWindow
         else
         {
             Debug.Log("Bake texture failed");
+        }
+    }
+
+    protected virtual bool ShouldCheckMaterial()
+    {
+        return !bNoUseMaterial;
+    }
+
+    protected void BlitTexture(Texture Source, RenderTexture Dest, Material Mat = null)
+    {
+        if(Mat != null)
+        {
+            Graphics.Blit(Source, Dest, Mat);
+        }
+        else
+        {
+            Graphics.Blit(Source, Dest);
         }
     }
 

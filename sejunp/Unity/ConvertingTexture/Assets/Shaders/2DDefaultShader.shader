@@ -7,7 +7,7 @@ Shader "Custom/2DDefaultShader"
 		_MainTex("Texture", 2D) = "white" {}
 	}
 
-		SubShader
+	SubShader
 	{
 		//the material is completely non-transparent and is rendered at the same time as the other opaque geometry
 		Tags{ "RenderType" = "Opaque" "Queue" = "Geometry"}
@@ -48,9 +48,9 @@ Shader "Custom/2DDefaultShader"
 				return o;
 			}
 
-			fixed4 frag(v2f i) : SV_TARGET
+			half4 frag(v2f i) : SV_TARGET
 			{
-				fixed4 color = tex2D(_MainTex, i.uv);
+				half4 color = tex2D(_MainTex, i.uv);
 				color *= _Color;
 				return color;
 			}
