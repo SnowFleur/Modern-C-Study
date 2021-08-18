@@ -8,11 +8,3 @@ CThreadBase::~CThreadBase(){
 
 }
 
-void CThreadBase::Run(){
-
-    while (true) 
-    {
-    
-    
-    }
-}

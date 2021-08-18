@@ -57,7 +57,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt">
+    <Text Include="ReadMe.md">
       <Filter>main</Filter>
     </Text>
   </ItemGroup>

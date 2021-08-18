@@ -9,11 +9,12 @@
 
 */
 
+using namespace std::chrono;
 
 class CThreadBase {
 private:
     HANDLE      hThreadHandle_;
-
+    /*여러 가지 기능들*/
 public:
     CThreadBase();
     ~CThreadBase()noexcept;
@@ -24,5 +25,5 @@ public:
 
     inline HANDLE  getHandle() { hThreadHandle_; }
 
-    virtual void Run();
+    virtual void Run() = 0;
 };
