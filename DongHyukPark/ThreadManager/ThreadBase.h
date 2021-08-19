@@ -14,6 +14,12 @@ using namespace std::chrono;
 class CThreadBase {
 private:
     HANDLE      hThreadHandle_;
+#ifdef _WIN64
+    uint64_t    threadID_;
+#else
+    uint32_t    threadID_;
+#endif // _WIN64
+
     /*여러 가지 기능들*/
 public:
     CThreadBase();
