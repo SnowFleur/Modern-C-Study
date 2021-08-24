@@ -1,0 +1,7 @@
+C:\Users\pc\Desktop\Project_os\공부\Modern C++\Modern-Cplusplus-Study\OSungKwon\C#\Study\Study1\Study1\bin\Debug\Study1.exe.config
+C:\Users\pc\Desktop\Project_os\공부\Modern C++\Modern-Cplusplus-Study\OSungKwon\C#\Study\Study1\Study1\bin\Debug\Study1.exe
+C:\Users\pc\Desktop\Project_os\공부\Modern C++\Modern-Cplusplus-Study\OSungKwon\C#\Study\Study1\Study1\bin\Debug\Study1.pdb
+C:\Users\pc\Desktop\Project_os\공부\Modern C++\Modern-Cplusplus-Study\OSungKwon\C#\Study\Study1\Study1\obj\Debug\Study1.csprojAssemblyReference.cache
+C:\Users\pc\Desktop\Project_os\공부\Modern C++\Modern-Cplusplus-Study\OSungKwon\C#\Study\Study1\Study1\obj\Debug\Study1.csproj.CoreCompileInputs.cache
+C:\Users\pc\Desktop\Project_os\공부\Modern C++\Modern-Cplusplus-Study\OSungKwon\C#\Study\Study1\Study1\obj\Debug\Study1.exe
+C:\Users\pc\Desktop\Project_os\공부\Modern C++\Modern-Cplusplus-Study\OSungKwon\C#\Study\Study1\Study1\obj\Debug\Study1.pdb
