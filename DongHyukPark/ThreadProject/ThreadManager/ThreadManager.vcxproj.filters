@@ -35,6 +35,9 @@
     <ClCompile Include="Lock.cpp">
       <Filter>Utilty</Filter>
     </ClCompile>
+    <ClCompile Include="SnowThread.cpp">
+      <Filter>Thread\SnowThread</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SnowThread.h">
@@ -60,9 +63,6 @@
     </ClInclude>
     <ClInclude Include="Lock.h">
       <Filter>Utilty</Filter>
-    </ClInclude>
-    <ClInclude Include="SnowThread.inl">
-      <Filter>Thread\SnowThread</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
