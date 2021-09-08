@@ -1,4 +1,4 @@
-#include "ErrorLogger.h"
+#include "Engine.h"
 #pragma comment(lib,"d3d11.lib")
 #pragma comment(lib,"DirectXTK.lib")
 
@@ -7,7 +7,12 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	_In_ LPWSTR    lpCmdLine,
 	_In_ int       nCmdShow)
 {
-	
-	
+	Engine engine;
+	engine.Initialize(hInstance, "DirectX11-GameEngine", "MyWindowClass", 800, 600);
+	while (engine.ProcessMessages() == true)
+	{
+		engine.Update();
+	}
+
 	return 0;
 }
