@@ -7,12 +7,12 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	_In_ int       nCmdShow)
 {
 	Engine engine;
-	engine.Initialize(hInstance, "DirectX11-GameEngine", "MyWindowClass", 800, 600);
-	while (engine.ProcessMessages() == true)
-	{
-		engine.Update();
-		engine.RenderFrame();
+	if (engine.Initialize(hInstance, "DirectX11-GameEngine", "MyWindowClass", 800, 600)) {
+		while (engine.ProcessMessages() == true)
+		{
+			engine.Update();
+			engine.RenderFrame();
+		}
 	}
-
 	return 0;
 }
