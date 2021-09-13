@@ -22,7 +22,7 @@
 |...|...|...|
 
 
-프로토콜 버퍼 Git 
+Protocol Buffer Git(3.17.3)
 https://github.com/protocolbuffers/protobuf/releases/tag/v3.17.3
 
 Basic-SnowNetCore Git
