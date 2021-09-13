@@ -5,7 +5,14 @@
       <FullPath>C:\Users\STL3\Documents\GitHub\DirectX11\DirectX-11-Engine-VS2017\DirectX 11 Engine VS2017\x64\Debug\DirectX 11 Engine VS2017.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
-  <ContentFiles />
+  <ContentFiles>
+    <ContentFile>
+      <FullPath>C:\Users\STL3\Documents\GitHub\DirectX11\DirectX-11-Engine-VS2017\DirectX 11 Engine VS2017\x64\Debug\PixelShader.cso</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\STL3\Documents\GitHub\DirectX11\DirectX-11-Engine-VS2017\DirectX 11 Engine VS2017\x64\Debug\VertexShader.cso</FullPath>
+    </ContentFile>
+  </ContentFiles>
   <SatelliteDlls />
   <NonRecipeFileRefs />
 </Project>
