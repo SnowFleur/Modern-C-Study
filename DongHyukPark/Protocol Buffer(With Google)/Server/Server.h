@@ -1,26 +1,24 @@
 #pragma once
 
-#include<vector>
-#include"../lib/Basic-SnowNetCore/"
+#include<SnowSession.h>
+#include<SnowThread.h>
 
 class CServer {
 private:
-    std::vector<C>       vecSession_;
+    CSnowSocket                 accpetSocket_;
+    CSnowThread                 accpetWaitThread_;
 public:
-
-    CServer() = default;
+    CServer():
+        accpetWaitThread_(&CServer::AccpetThread, this),
+        accpetSocket_(SOCKET_TYPE::TCP_TYPE)
+    {
+    }
 
     ~CServer()noexcept {}
 
-
-    void Run() {
-    
-        while (true) {
-        
-        
-        
-        }
+    void AccpetThread() {
+        std::cout << "Start Accpet Thread\n";
+        while (true)Sleep(1000);
     }
-
 
 };

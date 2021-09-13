@@ -9,9 +9,3 @@
 #pragma comment(lib, "Ws2_32.lib")
 #pragma comment(lib, "mswsock.lib")
 #endif
-
-#include<vector>
-#include<iostream>
-#include<memory>
-#include<functional>
-

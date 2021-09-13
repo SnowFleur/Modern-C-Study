@@ -27,12 +27,18 @@ private:
     uint32_t    threadID_;
 #endif // _WIN64
 
-    static  uint32_t __stdcall    OnInvoke(LPVOID arg) {
+    static  unsigned __stdcall    OnInvoke(LPVOID arg) {
         return reinterpret_cast<CSnowThread*>(arg)->Thread();
     }
     uint32_t Thread();
 public:
-    virtual ~CSnowThread()noexcept;
+    virtual ~CSnowThread()noexcept {
+        if (hThreadHandle_ != INVALID_HANDLE_VALUE) {
+            //PDH- 커널 객체 반환은 선택이 아닌 필수다.
+            CloseHandle(hThreadHandle_);
+        }
+    }
+
     CSnowThread(const CSnowThread&)                 = delete;
     CSnowThread& operator=(const CSnowThread&)      = delete;
     CSnowThread(CSnowThread&&)noexcept              = delete;
@@ -56,7 +62,10 @@ private:
     }
 public:
     template<class _Ty, class... _Args>
-    CSnowThread(_Ty&& ftn, _Args&&... args) {
+    CSnowThread(_Ty&& ftn, _Args&&... args):
+    hThreadHandle_(INVALID_HANDLE_VALUE),
+    isAlive_(false)
+    {
         Run(std::forward<_Ty>(ftn), std::forward<_Args>(args)...);
     }
 };

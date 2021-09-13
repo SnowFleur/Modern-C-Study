@@ -1,4 +1,5 @@
 #pragma once
+#include<stdint.h>
 #include"WindowsHeader.h"
 #include"DefineUtilty.h"
 
@@ -8,6 +9,7 @@ class CSnowSocket;
 class CNetAddress;
 class CSnowThread;
 class CBuffer;
+
 
 //Using Data type
 #ifdef _WIN64

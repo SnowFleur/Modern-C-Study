@@ -1,10 +1,12 @@
 #pragma once
 
+#include<queue>
+#include<atomic>
+
 #include"WindowsHeader.h"
 #include"DataTypes.h"
 #include"SnowSocket.h"
 #include"Buffer.h"
-#include<queue>
 
 /*
 -   [2021.09.10]

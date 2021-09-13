@@ -1,4 +1,5 @@
 #pragma once
+#include<iostream>
 #include"WindowsHeader.h"
 #include"DataTypes.h"
 
@@ -30,7 +31,7 @@ public:
             std::cout << "Can Not Init Socket"<<WSAGetLastError()<<"\n";
         }
     }
-    ~CSnowSocket()noexcept {
+    virtual ~CSnowSocket()noexcept {
         if (socket_ != INVALID_SOCKET)
             closesocket(socket_);
     }
