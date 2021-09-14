@@ -78,7 +78,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(SolutionDir)DirectX 11 Engine VS2017\Includes;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\STL3\Documents\GitHub\DirectX11\DirectX-11-Engine-VS2017\DirectX 11 Engine VS2017\DirectX 11 Engine VS2017\Includes;$(SolutionDir)DirectX 11 Engine VS2017\Libs\x64\Debug;$(LibraryPath)</LibraryPath>
+    <LibraryPath>C:\Users\STL3\Documents\GitHub\DirectX11\DirectX-11-Engine-VS2017\DirectX 11 Engine VS2017\DirectX 11 Engine VS2017\Includes;C:\Users\Welcome\Documents\DirectX\DirectX 11 Engine VS2017\DirectX 11 Engine VS2017\Includes;$(SolutionDir)DirectX 11 Engine VS2017\Libs\x64\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
