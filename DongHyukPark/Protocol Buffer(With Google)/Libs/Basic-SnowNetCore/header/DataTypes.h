@@ -8,6 +8,8 @@ class CSnowSession;
 class CSnowSocket;
 class CNetAddress;
 class CSnowThread;
+
+template<class _Ty>
 class CBuffer;
 
 

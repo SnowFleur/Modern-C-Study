@@ -14,30 +14,19 @@ class CSnowSocket {
 private:
     SOCKET      socket_;
 public:
-    CSnowSocket(SOCKET_TYPE socketType, DWORD dwFlags = NULL) :
+    CSnowSocket() :
         socket_(INVALID_SOCKET)
-    {
-        switch (socketType) {
-        case SOCKET_TYPE::TCP_TYPE:
-            socket_ = WSASocket(AF_INET, SOCK_STREAM, IPPROTO_TCP, NULL, 0, dwFlags);
-            break;
-        case SOCKET_TYPE::UDP_TYPE:
-            socket_ = WSASocket(AF_INET, SOCK_DGRAM, IPPROTO_UDP, NULL, 0, dwFlags);
-            break;
-        default:
-            break;
-        }
-        if (socket_ == INVALID_SOCKET) {
-            std::cout << "Can Not Init Socket"<<WSAGetLastError()<<"\n";
-        }
-    }
+    {}
+
     virtual ~CSnowSocket()noexcept {
         if (socket_ != INVALID_SOCKET)
             closesocket(socket_);
     }
 public:
 
+    void InitSocket(const SOCKET_TYPE socketType, const DWORD dwFlags = NULL);
     inline SOCKET GetSocket()const { return socket_; }
+    inline void   SetSocket(SOCKET socket) { if (socket != INVALID_SOCKET)socket_ = socket; }
 
     /*Linger는 CloseSocket을 했을 때 Send 버퍼에 남은 데이터를 보낼지 말지 정하는 옵션 함수*/
     inline bool SetLinger(UINT16 onoff, UINT16 linger) {
