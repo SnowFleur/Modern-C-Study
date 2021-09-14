@@ -6,6 +6,7 @@ void ThreadFunction(int value1, int value2) {
 
     std::cout << "뜨뜨뜨뜨레드: ";
     std::cout << value1 << " " << value2 << "\n";
+    Sleep(500); //시간확인용
 }
 
 int main() {
@@ -20,5 +21,6 @@ int main() {
 
 
     CSnowThread thread(ThreadFunction, 5, 1);
+    thread.ToglePrintThreadResponsiveTime();
     thread.Join();
 }
