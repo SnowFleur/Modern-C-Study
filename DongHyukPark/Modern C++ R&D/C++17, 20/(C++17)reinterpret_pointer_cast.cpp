@@ -40,6 +40,4 @@ int main() {
 
     printf("%d \n", *scharPtr);
 
-    //복사를 하기 때문에 ref Count는 2
-    std::cout << sIntptr.use_count() << "\n";
 }
