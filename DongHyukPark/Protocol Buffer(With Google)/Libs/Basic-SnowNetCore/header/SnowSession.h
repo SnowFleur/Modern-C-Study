@@ -7,6 +7,7 @@
 #include"DataTypes.h"
 #include"SnowSocket.h"
 #include"Buffer.h"
+#include"NetAddress.h"
 
 /*
 -   [2021.09.10]
@@ -15,38 +16,41 @@
 -
 */
 
-class CSnowSession: public CSnowSocket{
+class CSnowSession : public CSnowSocket {
     //To do std::any
     typedef void* Packet;
 private:
-    //CNetAddress           sessionAddress_;
-    SessionID				sessionId_;
-    CBuffer<char>	        sendBuffer_;
-    CBuffer<char>			recvBuffer_;
-    bool                    isAlive_;
-    std::atomic<bool>       sendComplete_;
-    std::queue<Packet>      sendQueue_;
+    CNetAddress                         sessionAddress_;
+    SessionID                           sessionId_;
+    CBuffer<char>                       sendBuffer_;
+    CBuffer<char>                       recvBuffer_;
+    bool                                isAlive_;
+    std::atomic<bool>                   sendComplete_;
+    std::queue<Packet>                  sendQueue_;
 private:
-	bool PacketValidCheck(const char* packet);
+    bool PacketValidCheck(const char* packet);
 public:
-	CSnowSession& operator=(const CSnowSession&)     = delete;
-	CSnowSession(const CSnowSession&)                = delete;
-	CSnowSession& operator=(CSnowSession&&)noexcept  = delete;
-	CSnowSession(CSnowSession&&)noexcept             = delete;
+    CSnowSession& operator=(const CSnowSession&)     = delete;
+    CSnowSession(const CSnowSession&)                = delete;
+    CSnowSession& operator=(CSnowSession&&)noexcept  = delete;
+    CSnowSession(CSnowSession&&)noexcept             = delete;
 
     CSnowSession(const SOCKET_TYPE socketType, const SessionID sessionID, const uint32_t BUFFER_SIZE);
     CSnowSession(const uint32_t BUFFER_SIZE);
 
-	virtual ~CSnowSession()noexcept;
+    virtual ~CSnowSession()noexcept;
 public:
-    inline SessionID        GetSessionID()const { return sessionId_; }
-    inline void				SetSessionID(const SessionID sessionId) { sessionId_ = sessionId; }
-    inline void             SetAlive(const bool alive) { isAlive_ = alive; }
-    inline bool             GetAlive()const { return isAlive_; }
+    inline SessionID GetSessionID()const                 { return sessionId_; }
+    inline void SeSessionID(const SessionID sessionId)   { sessionId_ = sessionId; }
+    inline void SetAlive(const bool alive)               { isAlive_ = alive; }
+    inline bool GetAlive()const                          { return isAlive_; }
+    void PrintSessionAddrInfor()const                    { sessionAddress_.PrintIPAndPort(); }
+    PSOCKADDR_IN GetSessionAddr()                        { return sessionAddress_.GetAddrInfor(); }
+    void SetSessionAdder(PSOCKADDR pRemoteSocketAddr)    { sessionAddress_.SetAddrInfor(pRemoteSocketAddr); };
 
-    bool                    OnRecv();
-    bool                    OnSend(Packet packet);
-    void                    PushSendQueue(Packet packet);
+    bool              OnRecv();
+    bool              OnSend(Packet packet);
+    void              PushSendQueue(Packet packet);
 
 };
 

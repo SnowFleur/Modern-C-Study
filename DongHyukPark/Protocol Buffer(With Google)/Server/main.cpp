@@ -1,12 +1,13 @@
 #pragma once
 
-
-//X64¸¸ Áö¿ø!
+//Only Used x64
 #ifdef _DEBUG
 //#pragma comment(lib,"..\\Libs\\Basic-SnowNetCore\\Lib\\Debug\\Basic-SnowNetCore.lib")
     #pragma comment(lib,"Debug\\Basic-SnowNetCore.lib")
+    #pragma comment(lib,"Debug\\libprotobufd.lib")
 #else
     #pragma comment(lib,"Release\\Basic-SnowNetCore.lib")
+    #pragma comment(lib,"Releaseg\\libprotobufd.lib")
 #endif // _DEBUG
 
 

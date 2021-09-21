@@ -5,7 +5,6 @@
 #include<SnowThread.h>
 #include<atomic>
 
-
 constexpr int MAX_SESSION = 10000;
 
 class CServer {
@@ -22,7 +21,6 @@ public:
     }
 
     ~CServer()noexcept {
-    
         WSACleanup();
     }
 
@@ -41,13 +39,14 @@ public:
         SOCKADDR_IN serverAddr;
         ZeroMemory(&serverAddr, sizeof(SOCKADDR_IN));
         serverAddr.sin_family = AF_INET;
-        serverAddr.sin_port = PORT;
+        serverAddr.sin_port = htons(PORT);
         inet_pton(AF_INET, SERVER_ADDDR, &serverAddr.sin_addr);
 
         accpetSocket_.InitSocket(SOCKET_TYPE::TCP_TYPE);
         if (accpetSocket_.Bind(&serverAddr) == false) return;
         if (accpetSocket_.Listen() == false)return;
 
+        accpetSocket_.SetReuseAddr(true);
 
         while (true) {
 
@@ -60,7 +59,11 @@ public:
 
                 CSnowSession* tempSession = new CSnowSession(SOCKET_TYPE::TCP_TYPE, ++stSessionIndex_, BUFFER_SIZE);
                 tempSession->SetSocket(tempSocket);
-                std::cout << "Accpet Session\n";
+                
+                tempSession->SetSessionAdder(reinterpret_cast<PSOCKADDR>(&clinetInfo));
+                std::cout << "Accpet Session: ";
+                tempSession->PrintSessionAddrInfor();
+
                 vecSession_.push_back(tempSession);
                 //TO DO NetAddr;
             }
