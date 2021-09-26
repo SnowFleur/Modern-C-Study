@@ -18,7 +18,7 @@
     <ClCompile Include="main.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="..\protocol\Protocol.pb.cc">
+    <ClCompile Include="..\protocol\TestProtocol.pb.cc">
       <Filter>Protocol</Filter>
     </ClCompile>
   </ItemGroup>
@@ -26,7 +26,10 @@
     <ClInclude Include="Server.h">
       <Filter>소스 파일</Filter>
     </ClInclude>
-    <ClInclude Include="..\protocol\Protocol.pb.h">
+    <ClInclude Include="PacketHandler.h">
+      <Filter>Protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\protocol\TestProtocol.pb.h">
       <Filter>Protocol</Filter>
     </ClInclude>
   </ItemGroup>

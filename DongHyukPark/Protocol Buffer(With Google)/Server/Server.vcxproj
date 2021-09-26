@@ -155,11 +155,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\protocol\Protocol.pb.cc" />
+    <ClCompile Include="..\protocol\TestProtocol.pb.cc" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\protocol\Protocol.pb.h" />
+    <ClInclude Include="..\protocol\TestProtocol.pb.h" />
+    <ClInclude Include="PacketHandler.h" />
     <ClInclude Include="Server.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
