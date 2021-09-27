@@ -30,4 +30,4 @@
 *.exe
 *.out
 *.app
-/KichunKwon/DirectX 11 Engine VS2017/.vs
+.vs//
