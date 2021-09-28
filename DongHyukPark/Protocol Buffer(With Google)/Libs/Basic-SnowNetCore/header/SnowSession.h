@@ -48,10 +48,9 @@ public:
     PSOCKADDR_IN GetSessionAddr()                        { return sessionAddress_.GetAddrInfor(); }
     void SetSessionAdder(PSOCKADDR pRemoteSocketAddr)    { sessionAddress_.SetAddrInfor(pRemoteSocketAddr); };
 
-    bool              OnRecv();
-    bool              OnSend(Packet packet);
+    int32_t           OnRecv();
+    int32_t           OnSend(Packet packet);
     void              PushSendQueue(Packet packet);
-
 };
 
 

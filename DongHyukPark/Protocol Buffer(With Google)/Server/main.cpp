@@ -15,6 +15,9 @@
 #include"Server.h"
 
 int main() {
+    GOOGLE_PROTOBUF_VERIFY_VERSION;
     CServer server;
-    while (true)Sleep(100);
+    while (true) {
+        server.EchoLoop();
+    }
 }
