@@ -40,17 +40,22 @@ public:
 
     virtual ~CSnowSession()noexcept;
 public:
-    inline SessionID GetSessionID()const                 { return sessionId_; }
-    inline void SeSessionID(const SessionID sessionId)   { sessionId_ = sessionId; }
-    inline void SetAlive(const bool alive)               { isAlive_ = alive; }
-    inline bool GetAlive()const                          { return isAlive_; }
-    void PrintSessionAddrInfor()const                    { sessionAddress_.PrintIPAndPort(); }
-    PSOCKADDR_IN GetSessionAddr()                        { return sessionAddress_.GetAddrInfor(); }
-    void SetSessionAdder(PSOCKADDR pRemoteSocketAddr)    { sessionAddress_.SetAddrInfor(pRemoteSocketAddr); };
+    
+    inline SessionID GetSessionID()const                          { return sessionId_; }
+    inline void SeSessionID(const SessionID sessionId)            { sessionId_ = sessionId; }
+    inline void SetAlive(const bool alive)                        { isAlive_ = alive; }
+    inline bool GetAlive()const                                   { return isAlive_; }
+    PSOCKADDR_IN GetSessionAddr()                                 { return sessionAddress_.GetAddrInfor(); }
+    void SetSessionAdder(PSOCKADDR pRemoteSocketAddr)             { sessionAddress_.SetAddrInfor(pRemoteSocketAddr); };
+    auto GetRecvBuffer()const                                     { return recvBuffer_.GetBuffer(); }
+    auto SetRecvBuffer(const char* buffer, uint32_t bufferSize)   { recvBuffer_.SetBuffer(buffer, bufferSize); }
+    auto SetSendBuffer(const char* buffer, uint32_t bufferSize)   { sendBuffer_.SetBuffer(buffer, bufferSize); }
+    auto GetSendBuffer()const                                     { return sendBuffer_.GetBuffer(); }
+    void PrintSessionAddrInfor()const                             { sessionAddress_.PrintIPAndPort(); }
 
-    int32_t           OnRecv();
-    int32_t           OnSend(Packet packet);
-    void              PushSendQueue(Packet packet);
+    DWORD           OnRecv();
+    DWORD           OnSend(Packet packet);
+    void            PushSendQueue(Packet packet);
 };
 
 

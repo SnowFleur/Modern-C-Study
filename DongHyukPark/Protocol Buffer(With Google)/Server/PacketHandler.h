@@ -7,6 +7,8 @@
 - To do 유효성 검증 추가
 */
 
+#include"PacketHeader.h"
+
 class CPacketHandler {
 public:
     
@@ -14,14 +16,18 @@ public:
     static bool GeneratedProtoBufferPacket(_Ty* sourceData, char* destData, const size_t destSize, _PT packetType) {
 
         if (sourceData->ByteSizeLong() == 0) return false;
-        if (sourceData == nullptr)     return false;
-        if (destData == nullptr)       return false;
-        if (destSize <= 0)             return false;
+        if (sourceData == nullptr)           return false;
+        if (destData == nullptr)             return false;
+        if (destSize <= 0)                   return false;
 
-        sourceData->set_packetsize(sourceData->ByteSizeLong());
-        sourceData->set_packettype(packetType);
-        if (sourceData->SerializePartialToArray(destData, destSize) == false) return false;
-        return true;
+        unsigned short packetSize = static_cast<unsigned short>(sourceData->ByteSizeLong()) + sizeof(STPacketHeader);
+        if (destSize < packetSize)           return false;
+
+        STPacketHeader header{};
+        header.packetSize = packetSize;
+        header.packetType = packetType;
+        memcpy_s(destData, destSize, &header, sizeof(STPacketHeader));
+        return  sourceData->SerializePartialToArray(destData + sizeof(STPacketHeader), destSize);
     }
 
     template<class _Ty>
@@ -30,9 +36,12 @@ public:
         if (sourceData == nullptr) return false;
         if (destData == nullptr)   return false;
         if (sourceDataSize <= 0)   return false;
-        if (destData->ParseFromArray(sourceData, sourceDataSize) == false) return false;
-        return true;
+
+        STPacketHeader header{};
+        memcpy_s(&header, sizeof(STPacketHeader), sourceData, sizeof(STPacketHeader) > sourceDataSize ? sourceDataSize : sizeof(STPacketHeader));
+        return  destData->ParseFromArray(sourceData + sizeof(STPacketHeader), header.packetSize - sizeof(STPacketHeader));
     }
+
 
 };
 

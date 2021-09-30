@@ -10,10 +10,9 @@
 #include"PacketHandler.h"
 
 #define SERVER_ADDDR "127.0.0.1"
-constexpr int MAX_SESSION = 10000;
-constexpr int PORT = 9000;
-constexpr int BUFFER_SIZE = 1024;
-constexpr int MAX_PACKET_SIZE = 500;
+constexpr int MAX_SESSION      = 10000;
+constexpr int PORT             = 9000;
+constexpr int BUFFER_SIZE      = 1024;
 
 class CServer {
 private:
@@ -55,6 +54,23 @@ public:
 
         accpetSocket_.SetReuseAddr(true);
 
+
+
+        char packet[BUFFER_SIZE]{};
+        TestProtocol::SC_LOING_RES cDePacket;
+        cDePacket.set_sessionindex(30);
+        auto a = cDePacket.ByteSizeLong();
+
+        if (GeneratedProtoBuf(&cDePacket, packet, BUFFER_SIZE, PT::SC_LOING_RES) == true) {
+
+            TestProtocol::SC_LOING_RES cGePacket;
+            if (DegeneratedProtoBuf(&cGePacket, packet, BUFFER_SIZE) == true) {
+
+                std::cout << cGePacket.sessionindex() << "\n";
+            }
+        }
+
+
         while (true) {
 
             SOCKADDR_IN clinetInfo;
@@ -80,32 +96,33 @@ public:
 
     void EchoLoop() {
 
-        char packet[MAX_PACKET_SIZE]{};
-
         for (const auto session : vecSession_) {
 
             int32_t recvLen = session->OnRecv();
 
+            auto packet = session->GetRecvBuffer();
+
             TestProtocol::SC_LOING_RES cDePacket;
-            if (cDePacket.ParseFromArray(packet, MAX_PACKET_SIZE) == false) { std::cout << "sibal"; }
 
-            if (DegeneratedProtoBuf(&cDePacket, packet, cDePacket.ByteSizeLong()) == true) {
-                std::cout << "PacketSize" << cDePacket.packetsize() << "\n";
-                std::cout << "PacketType" << static_cast<int>(cDePacket.packettype()) << "\n";
-                std::cout << "Result: " << cDePacket.result() << "\n";
-                std::cout << "Sessionindex" << cDePacket.sessionindex() << "\n";
-            }
+            int32_t packetSize = 0;
+            memcpy_s(&packetSize, sizeof(PacketSize), packet.get(), sizeof(int32_t));
 
-            TestProtocol::SC_LOING_RES cGePacket;
-            cGePacket.set_result(true);
-            cGePacket.set_sessionindex(1);
+            //if (DegeneratedProtoBuf(&cDePacket, packet.get(), packetSize) == true) {
+            //    std::cout << "PacketSize" << cDePacket.packetsize() << "\n";
+            //    std::cout << "PacketType" << static_cast<int>(cDePacket.packettype()) << "\n";
+            //    std::cout << "Result: " << cDePacket.result() << "\n";
+            //    std::cout << "Sessionindex" << cDePacket.sessionindex() << "\n";
 
-            memset(packet, 0, MAX_PACKET_SIZE);
+            //    TestProtocol::SC_LOING_RES cGePacket;
+            //    cGePacket.set_result(true);
+            //    cGePacket.set_sessionindex(1);
+            //    memset(packet.get(), 0, BUFFER_SIZE);
 
-            if (GeneratedProtoBuf(&cGePacket, packet, sizeof(packet), TestProtocol::PT::PT_SC_LOING_RES) == true)
-            {
-                int32_t sendLen = session->OnSend(packet);
-            }
+
+            // /*   if (GeneratedProtoBuf(&cGePacket, packet.get(), sizeof(packet), TestProtocol::PT::PT_SC_LOING_RES) == true) {
+            //        int32_t sendLen = session->OnSend(nullptr);
+            //    }*/
+            //}
         }
     }
 

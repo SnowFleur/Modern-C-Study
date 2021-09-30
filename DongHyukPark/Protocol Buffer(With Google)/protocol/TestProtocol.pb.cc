@@ -19,9 +19,7 @@ PROTOBUF_PRAGMA_INIT_SEG
 namespace TestProtocol {
 constexpr CS_LOGIN_REQ::CS_LOGIN_REQ(
   ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
-  : packettype_(0)
-
-  , packetsize_(0u){}
+  : packetsize_(0u){}
 struct CS_LOGIN_REQDefaultTypeInternal {
   constexpr CS_LOGIN_REQDefaultTypeInternal()
     : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
@@ -33,11 +31,7 @@ struct CS_LOGIN_REQDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT CS_LOGIN_REQDefaultTypeInternal _CS_LOGIN_REQ_default_instance_;
 constexpr SC_LOING_RES::SC_LOING_RES(
   ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
-  : packettype_(0)
-
-  , packetsize_(0u)
-  , sessionindex_(uint64_t{0u})
-  , result_(false){}
+  : sessionindex_(uint64_t{0u}){}
 struct SC_LOING_RESDefaultTypeInternal {
   constexpr SC_LOING_RESDefaultTypeInternal()
     : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
@@ -49,10 +43,7 @@ struct SC_LOING_RESDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT SC_LOING_RESDefaultTypeInternal _SC_LOING_RES_default_instance_;
 constexpr ECHO_SendChatMessage::ECHO_SendChatMessage(
   ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
-  : packettype_(0)
-
-  , packetsize_(0u)
-  , sessionindex_(uint64_t{0u}){}
+  : sessionindex_(uint64_t{0u}){}
 struct ECHO_SendChatMessageDefaultTypeInternal {
   constexpr ECHO_SendChatMessageDefaultTypeInternal()
     : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
@@ -64,7 +55,7 @@ struct ECHO_SendChatMessageDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT ECHO_SendChatMessageDefaultTypeInternal _ECHO_SendChatMessage_default_instance_;
 }  // namespace TestProtocol
 static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_TestProtocol_2eproto[3];
-static const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* file_level_enum_descriptors_TestProtocol_2eproto[1];
+static constexpr ::PROTOBUF_NAMESPACE_ID::EnumDescriptor const** file_level_enum_descriptors_TestProtocol_2eproto = nullptr;
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_TestProtocol_2eproto = nullptr;
 
 const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_TestProtocol_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
@@ -73,30 +64,24 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_TestProtocol_2eproto::offsets[
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::TestProtocol::CS_LOGIN_REQ, packettype_),
   PROTOBUF_FIELD_OFFSET(::TestProtocol::CS_LOGIN_REQ, packetsize_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::TestProtocol::SC_LOING_RES, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::TestProtocol::SC_LOING_RES, packettype_),
-  PROTOBUF_FIELD_OFFSET(::TestProtocol::SC_LOING_RES, packetsize_),
-  PROTOBUF_FIELD_OFFSET(::TestProtocol::SC_LOING_RES, result_),
   PROTOBUF_FIELD_OFFSET(::TestProtocol::SC_LOING_RES, sessionindex_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::TestProtocol::ECHO_SendChatMessage, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::TestProtocol::ECHO_SendChatMessage, packettype_),
-  PROTOBUF_FIELD_OFFSET(::TestProtocol::ECHO_SendChatMessage, packetsize_),
   PROTOBUF_FIELD_OFFSET(::TestProtocol::ECHO_SendChatMessage, sessionindex_),
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, sizeof(::TestProtocol::CS_LOGIN_REQ)},
-  { 7, -1, sizeof(::TestProtocol::SC_LOING_RES)},
-  { 16, -1, sizeof(::TestProtocol::ECHO_SendChatMessage)},
+  { 6, -1, sizeof(::TestProtocol::SC_LOING_RES)},
+  { 12, -1, sizeof(::TestProtocol::ECHO_SendChatMessage)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -106,21 +91,15 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
 };
 
 const char descriptor_table_protodef_TestProtocol_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\022TestProtocol.proto\022\014TestProtocol\"H\n\014CS"
-  "_LOGIN_REQ\022$\n\npacketType\030\001 \001(\0162\020.TestPro"
-  "tocol.PT\022\022\n\npacketSize\030\002 \001(\r\"n\n\014SC_LOING"
-  "_RES\022$\n\npacketType\030\001 \001(\0162\020.TestProtocol."
-  "PT\022\022\n\npacketSize\030\002 \001(\r\022\016\n\006result\030\003 \001(\010\022\024"
-  "\n\014sessionIndex\030\004 \001(\004\"f\n\024ECHO_SendChatMes"
-  "sage\022$\n\npacketType\030\001 \001(\0162\020.TestProtocol."
-  "PT\022\022\n\npacketSize\030\002 \001(\r\022\024\n\014sessionIndex\030\003"
-  " \001(\004*H\n\002PT\022\023\n\017PT_CS_LOING_REQ\020\000\022\023\n\017PT_SC"
-  "_LOING_RES\020\001\022\030\n\024PT_ECHO_SEND_MESSAGE\020\002b\006"
-  "proto3"
+  "\n\022TestProtocol.proto\022\014TestProtocol\"\"\n\014CS"
+  "_LOGIN_REQ\022\022\n\npacketSize\030\001 \001(\r\"$\n\014SC_LOI"
+  "NG_RES\022\024\n\014sessionIndex\030\001 \001(\004\",\n\024ECHO_Sen"
+  "dChatMessage\022\024\n\014sessionIndex\030\001 \001(\004b\006prot"
+  "o3"
   ;
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_TestProtocol_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_TestProtocol_2eproto = {
-  false, false, 406, descriptor_table_protodef_TestProtocol_2eproto, "TestProtocol.proto", 
+  false, false, 162, descriptor_table_protodef_TestProtocol_2eproto, "TestProtocol.proto", 
   &descriptor_table_TestProtocol_2eproto_once, nullptr, 0, 3,
   schemas, file_default_instances, TableStruct_TestProtocol_2eproto::offsets,
   file_level_metadata_TestProtocol_2eproto, file_level_enum_descriptors_TestProtocol_2eproto, file_level_service_descriptors_TestProtocol_2eproto,
@@ -132,21 +111,6 @@ PROTOBUF_ATTRIBUTE_WEAK const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable
 // Force running AddDescriptors() at dynamic initialization time.
 PROTOBUF_ATTRIBUTE_INIT_PRIORITY static ::PROTOBUF_NAMESPACE_ID::internal::AddDescriptorsRunner dynamic_init_dummy_TestProtocol_2eproto(&descriptor_table_TestProtocol_2eproto);
 namespace TestProtocol {
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* PT_descriptor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_TestProtocol_2eproto);
-  return file_level_enum_descriptors_TestProtocol_2eproto[0];
-}
-bool PT_IsValid(int value) {
-  switch (value) {
-    case 0:
-    case 1:
-    case 2:
-      return true;
-    default:
-      return false;
-  }
-}
-
 
 // ===================================================================
 
@@ -166,17 +130,12 @@ CS_LOGIN_REQ::CS_LOGIN_REQ(::PROTOBUF_NAMESPACE_ID::Arena* arena,
 CS_LOGIN_REQ::CS_LOGIN_REQ(const CS_LOGIN_REQ& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  ::memcpy(&packettype_, &from.packettype_,
-    static_cast<size_t>(reinterpret_cast<char*>(&packetsize_) -
-    reinterpret_cast<char*>(&packettype_)) + sizeof(packetsize_));
+  packetsize_ = from.packetsize_;
   // @@protoc_insertion_point(copy_constructor:TestProtocol.CS_LOGIN_REQ)
 }
 
 inline void CS_LOGIN_REQ::SharedCtor() {
-::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&packettype_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&packetsize_) -
-    reinterpret_cast<char*>(&packettype_)) + sizeof(packetsize_));
+packetsize_ = 0u;
 }
 
 CS_LOGIN_REQ::~CS_LOGIN_REQ() {
@@ -206,9 +165,7 @@ void CS_LOGIN_REQ::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  ::memset(&packettype_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&packetsize_) -
-      reinterpret_cast<char*>(&packettype_)) + sizeof(packetsize_));
+  packetsize_ = 0u;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -218,17 +175,9 @@ const char* CS_LOGIN_REQ::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_I
     ::PROTOBUF_NAMESPACE_ID::uint32 tag;
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // .TestProtocol.PT packetType = 1;
+      // uint32 packetSize = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
-          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-          _internal_set_packettype(static_cast<::TestProtocol::PT>(val));
-        } else goto handle_unusual;
-        continue;
-      // uint32 packetSize = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
           packetsize_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
@@ -262,17 +211,10 @@ failure:
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // .TestProtocol.PT packetType = 1;
-  if (this->_internal_packettype() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
-      1, this->_internal_packettype(), target);
-  }
-
-  // uint32 packetSize = 2;
+  // uint32 packetSize = 1;
   if (this->_internal_packetsize() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32ToArray(2, this->_internal_packetsize(), target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32ToArray(1, this->_internal_packetsize(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -291,13 +233,7 @@ size_t CS_LOGIN_REQ::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // .TestProtocol.PT packetType = 1;
-  if (this->_internal_packettype() != 0) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_packettype());
-  }
-
-  // uint32 packetSize = 2;
+  // uint32 packetSize = 1;
   if (this->_internal_packetsize() != 0) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32Size(
@@ -332,9 +268,6 @@ void CS_LOGIN_REQ::MergeFrom(const CS_LOGIN_REQ& from) {
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_packettype() != 0) {
-    _internal_set_packettype(from._internal_packettype());
-  }
   if (from._internal_packetsize() != 0) {
     _internal_set_packetsize(from._internal_packetsize());
   }
@@ -355,12 +288,7 @@ bool CS_LOGIN_REQ::IsInitialized() const {
 void CS_LOGIN_REQ::InternalSwap(CS_LOGIN_REQ* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(CS_LOGIN_REQ, packetsize_)
-      + sizeof(CS_LOGIN_REQ::packetsize_)
-      - PROTOBUF_FIELD_OFFSET(CS_LOGIN_REQ, packettype_)>(
-          reinterpret_cast<char*>(&packettype_),
-          reinterpret_cast<char*>(&other->packettype_));
+  swap(packetsize_, other->packetsize_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata CS_LOGIN_REQ::GetMetadata() const {
@@ -387,17 +315,12 @@ SC_LOING_RES::SC_LOING_RES(::PROTOBUF_NAMESPACE_ID::Arena* arena,
 SC_LOING_RES::SC_LOING_RES(const SC_LOING_RES& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  ::memcpy(&packettype_, &from.packettype_,
-    static_cast<size_t>(reinterpret_cast<char*>(&result_) -
-    reinterpret_cast<char*>(&packettype_)) + sizeof(result_));
+  sessionindex_ = from.sessionindex_;
   // @@protoc_insertion_point(copy_constructor:TestProtocol.SC_LOING_RES)
 }
 
 inline void SC_LOING_RES::SharedCtor() {
-::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&packettype_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&result_) -
-    reinterpret_cast<char*>(&packettype_)) + sizeof(result_));
+sessionindex_ = uint64_t{0u};
 }
 
 SC_LOING_RES::~SC_LOING_RES() {
@@ -427,9 +350,7 @@ void SC_LOING_RES::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  ::memset(&packettype_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&result_) -
-      reinterpret_cast<char*>(&packettype_)) + sizeof(result_));
+  sessionindex_ = uint64_t{0u};
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -439,31 +360,9 @@ const char* SC_LOING_RES::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_I
     ::PROTOBUF_NAMESPACE_ID::uint32 tag;
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // .TestProtocol.PT packetType = 1;
+      // uint64 sessionIndex = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
-          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-          _internal_set_packettype(static_cast<::TestProtocol::PT>(val));
-        } else goto handle_unusual;
-        continue;
-      // uint32 packetSize = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
-          packetsize_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else goto handle_unusual;
-        continue;
-      // bool result = 3;
-      case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
-          result_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else goto handle_unusual;
-        continue;
-      // uint64 sessionIndex = 4;
-      case 4:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 32)) {
           sessionindex_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
@@ -497,29 +396,10 @@ failure:
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // .TestProtocol.PT packetType = 1;
-  if (this->_internal_packettype() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
-      1, this->_internal_packettype(), target);
-  }
-
-  // uint32 packetSize = 2;
-  if (this->_internal_packetsize() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32ToArray(2, this->_internal_packetsize(), target);
-  }
-
-  // bool result = 3;
-  if (this->_internal_result() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(3, this->_internal_result(), target);
-  }
-
-  // uint64 sessionIndex = 4;
+  // uint64 sessionIndex = 1;
   if (this->_internal_sessionindex() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt64ToArray(4, this->_internal_sessionindex(), target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt64ToArray(1, this->_internal_sessionindex(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -538,29 +418,11 @@ size_t SC_LOING_RES::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // .TestProtocol.PT packetType = 1;
-  if (this->_internal_packettype() != 0) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_packettype());
-  }
-
-  // uint32 packetSize = 2;
-  if (this->_internal_packetsize() != 0) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32Size(
-        this->_internal_packetsize());
-  }
-
-  // uint64 sessionIndex = 4;
+  // uint64 sessionIndex = 1;
   if (this->_internal_sessionindex() != 0) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt64Size(
         this->_internal_sessionindex());
-  }
-
-  // bool result = 3;
-  if (this->_internal_result() != 0) {
-    total_size += 1 + 1;
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -591,17 +453,8 @@ void SC_LOING_RES::MergeFrom(const SC_LOING_RES& from) {
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_packettype() != 0) {
-    _internal_set_packettype(from._internal_packettype());
-  }
-  if (from._internal_packetsize() != 0) {
-    _internal_set_packetsize(from._internal_packetsize());
-  }
   if (from._internal_sessionindex() != 0) {
     _internal_set_sessionindex(from._internal_sessionindex());
-  }
-  if (from._internal_result() != 0) {
-    _internal_set_result(from._internal_result());
   }
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -620,12 +473,7 @@ bool SC_LOING_RES::IsInitialized() const {
 void SC_LOING_RES::InternalSwap(SC_LOING_RES* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(SC_LOING_RES, result_)
-      + sizeof(SC_LOING_RES::result_)
-      - PROTOBUF_FIELD_OFFSET(SC_LOING_RES, packettype_)>(
-          reinterpret_cast<char*>(&packettype_),
-          reinterpret_cast<char*>(&other->packettype_));
+  swap(sessionindex_, other->sessionindex_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata SC_LOING_RES::GetMetadata() const {
@@ -652,17 +500,12 @@ ECHO_SendChatMessage::ECHO_SendChatMessage(::PROTOBUF_NAMESPACE_ID::Arena* arena
 ECHO_SendChatMessage::ECHO_SendChatMessage(const ECHO_SendChatMessage& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  ::memcpy(&packettype_, &from.packettype_,
-    static_cast<size_t>(reinterpret_cast<char*>(&sessionindex_) -
-    reinterpret_cast<char*>(&packettype_)) + sizeof(sessionindex_));
+  sessionindex_ = from.sessionindex_;
   // @@protoc_insertion_point(copy_constructor:TestProtocol.ECHO_SendChatMessage)
 }
 
 inline void ECHO_SendChatMessage::SharedCtor() {
-::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&packettype_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&sessionindex_) -
-    reinterpret_cast<char*>(&packettype_)) + sizeof(sessionindex_));
+sessionindex_ = uint64_t{0u};
 }
 
 ECHO_SendChatMessage::~ECHO_SendChatMessage() {
@@ -692,9 +535,7 @@ void ECHO_SendChatMessage::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  ::memset(&packettype_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&sessionindex_) -
-      reinterpret_cast<char*>(&packettype_)) + sizeof(sessionindex_));
+  sessionindex_ = uint64_t{0u};
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -704,24 +545,9 @@ const char* ECHO_SendChatMessage::_InternalParse(const char* ptr, ::PROTOBUF_NAM
     ::PROTOBUF_NAMESPACE_ID::uint32 tag;
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // .TestProtocol.PT packetType = 1;
+      // uint64 sessionIndex = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
-          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-          _internal_set_packettype(static_cast<::TestProtocol::PT>(val));
-        } else goto handle_unusual;
-        continue;
-      // uint32 packetSize = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
-          packetsize_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else goto handle_unusual;
-        continue;
-      // uint64 sessionIndex = 3;
-      case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
           sessionindex_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
@@ -755,23 +581,10 @@ failure:
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // .TestProtocol.PT packetType = 1;
-  if (this->_internal_packettype() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
-      1, this->_internal_packettype(), target);
-  }
-
-  // uint32 packetSize = 2;
-  if (this->_internal_packetsize() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32ToArray(2, this->_internal_packetsize(), target);
-  }
-
-  // uint64 sessionIndex = 3;
+  // uint64 sessionIndex = 1;
   if (this->_internal_sessionindex() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt64ToArray(3, this->_internal_sessionindex(), target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt64ToArray(1, this->_internal_sessionindex(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -790,20 +603,7 @@ size_t ECHO_SendChatMessage::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // .TestProtocol.PT packetType = 1;
-  if (this->_internal_packettype() != 0) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_packettype());
-  }
-
-  // uint32 packetSize = 2;
-  if (this->_internal_packetsize() != 0) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32Size(
-        this->_internal_packetsize());
-  }
-
-  // uint64 sessionIndex = 3;
+  // uint64 sessionIndex = 1;
   if (this->_internal_sessionindex() != 0) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt64Size(
@@ -838,12 +638,6 @@ void ECHO_SendChatMessage::MergeFrom(const ECHO_SendChatMessage& from) {
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_packettype() != 0) {
-    _internal_set_packettype(from._internal_packettype());
-  }
-  if (from._internal_packetsize() != 0) {
-    _internal_set_packetsize(from._internal_packetsize());
-  }
   if (from._internal_sessionindex() != 0) {
     _internal_set_sessionindex(from._internal_sessionindex());
   }
@@ -864,12 +658,7 @@ bool ECHO_SendChatMessage::IsInitialized() const {
 void ECHO_SendChatMessage::InternalSwap(ECHO_SendChatMessage* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(ECHO_SendChatMessage, sessionindex_)
-      + sizeof(ECHO_SendChatMessage::sessionindex_)
-      - PROTOBUF_FIELD_OFFSET(ECHO_SendChatMessage, packettype_)>(
-          reinterpret_cast<char*>(&packettype_),
-          reinterpret_cast<char*>(&other->packettype_));
+  swap(sessionindex_, other->sessionindex_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata ECHO_SendChatMessage::GetMetadata() const {

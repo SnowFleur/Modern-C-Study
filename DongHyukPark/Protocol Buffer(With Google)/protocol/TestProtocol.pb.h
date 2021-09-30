@@ -30,7 +30,6 @@
 #include <google/protobuf/message.h>
 #include <google/protobuf/repeated_field.h>  // IWYU pragma: export
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
-#include <google/protobuf/generated_enum_reflection.h>
 #include <google/protobuf/unknown_field_set.h>
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
@@ -72,32 +71,6 @@ template<> ::TestProtocol::SC_LOING_RES* Arena::CreateMaybeMessage<::TestProtoco
 PROTOBUF_NAMESPACE_CLOSE
 namespace TestProtocol {
 
-enum PT : int {
-  PT_CS_LOING_REQ = 0,
-  PT_SC_LOING_RES = 1,
-  PT_ECHO_SEND_MESSAGE = 2,
-  PT_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::min(),
-  PT_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::max()
-};
-bool PT_IsValid(int value);
-constexpr PT PT_MIN = PT_CS_LOING_REQ;
-constexpr PT PT_MAX = PT_ECHO_SEND_MESSAGE;
-constexpr int PT_ARRAYSIZE = PT_MAX + 1;
-
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* PT_descriptor();
-template<typename T>
-inline const std::string& PT_Name(T enum_t_value) {
-  static_assert(::std::is_same<T, PT>::value ||
-    ::std::is_integral<T>::value,
-    "Incorrect type passed to function PT_Name.");
-  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
-    PT_descriptor(), enum_t_value);
-}
-inline bool PT_Parse(
-    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, PT* value) {
-  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<PT>(
-    PT_descriptor(), name, value);
-}
 // ===================================================================
 
 class CS_LOGIN_REQ final :
@@ -215,19 +188,9 @@ class CS_LOGIN_REQ final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kPacketTypeFieldNumber = 1,
-    kPacketSizeFieldNumber = 2,
+    kPacketSizeFieldNumber = 1,
   };
-  // .TestProtocol.PT packetType = 1;
-  void clear_packettype();
-  ::TestProtocol::PT packettype() const;
-  void set_packettype(::TestProtocol::PT value);
-  private:
-  ::TestProtocol::PT _internal_packettype() const;
-  void _internal_set_packettype(::TestProtocol::PT value);
-  public:
-
-  // uint32 packetSize = 2;
+  // uint32 packetSize = 1;
   void clear_packetsize();
   ::PROTOBUF_NAMESPACE_ID::uint32 packetsize() const;
   void set_packetsize(::PROTOBUF_NAMESPACE_ID::uint32 value);
@@ -243,7 +206,6 @@ class CS_LOGIN_REQ final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  int packettype_;
   ::PROTOBUF_NAMESPACE_ID::uint32 packetsize_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_TestProtocol_2eproto;
@@ -365,45 +327,15 @@ class SC_LOING_RES final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kPacketTypeFieldNumber = 1,
-    kPacketSizeFieldNumber = 2,
-    kSessionIndexFieldNumber = 4,
-    kResultFieldNumber = 3,
+    kSessionIndexFieldNumber = 1,
   };
-  // .TestProtocol.PT packetType = 1;
-  void clear_packettype();
-  ::TestProtocol::PT packettype() const;
-  void set_packettype(::TestProtocol::PT value);
-  private:
-  ::TestProtocol::PT _internal_packettype() const;
-  void _internal_set_packettype(::TestProtocol::PT value);
-  public:
-
-  // uint32 packetSize = 2;
-  void clear_packetsize();
-  ::PROTOBUF_NAMESPACE_ID::uint32 packetsize() const;
-  void set_packetsize(::PROTOBUF_NAMESPACE_ID::uint32 value);
-  private:
-  ::PROTOBUF_NAMESPACE_ID::uint32 _internal_packetsize() const;
-  void _internal_set_packetsize(::PROTOBUF_NAMESPACE_ID::uint32 value);
-  public:
-
-  // uint64 sessionIndex = 4;
+  // uint64 sessionIndex = 1;
   void clear_sessionindex();
   ::PROTOBUF_NAMESPACE_ID::uint64 sessionindex() const;
   void set_sessionindex(::PROTOBUF_NAMESPACE_ID::uint64 value);
   private:
   ::PROTOBUF_NAMESPACE_ID::uint64 _internal_sessionindex() const;
   void _internal_set_sessionindex(::PROTOBUF_NAMESPACE_ID::uint64 value);
-  public:
-
-  // bool result = 3;
-  void clear_result();
-  bool result() const;
-  void set_result(bool value);
-  private:
-  bool _internal_result() const;
-  void _internal_set_result(bool value);
   public:
 
   // @@protoc_insertion_point(class_scope:TestProtocol.SC_LOING_RES)
@@ -413,10 +345,7 @@ class SC_LOING_RES final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  int packettype_;
-  ::PROTOBUF_NAMESPACE_ID::uint32 packetsize_;
   ::PROTOBUF_NAMESPACE_ID::uint64 sessionindex_;
-  bool result_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_TestProtocol_2eproto;
 };
@@ -537,29 +466,9 @@ class ECHO_SendChatMessage final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kPacketTypeFieldNumber = 1,
-    kPacketSizeFieldNumber = 2,
-    kSessionIndexFieldNumber = 3,
+    kSessionIndexFieldNumber = 1,
   };
-  // .TestProtocol.PT packetType = 1;
-  void clear_packettype();
-  ::TestProtocol::PT packettype() const;
-  void set_packettype(::TestProtocol::PT value);
-  private:
-  ::TestProtocol::PT _internal_packettype() const;
-  void _internal_set_packettype(::TestProtocol::PT value);
-  public:
-
-  // uint32 packetSize = 2;
-  void clear_packetsize();
-  ::PROTOBUF_NAMESPACE_ID::uint32 packetsize() const;
-  void set_packetsize(::PROTOBUF_NAMESPACE_ID::uint32 value);
-  private:
-  ::PROTOBUF_NAMESPACE_ID::uint32 _internal_packetsize() const;
-  void _internal_set_packetsize(::PROTOBUF_NAMESPACE_ID::uint32 value);
-  public:
-
-  // uint64 sessionIndex = 3;
+  // uint64 sessionIndex = 1;
   void clear_sessionindex();
   ::PROTOBUF_NAMESPACE_ID::uint64 sessionindex() const;
   void set_sessionindex(::PROTOBUF_NAMESPACE_ID::uint64 value);
@@ -575,8 +484,6 @@ class ECHO_SendChatMessage final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  int packettype_;
-  ::PROTOBUF_NAMESPACE_ID::uint32 packetsize_;
   ::PROTOBUF_NAMESPACE_ID::uint64 sessionindex_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_TestProtocol_2eproto;
@@ -592,27 +499,7 @@ class ECHO_SendChatMessage final :
 #endif  // __GNUC__
 // CS_LOGIN_REQ
 
-// .TestProtocol.PT packetType = 1;
-inline void CS_LOGIN_REQ::clear_packettype() {
-  packettype_ = 0;
-}
-inline ::TestProtocol::PT CS_LOGIN_REQ::_internal_packettype() const {
-  return static_cast< ::TestProtocol::PT >(packettype_);
-}
-inline ::TestProtocol::PT CS_LOGIN_REQ::packettype() const {
-  // @@protoc_insertion_point(field_get:TestProtocol.CS_LOGIN_REQ.packetType)
-  return _internal_packettype();
-}
-inline void CS_LOGIN_REQ::_internal_set_packettype(::TestProtocol::PT value) {
-  
-  packettype_ = value;
-}
-inline void CS_LOGIN_REQ::set_packettype(::TestProtocol::PT value) {
-  _internal_set_packettype(value);
-  // @@protoc_insertion_point(field_set:TestProtocol.CS_LOGIN_REQ.packetType)
-}
-
-// uint32 packetSize = 2;
+// uint32 packetSize = 1;
 inline void CS_LOGIN_REQ::clear_packetsize() {
   packetsize_ = 0u;
 }
@@ -636,67 +523,7 @@ inline void CS_LOGIN_REQ::set_packetsize(::PROTOBUF_NAMESPACE_ID::uint32 value) 
 
 // SC_LOING_RES
 
-// .TestProtocol.PT packetType = 1;
-inline void SC_LOING_RES::clear_packettype() {
-  packettype_ = 0;
-}
-inline ::TestProtocol::PT SC_LOING_RES::_internal_packettype() const {
-  return static_cast< ::TestProtocol::PT >(packettype_);
-}
-inline ::TestProtocol::PT SC_LOING_RES::packettype() const {
-  // @@protoc_insertion_point(field_get:TestProtocol.SC_LOING_RES.packetType)
-  return _internal_packettype();
-}
-inline void SC_LOING_RES::_internal_set_packettype(::TestProtocol::PT value) {
-  
-  packettype_ = value;
-}
-inline void SC_LOING_RES::set_packettype(::TestProtocol::PT value) {
-  _internal_set_packettype(value);
-  // @@protoc_insertion_point(field_set:TestProtocol.SC_LOING_RES.packetType)
-}
-
-// uint32 packetSize = 2;
-inline void SC_LOING_RES::clear_packetsize() {
-  packetsize_ = 0u;
-}
-inline ::PROTOBUF_NAMESPACE_ID::uint32 SC_LOING_RES::_internal_packetsize() const {
-  return packetsize_;
-}
-inline ::PROTOBUF_NAMESPACE_ID::uint32 SC_LOING_RES::packetsize() const {
-  // @@protoc_insertion_point(field_get:TestProtocol.SC_LOING_RES.packetSize)
-  return _internal_packetsize();
-}
-inline void SC_LOING_RES::_internal_set_packetsize(::PROTOBUF_NAMESPACE_ID::uint32 value) {
-  
-  packetsize_ = value;
-}
-inline void SC_LOING_RES::set_packetsize(::PROTOBUF_NAMESPACE_ID::uint32 value) {
-  _internal_set_packetsize(value);
-  // @@protoc_insertion_point(field_set:TestProtocol.SC_LOING_RES.packetSize)
-}
-
-// bool result = 3;
-inline void SC_LOING_RES::clear_result() {
-  result_ = false;
-}
-inline bool SC_LOING_RES::_internal_result() const {
-  return result_;
-}
-inline bool SC_LOING_RES::result() const {
-  // @@protoc_insertion_point(field_get:TestProtocol.SC_LOING_RES.result)
-  return _internal_result();
-}
-inline void SC_LOING_RES::_internal_set_result(bool value) {
-  
-  result_ = value;
-}
-inline void SC_LOING_RES::set_result(bool value) {
-  _internal_set_result(value);
-  // @@protoc_insertion_point(field_set:TestProtocol.SC_LOING_RES.result)
-}
-
-// uint64 sessionIndex = 4;
+// uint64 sessionIndex = 1;
 inline void SC_LOING_RES::clear_sessionindex() {
   sessionindex_ = uint64_t{0u};
 }
@@ -720,47 +547,7 @@ inline void SC_LOING_RES::set_sessionindex(::PROTOBUF_NAMESPACE_ID::uint64 value
 
 // ECHO_SendChatMessage
 
-// .TestProtocol.PT packetType = 1;
-inline void ECHO_SendChatMessage::clear_packettype() {
-  packettype_ = 0;
-}
-inline ::TestProtocol::PT ECHO_SendChatMessage::_internal_packettype() const {
-  return static_cast< ::TestProtocol::PT >(packettype_);
-}
-inline ::TestProtocol::PT ECHO_SendChatMessage::packettype() const {
-  // @@protoc_insertion_point(field_get:TestProtocol.ECHO_SendChatMessage.packetType)
-  return _internal_packettype();
-}
-inline void ECHO_SendChatMessage::_internal_set_packettype(::TestProtocol::PT value) {
-  
-  packettype_ = value;
-}
-inline void ECHO_SendChatMessage::set_packettype(::TestProtocol::PT value) {
-  _internal_set_packettype(value);
-  // @@protoc_insertion_point(field_set:TestProtocol.ECHO_SendChatMessage.packetType)
-}
-
-// uint32 packetSize = 2;
-inline void ECHO_SendChatMessage::clear_packetsize() {
-  packetsize_ = 0u;
-}
-inline ::PROTOBUF_NAMESPACE_ID::uint32 ECHO_SendChatMessage::_internal_packetsize() const {
-  return packetsize_;
-}
-inline ::PROTOBUF_NAMESPACE_ID::uint32 ECHO_SendChatMessage::packetsize() const {
-  // @@protoc_insertion_point(field_get:TestProtocol.ECHO_SendChatMessage.packetSize)
-  return _internal_packetsize();
-}
-inline void ECHO_SendChatMessage::_internal_set_packetsize(::PROTOBUF_NAMESPACE_ID::uint32 value) {
-  
-  packetsize_ = value;
-}
-inline void ECHO_SendChatMessage::set_packetsize(::PROTOBUF_NAMESPACE_ID::uint32 value) {
-  _internal_set_packetsize(value);
-  // @@protoc_insertion_point(field_set:TestProtocol.ECHO_SendChatMessage.packetSize)
-}
-
-// uint64 sessionIndex = 3;
+// uint64 sessionIndex = 1;
 inline void ECHO_SendChatMessage::clear_sessionindex() {
   sessionindex_ = uint64_t{0u};
 }
@@ -791,16 +578,6 @@ inline void ECHO_SendChatMessage::set_sessionindex(::PROTOBUF_NAMESPACE_ID::uint
 // @@protoc_insertion_point(namespace_scope)
 
 }  // namespace TestProtocol
-
-PROTOBUF_NAMESPACE_OPEN
-
-template <> struct is_proto_enum< ::TestProtocol::PT> : ::std::true_type {};
-template <>
-inline const EnumDescriptor* GetEnumDescriptor< ::TestProtocol::PT>() {
-  return ::TestProtocol::PT_descriptor();
-}
-
-PROTOBUF_NAMESPACE_CLOSE
 
 // @@protoc_insertion_point(global_scope)
 
