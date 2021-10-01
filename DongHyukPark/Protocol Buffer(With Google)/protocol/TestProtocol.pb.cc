@@ -64,24 +64,27 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_TestProtocol_2eproto::offsets[
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::TestProtocol::CS_LOGIN_REQ, packetsize_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::TestProtocol::SC_LOING_RES, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::TestProtocol::SC_LOING_RES, sessionindex_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::TestProtocol::ECHO_SendChatMessage, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::TestProtocol::ECHO_SendChatMessage, sessionindex_),
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, -1, sizeof(::TestProtocol::CS_LOGIN_REQ)},
-  { 6, -1, sizeof(::TestProtocol::SC_LOING_RES)},
-  { 12, -1, sizeof(::TestProtocol::ECHO_SendChatMessage)},
+  { 0, -1, -1, sizeof(::TestProtocol::CS_LOGIN_REQ)},
+  { 7, -1, -1, sizeof(::TestProtocol::SC_LOING_RES)},
+  { 14, -1, -1, sizeof(::TestProtocol::ECHO_SendChatMessage)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -134,7 +137,7 @@ CS_LOGIN_REQ::CS_LOGIN_REQ(const CS_LOGIN_REQ& from)
   // @@protoc_insertion_point(copy_constructor:TestProtocol.CS_LOGIN_REQ)
 }
 
-inline void CS_LOGIN_REQ::SharedCtor() {
+void CS_LOGIN_REQ::SharedCtor() {
 packetsize_ = 0u;
 }
 
@@ -180,28 +183,29 @@ const char* CS_LOGIN_REQ::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_I
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
           packetsize_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
-      default: {
-      handle_unusual:
-        if ((tag == 0) || ((tag & 7) == 4)) {
-          CHK_(ptr);
-          ctx->SetLastTag(tag);
-          goto success;
-        }
-        ptr = UnknownFieldParse(tag,
-            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-            ptr, ctx);
-        CHK_(ptr != nullptr);
-        continue;
-      }
+      default:
+        goto handle_unusual;
     }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
   }  // while
-success:
+message_done:
   return ptr;
 failure:
   ptr = nullptr;
-  goto success;
+  goto message_done;
 #undef CHK_
 }
 
@@ -235,18 +239,10 @@ size_t CS_LOGIN_REQ::ByteSizeLong() const {
 
   // uint32 packetSize = 1;
   if (this->_internal_packetsize() != 0) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32Size(
-        this->_internal_packetsize());
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32SizePlusOne(this->_internal_packetsize());
   }
 
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
-        _internal_metadata_, total_size, &_cached_size_);
-  }
-  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
-  SetCachedSize(cached_size);
-  return total_size;
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData CS_LOGIN_REQ::_class_data_ = {
@@ -255,8 +251,8 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData CS_LOGIN_REQ::_class_data_ = {
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*CS_LOGIN_REQ::GetClassData() const { return &_class_data_; }
 
-void CS_LOGIN_REQ::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message*to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message&from) {
+void CS_LOGIN_REQ::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
   static_cast<CS_LOGIN_REQ *>(to)->MergeFrom(
       static_cast<const CS_LOGIN_REQ &>(from));
 }
@@ -319,7 +315,7 @@ SC_LOING_RES::SC_LOING_RES(const SC_LOING_RES& from)
   // @@protoc_insertion_point(copy_constructor:TestProtocol.SC_LOING_RES)
 }
 
-inline void SC_LOING_RES::SharedCtor() {
+void SC_LOING_RES::SharedCtor() {
 sessionindex_ = uint64_t{0u};
 }
 
@@ -365,28 +361,29 @@ const char* SC_LOING_RES::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_I
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
           sessionindex_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
-      default: {
-      handle_unusual:
-        if ((tag == 0) || ((tag & 7) == 4)) {
-          CHK_(ptr);
-          ctx->SetLastTag(tag);
-          goto success;
-        }
-        ptr = UnknownFieldParse(tag,
-            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-            ptr, ctx);
-        CHK_(ptr != nullptr);
-        continue;
-      }
+      default:
+        goto handle_unusual;
     }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
   }  // while
-success:
+message_done:
   return ptr;
 failure:
   ptr = nullptr;
-  goto success;
+  goto message_done;
 #undef CHK_
 }
 
@@ -420,18 +417,10 @@ size_t SC_LOING_RES::ByteSizeLong() const {
 
   // uint64 sessionIndex = 1;
   if (this->_internal_sessionindex() != 0) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt64Size(
-        this->_internal_sessionindex());
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt64SizePlusOne(this->_internal_sessionindex());
   }
 
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
-        _internal_metadata_, total_size, &_cached_size_);
-  }
-  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
-  SetCachedSize(cached_size);
-  return total_size;
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SC_LOING_RES::_class_data_ = {
@@ -440,8 +429,8 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SC_LOING_RES::_class_data_ = {
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SC_LOING_RES::GetClassData() const { return &_class_data_; }
 
-void SC_LOING_RES::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message*to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message&from) {
+void SC_LOING_RES::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
   static_cast<SC_LOING_RES *>(to)->MergeFrom(
       static_cast<const SC_LOING_RES &>(from));
 }
@@ -504,7 +493,7 @@ ECHO_SendChatMessage::ECHO_SendChatMessage(const ECHO_SendChatMessage& from)
   // @@protoc_insertion_point(copy_constructor:TestProtocol.ECHO_SendChatMessage)
 }
 
-inline void ECHO_SendChatMessage::SharedCtor() {
+void ECHO_SendChatMessage::SharedCtor() {
 sessionindex_ = uint64_t{0u};
 }
 
@@ -550,28 +539,29 @@ const char* ECHO_SendChatMessage::_InternalParse(const char* ptr, ::PROTOBUF_NAM
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
           sessionindex_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
-      default: {
-      handle_unusual:
-        if ((tag == 0) || ((tag & 7) == 4)) {
-          CHK_(ptr);
-          ctx->SetLastTag(tag);
-          goto success;
-        }
-        ptr = UnknownFieldParse(tag,
-            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-            ptr, ctx);
-        CHK_(ptr != nullptr);
-        continue;
-      }
+      default:
+        goto handle_unusual;
     }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
   }  // while
-success:
+message_done:
   return ptr;
 failure:
   ptr = nullptr;
-  goto success;
+  goto message_done;
 #undef CHK_
 }
 
@@ -605,18 +595,10 @@ size_t ECHO_SendChatMessage::ByteSizeLong() const {
 
   // uint64 sessionIndex = 1;
   if (this->_internal_sessionindex() != 0) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt64Size(
-        this->_internal_sessionindex());
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt64SizePlusOne(this->_internal_sessionindex());
   }
 
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
-        _internal_metadata_, total_size, &_cached_size_);
-  }
-  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
-  SetCachedSize(cached_size);
-  return total_size;
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ECHO_SendChatMessage::_class_data_ = {
@@ -625,8 +607,8 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ECHO_SendChatMessage::_class_d
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ECHO_SendChatMessage::GetClassData() const { return &_class_data_; }
 
-void ECHO_SendChatMessage::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message*to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message&from) {
+void ECHO_SendChatMessage::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
   static_cast<ECHO_SendChatMessage *>(to)->MergeFrom(
       static_cast<const ECHO_SendChatMessage &>(from));
 }

@@ -35,7 +35,7 @@ public:
     CSnowSession& operator=(CSnowSession&&)noexcept  = delete;
     CSnowSession(CSnowSession&&)noexcept             = delete;
 
-    CSnowSession(const SOCKET_TYPE socketType, const SessionID sessionID, const uint32_t BUFFER_SIZE);
+    CSnowSession(const SOCKET_TYPE socketType, const SessionID sessionID);
     CSnowSession(const uint32_t BUFFER_SIZE);
 
     virtual ~CSnowSession()noexcept;
@@ -47,14 +47,18 @@ public:
     inline bool GetAlive()const                                   { return isAlive_; }
     PSOCKADDR_IN GetSessionAddr()                                 { return sessionAddress_.GetAddrInfor(); }
     void SetSessionAdder(PSOCKADDR pRemoteSocketAddr)             { sessionAddress_.SetAddrInfor(pRemoteSocketAddr); };
-    auto GetRecvBuffer()const                                     { return recvBuffer_.GetBuffer(); }
-    auto SetRecvBuffer(const char* buffer, uint32_t bufferSize)   { recvBuffer_.SetBuffer(buffer, bufferSize); }
-    auto SetSendBuffer(const char* buffer, uint32_t bufferSize)   { sendBuffer_.SetBuffer(buffer, bufferSize); }
-    auto GetSendBuffer()const                                     { return sendBuffer_.GetBuffer(); }
     void PrintSessionAddrInfor()const                             { sessionAddress_.PrintIPAndPort(); }
 
+    auto GetRecvBuffer()                                          { return recvBuffer_.GetBuffer(); }
+    auto SetRecvBuffer(const char* buffer, uint32_t bufferSize)   { recvBuffer_.SetBuffer(buffer, bufferSize); }
+    auto GetRecvBufferSize()const                                 { return recvBuffer_.GetBufferSize(); }
+    
+    auto GetSendBuffer()                                          { return sendBuffer_.GetBuffer(); }
+    auto SetSendBuffer(const char* buffer, uint32_t bufferSize)   { sendBuffer_.SetBuffer(buffer, bufferSize); }
+    auto GetSendBufferSize()const                                 { return sendBuffer_.GetBufferSize(); }
+
     DWORD           OnRecv();
-    DWORD           OnSend(Packet packet);
+    DWORD           OnSend();
     void            PushSendQueue(Packet packet);
 };
 

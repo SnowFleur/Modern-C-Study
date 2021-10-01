@@ -13,6 +13,9 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
+    <Filter Include="Protocol\Google">
+      <UniqueIdentifier>{37a3ae63-786d-4943-9946-d62c122f42d0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -27,6 +30,9 @@
       <Filter>소스 파일</Filter>
     </ClInclude>
     <ClInclude Include="PacketHandler.h">
+      <Filter>Protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="PacketHeader.h">
       <Filter>Protocol</Filter>
     </ClInclude>
     <ClInclude Include="..\protocol\TestProtocol.pb.h">

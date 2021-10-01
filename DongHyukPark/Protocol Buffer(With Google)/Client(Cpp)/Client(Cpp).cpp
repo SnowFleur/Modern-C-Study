@@ -7,17 +7,15 @@
     #pragma comment(lib,"Release\\libprotobuf.lib")
 #endif // _DEBUG
 
+#define PROTOBUF_USE_DLLS
 #define SERVER_ADDDR "127.0.0.1"
 constexpr int PORT            = 9000;
-const int BUFFER_SIZE         = 1024;
-constexpr int MAX_PACKET_SIZE = 500;
 
 #include<SnowSession.h>
 #include<LogCollector.h>
-//#include"../protocol/TestProtocol.pb.h"
-#include"../protocol/Protocol.pb.h"
-//#include"../Server/PacketHandler.h"
 
+#include"../Server/PacketHandler.h"
+#include"../protocol/TestProtocol.pb.h"
 
 int main() {
     GOOGLE_PROTOBUF_VERIFY_VERSION;
@@ -27,38 +25,44 @@ int main() {
         PRINT_ERROR_LOG("Can Not Load winsock.dll", WSAGetLastError());
     }
 
-    CSnowSession session{ SOCKET_TYPE::TCP_TYPE,0,BUFFER_SIZE };
+    CSnowSession session{ SOCKET_TYPE::TCP_TYPE,0};
 
     //SERVER ADDR
     SOCKADDR_IN serverAddr;
     ZeroMemory(&serverAddr, sizeof(SOCKADDR_IN));
 
-    serverAddr.sin_family   = AF_INET;
-    serverAddr.sin_port     = PORT;
+    serverAddr.sin_family = AF_INET;
+    serverAddr.sin_port   = htons(PORT);
     inet_pton(AF_INET, SERVER_ADDDR, &serverAddr.sin_addr);
 
-    Protocol::S_Test s;
 
     if (session.Connect(&serverAddr)) {
         PRINT_LOG("The server connection was successful");
+
+        TestProtocol::SC_LOING_RES cProtoBufferPacket;
+        cProtoBufferPacket.set_sessionindex(15);
+
+        if (GeneratedProtoBuf(&cProtoBufferPacket, session.GetSendBuffer(), session.GetSendBufferSize(), PT::SC_LOING_RES) == true) {
+            int32_t sendByte = session.OnSend();
+            PRINT_LOG("Send Byte:", sendByte);
+        }
+        else {
+            PRINT_ERROR_LOG("Packet Generate");
+        }
+
         //Game Loop
         while (true) {
             Sleep(100);
+            if (session.OnRecv()) {
+                if (DegeneratedProtoBuf(&cProtoBufferPacket, session.GetRecvBuffer(), session.GetRecvBufferSize()) == true) {
+                    std::cout << "Recv: " << cProtoBufferPacket.sessionindex() << "\n";
 
-            char packet[MAX_PACKET_SIZE]{};
-            memset(packet, 0, MAX_PACKET_SIZE);
-
-
-            //TestProtocol::CS_LOGIN_REQ cLoginReq;
-
-
-
-
-            /*   if (GeneratedProtoBuf(&cGePacket, packet, sizeof(packet), TestProtocol::PT::PT_SC_LOING_RES) == true)
-               {
-                   int32_t sendLen = session.OnSend(packet);
-               }*/
-
+                    cProtoBufferPacket.set_sessionindex(cProtoBufferPacket.sessionindex() + 1);
+                    if (GeneratedProtoBuf(&cProtoBufferPacket, session.GetSendBuffer(), session.GetSendBufferSize(), PT::SC_LOING_RES) == true) {
+                        session.OnSend();
+                    }
+                }
+            }
         }
     }
     else {

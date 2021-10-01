@@ -15,15 +15,15 @@
 |✅ To Do List |내용|적용 여부|
 |------|---|---|
 |SnowNetCore 기반 Server, Clinet Simple FrameWork제작|빠른 테스트를 위해 직접 제작한 SImple Lib 사용|O|
-|프로토콜 버퍼 Lib 적용|프로토 버퍼 Lib 프로젝트에 넣기|X|
-|C++ 환경에서 테스트|C++ SnowNetcore 기반에서 프로토콜 버퍼 및 Lib 테스트|X|
+|프로토콜 버퍼 Lib 적용|프로토 버퍼 Lib 프로젝트에 넣기|O|
+|C++ 환경에서 테스트|C++ SnowNetcore 기반에서 프로토콜 버퍼 및 Lib 테스트|O|
 |C++ C# 환경에서 테스트| C++ Server에 C# Clinet을 사용해서 프로토콜 버퍼 테스트|X|
 |프로토콜 버퍼에 관한 문서 제작|나중에 다시 보기 위해 R&D 내용 문서 정리|X|
 |...|...|...|
 
 
-Protocol Buffer Git(3.17.3)
-https://github.com/protocolbuffers/protobuf/releases/tag/v3.17.3
+Protocol Buffer Git(3.18.0)
+https://github.com/protocolbuffers/protobuf/releases/tag/v3.18.0
 
 Basic-SnowNetCore Git
 https://github.com/SnowFleur/Basic-SnowNetCore

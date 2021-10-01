@@ -9,10 +9,10 @@
 #include"../protocol/TestProtocol.pb.h"
 #include"PacketHandler.h"
 
+
 #define SERVER_ADDDR "127.0.0.1"
 constexpr int MAX_SESSION      = 10000;
 constexpr int PORT             = 9000;
-constexpr int BUFFER_SIZE      = 1024;
 
 class CServer {
 private:
@@ -54,23 +54,6 @@ public:
 
         accpetSocket_.SetReuseAddr(true);
 
-
-
-        char packet[BUFFER_SIZE]{};
-        TestProtocol::SC_LOING_RES cDePacket;
-        cDePacket.set_sessionindex(30);
-        auto a = cDePacket.ByteSizeLong();
-
-        if (GeneratedProtoBuf(&cDePacket, packet, BUFFER_SIZE, PT::SC_LOING_RES) == true) {
-
-            TestProtocol::SC_LOING_RES cGePacket;
-            if (DegeneratedProtoBuf(&cGePacket, packet, BUFFER_SIZE) == true) {
-
-                std::cout << cGePacket.sessionindex() << "\n";
-            }
-        }
-
-
         while (true) {
 
             SOCKADDR_IN clinetInfo;
@@ -80,7 +63,7 @@ public:
 
             if (tempSocket != INVALID_SOCKET) {
 
-                CSnowSession* tempSession = new CSnowSession(SOCKET_TYPE::TCP_TYPE, ++stSessionIndex_, BUFFER_SIZE);
+                CSnowSession* tempSession = new CSnowSession(SOCKET_TYPE::TCP_TYPE, ++stSessionIndex_);
                 tempSession->SetSocket(tempSocket);
 
                 tempSession->SetSessionAdder(reinterpret_cast<PSOCKADDR>(&clinetInfo));
@@ -100,29 +83,16 @@ public:
 
             int32_t recvLen = session->OnRecv();
 
-            auto packet = session->GetRecvBuffer();
+            TestProtocol::SC_LOING_RES cProtoBufferPacket;
+            if (DegeneratedProtoBuf(&cProtoBufferPacket, session->GetRecvBuffer(), session->GetRecvBufferSize()) == true) {
+                std::cout<<"Recv: "<< cProtoBufferPacket.sessionindex() << "\n";
+                
+                cProtoBufferPacket.set_sessionindex(cProtoBufferPacket.sessionindex() + 1);
+                if (GeneratedProtoBuf(&cProtoBufferPacket, session->GetSendBuffer(), session->GetSendBufferSize(), PT::SC_LOING_RES) == true) {
+                    session->OnSend();
+                }
+            }
 
-            TestProtocol::SC_LOING_RES cDePacket;
-
-            int32_t packetSize = 0;
-            memcpy_s(&packetSize, sizeof(PacketSize), packet.get(), sizeof(int32_t));
-
-            //if (DegeneratedProtoBuf(&cDePacket, packet.get(), packetSize) == true) {
-            //    std::cout << "PacketSize" << cDePacket.packetsize() << "\n";
-            //    std::cout << "PacketType" << static_cast<int>(cDePacket.packettype()) << "\n";
-            //    std::cout << "Result: " << cDePacket.result() << "\n";
-            //    std::cout << "Sessionindex" << cDePacket.sessionindex() << "\n";
-
-            //    TestProtocol::SC_LOING_RES cGePacket;
-            //    cGePacket.set_result(true);
-            //    cGePacket.set_sessionindex(1);
-            //    memset(packet.get(), 0, BUFFER_SIZE);
-
-
-            // /*   if (GeneratedProtoBuf(&cGePacket, packet.get(), sizeof(packet), TestProtocol::PT::PT_SC_LOING_RES) == true) {
-            //        int32_t sendLen = session->OnSend(nullptr);
-            //    }*/
-            //}
         }
     }
 
