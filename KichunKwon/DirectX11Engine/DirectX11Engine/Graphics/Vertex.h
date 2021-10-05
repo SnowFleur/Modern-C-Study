@@ -10,4 +10,3 @@ struct Vertex
 	DirectX::XMFLOAT2 texCoord;
 
 };
-

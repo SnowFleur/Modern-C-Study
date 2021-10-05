@@ -2,15 +2,15 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>C:\Users\STL3\Documents\GitHub\DirectX11\Shared-Technology\KichunKwon\DirectX11Engine\x64\Debug\DirectX11Engine.exe</FullPath>
+      <FullPath>C:\Users\STL3\Documents\GitHub\DirectX11\DirectX-11-Engine-VS2017\DirectX11Engine\x64\Debug\DirectX11Engine.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles>
     <ContentFile>
-      <FullPath>C:\Users\STL3\Documents\GitHub\DirectX11\Shared-Technology\KichunKwon\DirectX11Engine\x64\Debug\PixelShader.cso</FullPath>
+      <FullPath>C:\Users\STL3\Documents\GitHub\DirectX11\DirectX-11-Engine-VS2017\DirectX11Engine\x64\Debug\PixelShader.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>C:\Users\STL3\Documents\GitHub\DirectX11\Shared-Technology\KichunKwon\DirectX11Engine\x64\Debug\VertexShader.cso</FullPath>
+      <FullPath>C:\Users\STL3\Documents\GitHub\DirectX11\DirectX-11-Engine-VS2017\DirectX11Engine\x64\Debug\VertexShader.cso</FullPath>
     </ContentFile>
   </ContentFiles>
   <SatelliteDlls />
