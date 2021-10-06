@@ -13,9 +13,9 @@ class CPacketHandler {
 public:
     
     template<class _Ty, class _PT>
-    static bool GeneratedProtoBufferPacket(_Ty* sourceData, char* destData, const size_t destSize, _PT packetType) {
+    static bool GeneratedProtoBufferPacket(_Ty* sourceData, char* destData, const int32_t destSize, _PT packetType) {
 
-        if (sourceData->ByteSizeLong() == 0) return false;
+       // if (sourceData->ByteSizeLong() == 0) return false;
         if (sourceData == nullptr)           return false;
         if (destData == nullptr)             return false;
         if (destSize <= 0)                   return false;
@@ -27,11 +27,11 @@ public:
         header.packetSize = packetSize;
         header.packetType = packetType;
         memcpy_s(destData, destSize, &header, sizeof(STPacketHeader));
-        return  sourceData->SerializePartialToArray(destData + sizeof(STPacketHeader), destSize);
+        return  sourceData->SerializePartialToArray(destData + sizeof(STPacketHeader),destSize);
     }
 
     template<class _Ty>
-    static bool DegenerateProtoBufferPacket(_Ty* destData, const char* sourceData, const size_t sourceDataSize) {
+    static bool DegenerateProtoBufferPacket(_Ty* destData, const char* sourceData, const int32_t sourceDataSize) {
 
         if (sourceData == nullptr) return false;
         if (destData == nullptr)   return false;

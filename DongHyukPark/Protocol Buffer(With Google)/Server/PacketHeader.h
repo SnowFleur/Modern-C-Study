@@ -16,7 +16,7 @@ enum class PT : unsigned __int16 {
     CS_PT_END,
 };
 
-#pragma push(1)
+#pragma pack(push, 1)
 struct STPacketHeader {
 public:
     PacketSize   packetSize;
@@ -25,4 +25,4 @@ public:
     STPacketHeader() :packetSize(0), packetType(PT::CS_PT_BEGIN) {}
     ~STPacketHeader()noexcept = default;
 };
-#pragma pop()
+#pragma pack(pop) 
