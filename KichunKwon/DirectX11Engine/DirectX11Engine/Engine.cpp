@@ -2,6 +2,8 @@
 
 bool Engine::Initialize(HINSTANCE hInstance, std::string window_title, std::string window_class, int width, int height)
 {
+	timer.Start();
+
 	if (!this->render_window.Initialize(this, hInstance, window_title, window_class, width, height))
 		return false;
 
@@ -18,6 +20,8 @@ bool Engine::ProcessMessages()
 
 void Engine::Update()
 {
+	float dt = timer.GetMilisecondsElapsed();
+	timer.Restart();
 	while (!keyboard.charBufferIsEmpty())
 	{
 		unsigned char ch = keyboard.ReadChar();
@@ -30,14 +34,39 @@ void Engine::Update()
 	while (!mouse.EventBufferIsEmpty())
 	{
 		MouseEvent me = mouse.ReadEvent();
-		if (me.GetType() == MouseEvent::EventType::RAW_MOVE) {
-			/*std::string outmsg = "X : ";
-			outmsg += std::to_string(me.GetPosX());
-			outmsg += ", Y : ";
-			outmsg += std::to_string(me.GetPosY());
-			outmsg += "\n";
-			OutputDebugStringA(outmsg.c_str());*/
+		if (mouse.IsRightDown())
+		{
+			if (me.GetType() == MouseEvent::EventType::RAW_MOVE) {//카메라 회전
+				this->gfx.camera.AdjustRotation((float)me.GetPosY() * 0.001f, (float)me.GetPosX() * 0.001f, 0.0f);
+			}
 		}
+	}
+
+	const float cameraSpeed = 0.003f;
+
+	if (keyboard.KeyIsPressed('W'))
+	{
+		this->gfx.camera.AdjustPosition(this->gfx.camera.GetForwardVector() * cameraSpeed * dt);
+	}
+	if (keyboard.KeyIsPressed('S'))
+	{
+		this->gfx.camera.AdjustPosition(this->gfx.camera.GetBackwardVector() * cameraSpeed * dt);
+	}
+	if (keyboard.KeyIsPressed('A'))
+	{
+		this->gfx.camera.AdjustPosition(this->gfx.camera.GetLeftVector() * cameraSpeed * dt);
+	}
+	if (keyboard.KeyIsPressed('D'))
+	{
+		this->gfx.camera.AdjustPosition(this->gfx.camera.GetRightVector() * cameraSpeed * dt);
+	}
+	if (keyboard.KeyIsPressed(VK_SPACE))
+	{
+		this->gfx.camera.AdjustPosition(0.0f, cameraSpeed * dt, 0.0f);
+	}
+	if (keyboard.KeyIsPressed('Z'))
+	{
+		this->gfx.camera.AdjustPosition(0.0f, -cameraSpeed * dt, 0.0f);
 	}
 }
 

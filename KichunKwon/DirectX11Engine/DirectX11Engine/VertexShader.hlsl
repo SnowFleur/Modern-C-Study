@@ -1,7 +1,6 @@
 cbuffer myBuffer : register(b0)
 {
-	float xOffset;
-	float yOffset;
+	float4x4 mat;//행렬변환
 };
 
 struct VS_INPUT 
@@ -19,9 +18,7 @@ struct VS_OUTPUT
 VS_OUTPUT main( VS_INPUT input)
 {
 	VS_OUTPUT output;
-	input.inpos.x += xOffset;
-	input.inpos.y += yOffset;
-	output.outpos = float4(input.inpos, 1.0f);
+	output.outpos = mul(float4(input.inpos, 1.0f), mat);
 	output.outTexCol = input.inTexCol;
 	return output;
 }

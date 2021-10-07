@@ -2,7 +2,11 @@
 
 bool Graphics::Initialize(HWND hwnd, int width, int height)
 {
-    if (!InitializeDirectX(hwnd, width, height))
+    this->windowWidth = width;
+    this->windowHeight = height;
+    this->fpsTimer.Start();
+
+    if (!InitializeDirectX(hwnd))
         return false;
 
     if (!InitializeShaders())
@@ -33,10 +37,31 @@ void Graphics::RenderFrame()
     UINT offset = 0;
 
     //Update Constant Buffer
-    static float yOff = 0.5f;
-    yOff -= 0.01f;
-    constantBuffer.data.xOffset = 0.0f;
-    constantBuffer.data.yOffset = yOff;
+    XMMATRIX world = XMMatrixIdentity();//월드변환행렬
+
+    //static DirectX::XMVECTOR eyePos = DirectX::XMVectorSet(0.0f, 0.0f, -2.0f, 0.0f);//카메라 위치
+    //
+    //DirectX::XMFLOAT3 eyePosFloat3;
+    //DirectX::XMStoreFloat3(&eyePosFloat3, eyePos);//값을 eyeposfloat에 저장
+    //eyePosFloat3.y += 0.01f;
+    //eyePos = DirectX::XMLoadFloat3(&eyePosFloat3);//값을 eyeposfloat에서 로드
+
+    //static DirectX::XMVECTOR lookAtPos = DirectX::XMVectorSet(0.0f, 0.0f, 0.0f, 0.0f);//보는 방향
+    //static DirectX::XMVECTOR upVector = DirectX::XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f);//UP벡터
+    //DirectX::XMMATRIX viewMatrix = DirectX::XMMatrixLookAtLH(eyePos, lookAtPos, upVector);
+    //float fovDegrees = 90.0f;
+    //float fovRadians = (fovDegrees / 360.0f) * DirectX::XM_2PI;
+    //float aspectRatio = static_cast<float>(this->windowWidth) / static_cast<float>(this->windowHeight);
+    //float nearZ = 0.1f;
+    //float farZ = 1000.0f;
+    //DirectX::XMMATRIX projectionMatrix = DirectX::XMMatrixPerspectiveFovLH(fovRadians, aspectRatio, nearZ, farZ);
+
+
+    //camera.AdjustPosition(0.01f,0.0f,0.0f);
+    //camera.SetLookAtPos(XMFLOAT3(0.0f, 0.0f, 0.0f));//카메라가 보는 타켓 위치설정
+    constantBuffer.data.mat = world * camera.GetViewMatrix() * camera.GetProjectionMatrix();
+    constantBuffer.data.mat = DirectX::XMMatrixTranspose(constantBuffer.data.mat);//행렬 연산을 위해서 행렬 전치 column format
+
     if (!constantBuffer.ApplyChanges())
         return;
     this->deviceContext->VSSetConstantBuffers(0, 1, this->constantBuffer.GetAddressOf());
@@ -49,15 +74,24 @@ void Graphics::RenderFrame()
     this->deviceContext->DrawIndexed(indiciesBuffer.BufferSize(), 0, 0);
 
     //Drow Text
+    static int fpsCounter = 0;
+    static std::string fpsString = "FPS : 0";
+    fpsCounter++;
+    if(fpsTimer.GetMilisecondsElapsed() > 1000.0f)
+    {
+        fpsString = "FPS : " + std::to_string(fpsCounter);
+        fpsCounter = 0;
+        fpsTimer.Restart();
+    }
     spriteBatch->Begin();
-    spriteFont->DrawString(spriteBatch.get(), L"HELLO WORLD", DirectX::XMFLOAT2(0, 0), DirectX::Colors::White, 0.0f, DirectX::XMFLOAT2(0, 0), DirectX::XMFLOAT2(1.0f, 1.0f));
+    spriteFont->DrawString(spriteBatch.get(), StringConverter::StringToWide(fpsString).c_str(), DirectX::XMFLOAT2(0, 0), DirectX::Colors::White, 0.0f, DirectX::XMFLOAT2(0, 0), DirectX::XMFLOAT2(1.0f, 1.0f));
     spriteBatch->End();
 
 
-    this->swapChain->Present(1, NULL);
+    this->swapChain->Present(0, NULL);
 }
 
-bool Graphics::InitializeDirectX(HWND hwnd, int width, int height)
+bool Graphics::InitializeDirectX(HWND hwnd)
 {
     std::vector<AdapterData> adapters = AdapterReader::GetAdaptders();
 
@@ -70,8 +104,8 @@ bool Graphics::InitializeDirectX(HWND hwnd, int width, int height)
     DXGI_SWAP_CHAIN_DESC scd;
     ZeroMemory(&scd, sizeof(DXGI_SWAP_CHAIN_DESC));
 
-    scd.BufferDesc.Width = width;
-    scd.BufferDesc.Height = height;
+    scd.BufferDesc.Width = this->windowWidth;
+    scd.BufferDesc.Height = this->windowHeight;
     scd.BufferDesc.RefreshRate.Numerator = 60;
     scd.BufferDesc.RefreshRate.Denominator = 1;
     scd.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
@@ -126,8 +160,8 @@ bool Graphics::InitializeDirectX(HWND hwnd, int width, int height)
 
     //Describe Depth/Stencil Buffer
     D3D11_TEXTURE2D_DESC depthStencilDesc;
-    depthStencilDesc.Width = width;
-    depthStencilDesc.Height = height;
+    depthStencilDesc.Width = this->windowWidth;
+    depthStencilDesc.Height = this->windowHeight;
     depthStencilDesc.MipLevels = 1;
     depthStencilDesc.ArraySize = 1;
     depthStencilDesc.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
@@ -172,8 +206,8 @@ bool Graphics::InitializeDirectX(HWND hwnd, int width, int height)
 
     viewport.TopLeftX = 0;
     viewport.TopLeftY = 0;
-    viewport.Width = width;
-    viewport.Height = height;
+    viewport.Width = this->windowWidth;
+    viewport.Height = this->windowHeight;
     viewport.MinDepth = 0.0f;
     viewport.MaxDepth = 1.0f;
 
@@ -258,10 +292,10 @@ bool Graphics::InitializeScene()
 {
     Vertex v[] =
     {
-        Vertex(-0.5f, -0.5f, 1.0f, 0.0f, 1.0f),//bl [0]
-		Vertex(-0.5f, 0.5f, 1.0f, 0.0f, 0.0f),//tl  [1]
-		Vertex(0.5f, 0.5f, 1.0f, 1.0f, 0.0f),//tr   [2]
-        Vertex(0.5f, -0.5f, 1.0f, 1.0f, 1.0f),//br  [3]
+        Vertex(-0.5f, -0.5f, 0.0f, 0.0f, 1.0f),//bl [0]
+		Vertex(-0.5f, 0.5f, 0.0f, 0.0f, 0.0f),//tl  [1]
+		Vertex(0.5f, 0.5f, 0.0f, 1.0f, 0.0f),//tr   [2]
+        Vertex(0.5f, -0.5f, 0.0f, 1.0f, 1.0f),//br  [3]
     };
 
 	//Load Vertex Data
@@ -283,7 +317,6 @@ bool Graphics::InitializeScene()
 		return false;
 	}
 
-
     //Load Texture
     hr = DirectX::CreateWICTextureFromFile(this->device.Get(), L"Data\\Textures\\Earth.jpg", nullptr, myTexture.GetAddressOf());
 	if (FAILED(hr)) {
@@ -298,5 +331,9 @@ bool Graphics::InitializeScene()
 		return false;
 	}
 
+    camera.SetPosition(0.0f, 0.0f, -2.0f);
+    camera.SetProjectionValues(90.0f, static_cast<float>(windowWidth) / static_cast<float>(windowHeight), 0.1f, 1000.0f);
+    
+    
     return true;
 }
