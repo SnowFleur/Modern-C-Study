@@ -2,6 +2,14 @@
 
 //-- Server side logic. Serves pixel streaming WebRTC-based page, proxies data back to Streamer --//
 
+/*
+*MIT License | (c) daemyung 2021-2024
+*https://github.com/daemyung6
+
+230, 331
+*/
+
+
 var express = require('express');
 var app = express();
 const urrun = require("./runur.js");

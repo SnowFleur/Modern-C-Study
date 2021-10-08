@@ -1,3 +1,8 @@
+/*
+*MIT License | (c) daemyung 2021-2024
+*https://github.com/daemyung6
+*/
+
 const { spawn } = require('child_process');
 const config = require("./config.json");
 
