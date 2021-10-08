@@ -1,0 +1,2 @@
+ChangeCollab.exe filter=lfs diff=lfs merge=lfs -text
+ChangeCollab-WindowsNoEditor.pak filter=lfs diff=lfs merge=lfs -text

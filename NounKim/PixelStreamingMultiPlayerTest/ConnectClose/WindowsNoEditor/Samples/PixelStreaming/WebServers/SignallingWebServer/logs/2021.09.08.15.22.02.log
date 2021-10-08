@@ -1,0 +1,40 @@
+15:22:02.938 Config: {
+	"UseFrontend": false,
+	"UseMatchmaker": false,
+	"UseHTTPS": false,
+	"UseAuthentication": false,
+	"LogToFile": true,
+	"HomepageFile": "/public/player.html",
+	"AdditionalRoutes": {},
+	"EnableWebserver": true,
+	"MatchmakerAddress": "",
+	"MatchmakerPort": "9999",
+	"PublicIp": "localhost",
+	"HttpPort": 80,
+	"HttpsPort": 443,
+	"StreamerPort": 8888,
+	"urPath": "C:\\Pack\\NVENC_EncoderH264_609_AnnotaionChange_ConnectClose\\WindowsNoEditor\\ChangeCollab.exe",
+	"urOption": [
+		"-AudioMixer",
+		"-PixelStreamingIP=127.0.0.1",
+		"-PixelStreamingPort=8888",
+		"-RenderOffScreen"
+	]
+}
+15:22:02.962 No peerConnectionConfig
+15:22:02.965 Running Cirrus - The Pixel Streaming reference implementation signalling server for Unreal Engine 4.27.
+15:22:02.975 WebSocket listening to Streamer connections on :8888
+15:22:02.976 WebSocket listening to Players connections on :80
+15:22:02.976 Http listening on *: 80
+15:22:03.516 Streamer connected: ::ffff:127.0.0.1
+15:22:03.517 new streamer connect :  1
+15:22:06.062 run
+15:22:07.283 Streamer connected: ::ffff:127.0.0.1
+15:22:07.283 new streamer connect :  2
+15:22:09.185 run
+15:22:10.425 Streamer connected: ::ffff:127.0.0.1
+15:22:10.425 new streamer connect :  3
+15:22:18.571 ur exit
+15:22:18.572 ur closed
+15:22:19.236 ur exit
+15:22:19.236 ur closed
