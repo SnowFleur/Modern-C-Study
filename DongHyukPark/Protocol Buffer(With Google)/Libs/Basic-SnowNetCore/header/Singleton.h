@@ -8,7 +8,8 @@
 */
 
 template<class _Ty>
-class CSingleton {
+class CSingleton
+{
 private:
     static _Ty* instance_;
 protected:
@@ -16,7 +17,8 @@ protected:
 public:
     virtual ~CSingleton() {}
 
-    static _Ty* GetInstance() {
+    static _Ty* GetInstance() 
+    {
 
         if (instance_ == nullptr) {
             instance_ = new _Ty();
@@ -24,7 +26,8 @@ public:
         return instance_;
     }
 
-    static void Release() {
+    static void Release()
+    {
         if (instance_ != nullptr) {
             delete instance_;
             instance_ = nullptr;

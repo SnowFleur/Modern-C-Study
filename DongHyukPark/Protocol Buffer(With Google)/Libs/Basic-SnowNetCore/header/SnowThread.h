@@ -14,7 +14,8 @@
 
 using namespace std::chrono;
 
-class CSnowThread {
+class CSnowThread
+{
     using   CallBackFtn       = std::function<void()>;
     using   ThreadOptionFlag  = unsigned char;
     const   ThreadOptionFlag PRINT_THREAD_RESPONSIVE_TIME = 0x0001;
@@ -30,7 +31,8 @@ private:
     uint32_t    threadID_;
 #endif // _WIN64
 
-    static  unsigned __stdcall    OnInvoke(LPVOID arg) {
+    static  unsigned __stdcall    OnInvoke(LPVOID arg) 
+    {
         return reinterpret_cast<CSnowThread*>(arg)->Thread();
     }
     uint32_t Thread();
@@ -53,7 +55,8 @@ public:
     /*Template Functions*/
 private:
     template<class _Ty, class... _Args>
-    void Run(_Ty&& ftn, _Args&&... args) {
+    void Run(_Ty&& ftn, _Args&&... args)
+    {
         cCallBackFuncion_ = std::bind(std::forward<_Ty>(ftn), std::forward<_Args>(args)...);
         //TO DO Thread ID ³Ñ±â±â
         hThreadHandle_ = reinterpret_cast<HANDLE>(_beginthreadex(NULL, 0, OnInvoke, static_cast<void*>(this), 0, NULL));

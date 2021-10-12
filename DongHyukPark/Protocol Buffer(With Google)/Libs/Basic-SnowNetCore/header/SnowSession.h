@@ -16,7 +16,8 @@
 -
 */
 
-class CSnowSession : public CSnowSocket {
+class CSnowSession : public CSnowSocket
+{
     //To do std::any
     typedef void* Packet;
 private:
@@ -36,7 +37,6 @@ public:
     CSnowSession(CSnowSession&&)noexcept             = delete;
 
     CSnowSession(const SOCKET_TYPE socketType, const SessionID sessionID);
-    CSnowSession(const uint32_t BUFFER_SIZE);
 
     virtual ~CSnowSession()noexcept;
 public:
