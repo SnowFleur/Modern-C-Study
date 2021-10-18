@@ -33,6 +33,9 @@ public:
 
 	HRESULT Initialize(ID3D11Device* device, DWORD* data, UINT numIndices)
 	{
+		if (buffer.Get() != nullptr)//버퍼리셋으로 메모리 누수방지
+			buffer.Reset();
+
 		this->bufferSize = numIndices;
 		//Load Index Data
 		D3D11_BUFFER_DESC indexBufferDesc;

@@ -44,8 +44,12 @@ public:
 
 	HRESULT Initialize(ID3D11Device* device, T* data, UINT numVertices)
 	{
+		if (buffer.Get() != nullptr)//버퍼가 이미 있으므로 리셋
+			buffer.Reset();
+
 		this->bufferSize = numVertices;
-		this->stride = std::make_unique<UINT>(sizeof(T));
+		if(this->stride.get() == nullptr)//stride는 생성후 변하지 않으므로 없을시 생성
+			this->stride = std::make_unique<UINT>(sizeof(T));
 
 		D3D11_BUFFER_DESC vertexBufferDesc;
 		ZeroMemory(&vertexBufferDesc, sizeof(vertexBufferDesc));

@@ -15,11 +15,20 @@ bool Graphics::Initialize(HWND hwnd, int width, int height)
 	if (!InitializeScene())
 		return false;
 
+    //SepUp ImGui
+    IMGUI_CHECKVERSION();
+    ImGui::CreateContext();
+    ImGuiIO& io = ImGui::GetIO();
+    ImGui_ImplWin32_Init(hwnd);
+    ImGui_ImplDX11_Init(this->device.Get(), this->deviceContext.Get());
+    ImGui::StyleColorsDark();
+
     return true;
 }
 
 void Graphics::RenderFrame()
 {
+
     float bgcolor[] = { 0.0f, 0.0f, 0.0f, 1.0f };
     this->deviceContext->ClearRenderTargetView(this->renderTargetView.Get(), bgcolor);
     this->deviceContext->ClearDepthStencilView(this->depthStencilView.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
@@ -29,42 +38,30 @@ void Graphics::RenderFrame()
     this->deviceContext->RSSetState(this->rasterizerState.Get());
     this->deviceContext->OMSetDepthStencilState(this->depthStencilState.Get(), 0);
 
+    this->deviceContext->OMSetBlendState(this->blendState.Get(), NULL, 0xFFFFFFF);
+
     this->deviceContext->PSSetSamplers(0, 1, this->samplerState.GetAddressOf());
 
     this->deviceContext->VSSetShader(vertexshader.GetShader(), NULL, 0);
     this->deviceContext->PSSetShader(pixelshader.GetShader(), NULL, 0);
-
+ 
     UINT offset = 0;
 
     //Update Constant Buffer
-    XMMATRIX world = XMMatrixIdentity();//월드변환행렬
+    static float translationOffset[3] = {0, 0, 0};
+    XMMATRIX world = XMMatrixTranslation(translationOffset[0], translationOffset[1], translationOffset[2]);
+    cb_vs_vertexshader.data.mat = world * camera.GetViewMatrix() * camera.GetProjectionMatrix();
+    cb_vs_vertexshader.data.mat = DirectX::XMMatrixTranspose(cb_vs_vertexshader.data.mat);//행렬 연산을 위해서 행렬 전치 column format
 
-    //static DirectX::XMVECTOR eyePos = DirectX::XMVectorSet(0.0f, 0.0f, -2.0f, 0.0f);//카메라 위치
-    //
-    //DirectX::XMFLOAT3 eyePosFloat3;
-    //DirectX::XMStoreFloat3(&eyePosFloat3, eyePos);//값을 eyeposfloat에 저장
-    //eyePosFloat3.y += 0.01f;
-    //eyePos = DirectX::XMLoadFloat3(&eyePosFloat3);//값을 eyeposfloat에서 로드
-
-    //static DirectX::XMVECTOR lookAtPos = DirectX::XMVectorSet(0.0f, 0.0f, 0.0f, 0.0f);//보는 방향
-    //static DirectX::XMVECTOR upVector = DirectX::XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f);//UP벡터
-    //DirectX::XMMATRIX viewMatrix = DirectX::XMMatrixLookAtLH(eyePos, lookAtPos, upVector);
-    //float fovDegrees = 90.0f;
-    //float fovRadians = (fovDegrees / 360.0f) * DirectX::XM_2PI;
-    //float aspectRatio = static_cast<float>(this->windowWidth) / static_cast<float>(this->windowHeight);
-    //float nearZ = 0.1f;
-    //float farZ = 1000.0f;
-    //DirectX::XMMATRIX projectionMatrix = DirectX::XMMatrixPerspectiveFovLH(fovRadians, aspectRatio, nearZ, farZ);
-
-
-    //camera.AdjustPosition(0.01f,0.0f,0.0f);
-    //camera.SetLookAtPos(XMFLOAT3(0.0f, 0.0f, 0.0f));//카메라가 보는 타켓 위치설정
-    constantBuffer.data.mat = world * camera.GetViewMatrix() * camera.GetProjectionMatrix();
-    constantBuffer.data.mat = DirectX::XMMatrixTranspose(constantBuffer.data.mat);//행렬 연산을 위해서 행렬 전치 column format
-
-    if (!constantBuffer.ApplyChanges())
+    if (!cb_vs_vertexshader.ApplyChanges())
         return;
-    this->deviceContext->VSSetConstantBuffers(0, 1, this->constantBuffer.GetAddressOf());
+    this->deviceContext->VSSetConstantBuffers(0, 1, this->cb_vs_vertexshader.GetAddressOf());
+    
+
+    static float alpha = 0.1f;
+    this->cb_ps_pixelshader.data.alpha = alpha;//pixelshader alpha value set
+    this->cb_ps_pixelshader.ApplyChanges();//변경적용
+    this->deviceContext->PSSetConstantBuffers(0, 1, this->cb_ps_pixelshader.GetAddressOf());
 
 
     //사각형 그리기
@@ -87,6 +84,24 @@ void Graphics::RenderFrame()
     spriteFont->DrawString(spriteBatch.get(), StringConverter::StringToWide(fpsString).c_str(), DirectX::XMFLOAT2(0, 0), DirectX::Colors::White, 0.0f, DirectX::XMFLOAT2(0, 0), DirectX::XMFLOAT2(1.0f, 1.0f));
     spriteBatch->End();
 
+    static int counter = 0;
+    //Start ImGui frame
+    ImGui_ImplDX11_NewFrame();
+    ImGui_ImplWin32_NewFrame();
+    ImGui::NewFrame();
+    //Create ImGui Window
+    ImGui::Begin("Test");
+    if (ImGui::Button("Click Me!"))
+        counter++;
+    std::string clickCount = "Click Count : " + std::to_string(counter);
+    ImGui::Text(clickCount.c_str());
+    ImGui::DragFloat3("Translation X/Y/Z", translationOffset, 0.1f, -5.0f, 5.0f);
+    ImGui::DragFloat("Alpha", &alpha, 0.1f, 0.0f, 1.0f);
+    ImGui::End();
+    //Assemble Together Draw Data
+    ImGui::Render();
+    //Render Draw Data
+    ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
 
     this->swapChain->Present(0, NULL);
 }
@@ -226,6 +241,31 @@ bool Graphics::InitializeDirectX(HWND hwnd)
         return false;
     }
 
+    //Create Blend State
+    D3D11_BLEND_DESC blendDesc;
+    ZeroMemory(&blendDesc, sizeof(blendDesc));
+
+    D3D11_RENDER_TARGET_BLEND_DESC rtbd;
+    ZeroMemory(&rtbd, sizeof(rtbd));
+
+    rtbd.BlendEnable = true;
+    rtbd.SrcBlend = D3D11_BLEND::D3D11_BLEND_SRC_ALPHA;
+    rtbd.DestBlend = D3D11_BLEND::D3D11_BLEND_INV_SRC_ALPHA;
+    rtbd.BlendOp = D3D11_BLEND_OP::D3D11_BLEND_OP_ADD;
+    rtbd.SrcBlendAlpha = D3D11_BLEND::D3D11_BLEND_ONE;
+    rtbd.DestBlendAlpha = D3D11_BLEND::D3D11_BLEND_ZERO;
+    rtbd.BlendOpAlpha = D3D11_BLEND_OP::D3D11_BLEND_OP_ADD;
+    rtbd.RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE::D3D11_COLOR_WRITE_ENABLE_ALL;
+
+    blendDesc.RenderTarget[0] = rtbd;
+
+    hr = this->device->CreateBlendState(&blendDesc, this->blendState.GetAddressOf());
+    if (FAILED(hr)) {
+        ErrorLogger::Log(hr, "Failed to create blend state");
+        return false;
+    }
+
+
 	//Font Initialize
 	spriteBatch = std::make_unique<DirectX::SpriteBatch>(this->deviceContext.Get());
 	spriteFont = std::make_unique<DirectX::SpriteFont>(this->device.Get(), L"Data\\Fonts\\comic_sans_ms_16.spritefont");
@@ -325,11 +365,18 @@ bool Graphics::InitializeScene()
 	}
 
     //Initialize Constant Buffer(s)
-    hr = this->constantBuffer.Initialize(this->device.Get(), this->deviceContext.Get());
+    hr = this->cb_vs_vertexshader.Initialize(this->device.Get(), this->deviceContext.Get());
     if (FAILED(hr)) {
 		ErrorLogger::Log(hr, "Failed to Create constant buffer.");
 		return false;
 	}
+
+    //Initialize Constant Buffer(s)
+    hr = this->cb_ps_pixelshader.Initialize(this->device.Get(), this->deviceContext.Get());
+    if (FAILED(hr)) {
+        ErrorLogger::Log(hr, "Failed to Create constant buffer.");
+        return false;
+    }
 
     camera.SetPosition(0.0f, 0.0f, -2.0f);
     camera.SetProjectionValues(90.0f, static_cast<float>(windowWidth) / static_cast<float>(windowHeight), 0.1f, 1000.0f);
