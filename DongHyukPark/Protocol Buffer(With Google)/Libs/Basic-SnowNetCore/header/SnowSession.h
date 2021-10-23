@@ -28,8 +28,6 @@ private:
     bool                                isAlive_;
     std::atomic<bool>                   sendComplete_;
     std::queue<Packet>                  sendQueue_;
-private:
-    bool PacketValidCheck(const char* packet);
 public:
     CSnowSession& operator=(const CSnowSession&)     = delete;
     CSnowSession(const CSnowSession&)                = delete;

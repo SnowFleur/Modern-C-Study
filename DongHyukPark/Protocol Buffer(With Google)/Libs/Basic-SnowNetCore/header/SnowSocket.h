@@ -46,7 +46,8 @@ public:
     bool    Shutdown();
 
     /*Linger는 CloseSocket을 했을 때 Send 버퍼에 남은 데이터를 보낼지 말지 정하는 옵션 함수*/
-    inline bool SetLinger(UINT16 onoff, UINT16 linger) {
+    inline bool SetLinger(UINT16 onoff, UINT16 linger) 
+    {
         LINGER option{};
         option.l_onoff = onoff;
         option.l_linger = linger;
@@ -81,6 +82,7 @@ public:
     inline bool SetKeepAlive(bool onoff, UINT32 checkmsTime, UINT32 interValmsTime)
     {
         tcp_keepalive tcpkl;
+        ZeroMemory(&tcpkl, sizeof(tcpkl));
         DWORD dwTemp;
         tcpkl.onoff             = onoff;
         tcpkl.keepalivetime     = checkmsTime;

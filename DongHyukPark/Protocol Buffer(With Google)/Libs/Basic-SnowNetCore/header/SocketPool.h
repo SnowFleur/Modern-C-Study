@@ -1,68 +1,65 @@
 #pragma once
 
-#include<iostream>
 #include<queue>
 #include"WindowsHeader.h"
 #include"Lock.h"
+#include"DataTypes.h"
+#include"LogCollector.h"
 
-class CSocketPool
+
+class CFreeSocketPool
 {
 private:
-    std::queue<SOCKET>  m_freeSocketList;
-    size_t              m_poolSize;
-    Lock                m_freeListLock;    
-
-    CSocketPool(const CSocketPool&);
-    CSocketPool& operator=(const CSocketPool&);
+    std::queue<SOCKET>  queFreeSocket_;
+    CRITICAL_SECTION    cs_;
 public:
-    CSocketPool(size_t SocketPooSize):
-    m_poolSize(SocketPooSize),
-    m_freeSocketList()
-    {
+    CFreeSocketPool(const CFreeSocketPool&)                      = delete;
+    CFreeSocketPool(CFreeSocketPool&&)noexcept                   = delete;
+    CFreeSocketPool& operator=(const CFreeSocketPool&)           = delete;
+    CFreeSocketPool& operator=(CFreeSocketPool&&)noexcept        = delete;
 
-        for(size_t i=0; i<m_poolSize;++i){
-            SOCKET temp=INVALID_SOCKET;
-            temp=WSASocket(AF_INET, SOCK_STREAM, IPPROTO_TCP, NULL, 0, WSA_FLAG_OVERLAPPED);   
-            m_freeSocketList.push(temp);  
+public:
+    CFreeSocketPool(size_t socketPoolSize, SOCKET_TYPE socketType) :
+        queFreeSocket_()
+        , cs_()
+    {
+        for (size_t i = 0; i < socketPoolSize; ++i)
+        {
+            SOCKET  temp = INVALID_SOCKET;
+            temp = WSASocket(AF_INET, static_cast<int>(socketType), IPPROTO_TCP, NULL, 0, WSA_FLAG_OVERLAPPED);
+            if (temp != INVALID_SOCKET)
+            {
+                queFreeSocket_.push(temp);
+            }
         }
     }
-    ~CSocketPool()
+
+    ~CFreeSocketPool()
     {
 
-      while (m_freeSocketList.empty() == false) {
-        SOCKET temp = m_freeSocketList.front();
-
-        if (closesocket(temp) == SOCKET_ERROR) {
-          std::cout << "Error: SocketPool Close socket \n";
+        while (queFreeSocket_.empty() == false)
+        {
+            SOCKET temp = queFreeSocket_.front();
+            if (closesocket(temp) == SOCKET_ERROR)
+            {
+                PRINT_ERROR_LOG("Socket is SOCKET_ERROR FOr ~CSocketPool()\n");
+            }
+            queFreeSocket_.pop();
         }
-        m_freeSocketList.pop();
-      }
     }
 
     inline SOCKET PopFreeList()
-    { 
-        
-        LockGuard lockguard(m_freeListLock);
-
-        SOCKET temp = m_freeSocketList.front();
-        
-        if(temp!=INVALID_SOCKET){
-            m_freeSocketList.pop();
-            return temp;
-        }
+    {
+        STLockGuard lockguard(cs_);
+        SOCKET temp = queFreeSocket_.front();
+        queFreeSocket_.pop();
+        return temp;
     }
 
     inline void PushFreeList(SOCKET socket)
     {
-
-        LockGuard lockguard(m_freeListLock);
-        
-        m_freeSocketList.push(socket);
-        
+        STLockGuard lockguard(cs_);
+        queFreeSocket_.push(socket);
     }
 
 };
-
-#include"ObjectPool.h"
-#include"SnowSession.h"
-

@@ -21,3 +21,4 @@ public:
     STLockGuard& operator=(const STLockGuard&)     = delete;
     STLockGuard& operator=(STLockGuard&&)noexcept  = delete;
 };
+
