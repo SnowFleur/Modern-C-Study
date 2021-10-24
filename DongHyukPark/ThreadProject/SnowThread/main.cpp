@@ -1,13 +1,9 @@
 ﻿#include<iostream>
-#include"SnowThread.h"
+#include<vector>
+#include"WorkerThread.h"
 
-void ThreadFunction(int value1, int value2) {
-    //PDH- 내부적으로 반복문을 돌고 있음
+constexpr int MAX_WORKER_THREAD = 10;
 
-    std::cout << "뜨뜨뜨뜨레드: ";
-    std::cout << value1 << " " << value2 << "\n";
-    Sleep(500); //시간확인용
-}
 
 int main() {
 
@@ -18,9 +14,14 @@ int main() {
     std::cout << "    ##    ##     ## ##   ##   ##       ######### ##     ## " << std::endl;
     std::cout << "    ##    ##     ## ##    ##  ##       ##     ## ##     ## " << std::endl;
     std::cout << "    ##    ##     ## ##     ## ######## ##     ## ########  " << std::endl;
+ 
 
+    std::vector<CWorkerThread*> vecWorkerTherad;
 
-    CSnowThread thread(ThreadFunction, 5, 1);
-    thread.ToglePrintThreadResponsiveTime();
-    thread.Join();
+    for (int i = 0; i < MAX_WORKER_THREAD; ++i) 
+    {
+    
+    
+    }
+
 }

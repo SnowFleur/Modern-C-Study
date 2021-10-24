@@ -1,64 +1,44 @@
-#include<iostream>
 #include"SnowThread.h"
 
-CSnowThread::~CSnowThread()noexcept {
-    if (hThreadHandle_ != INVALID_HANDLE_VALUE) {
+CSnowThread::~CSnowThread()noexcept 
+{
+    if (hThreadHandle_ != INVALID_HANDLE_VALUE)
+    {
         //PDH- 커널 객체 반환은 선택이 아닌 필수다.
-        CloseHandle(hThreadHandle_);
-    }
-}
-
-uint32_t CSnowThread::Thread() {
-    try {
-
-        while (true) {
-
-            auto StartTime = high_resolution_clock::now();
-            cCallBackFuncion_();
-            auto EndTime = high_resolution_clock::now();
-            auto ElapsedTime = duration_cast<milliseconds>(EndTime - StartTime).count();
-
-            if (optionFlag_ & PRINT_THREAD_RESPONSIVE_TIME) {
-                std::cout << "Thread Resonsive Time: " << ElapsedTime << "ms\n";
-            }
-
+        if (CloseHandle(hThreadHandle_) == TRUE)
+        {
+            hThreadHandle_ = NULL;
+#ifdef  PRINT_THREAD_CLOSE_LOG
+            PRINT_INFO_LOG("Sucess Close Thread Handle",
+                "ThreadID: ",threadID_,"\n");
+#endif 
+        }
+        else
+        {
+            PRINT_ERROR_LOG("Thread Close Handle", WSAGetLastError(),"\n");
         }
     }
-    catch (std::exception& e) {
-        std::cout << "망했다!" << e.what() << "\n";
-    }
-
-    _endthreadex(0);
-    return 0;
 }
 
 /*여러 가지 기능들 */
-void CSnowThread::SetThreadPriority(const int32_t priority) {
-    if (::SetThreadPriority(hThreadHandle_, priority) == 0) {
+void CSnowThread::SetThreadPriority(const int32_t priority) 
+{
+    if (::SetThreadPriority(hThreadHandle_, priority) == 0)
+    {
         std::cout << "Can't Thread Priority: " << WSAGetLastError() << "\n";
     }
 }
 
-int32_t CSnowThread::GetThreadPriority() const {
+int32_t CSnowThread::GetThreadPriority() const 
+{
     if (hThreadHandle_ == INVALID_HANDLE_VALUE)return -1;
     return ::GetThreadPriority(hThreadHandle_);
 }
 
 void CSnowThread::ContextSwitch() {}
 
-void CSnowThread::Join() {
-    //TODO 수정하기
-    Sleep(10000);
+void CSnowThread::WaitForThread()
+{
+    WaitForSingleObject(hThreadHandle_, INFINITE);
 }
 
-uint32_t CSnowThread::GetThreadID()const {
-    return -1;
-}
-
-HANDLE CSnowThread::GetHandle()const {
-    return hThreadHandle_;
-}
-
-void CSnowThread::ToglePrintThreadResponsiveTime() {
-    optionFlag_ ^= PRINT_THREAD_RESPONSIVE_TIME;
-}
