@@ -27,7 +27,7 @@ private:
         if (reinterpret_cast<CSnowThread*>(arg) == nullptr) return 0;
         uint32_t returnValue = reinterpret_cast<CSnowThread*>(arg)->pRunThreadFunction_();
 #ifdef  PRINT_THREAD_CLOSE_LOG
-        PRINT_INFO_LOG("Eend Thread\n");
+        PRINT_INFO_LOG("End Thread\n");
 #endif 
         _endthreadex(0);
         return returnValue;
