@@ -1,10 +1,7 @@
 #pragma once
-
 /*
--   [2021.06.26]
--   Network정보를 가지는 class
--
--
+- Developer: PDH
+- Descriptor: Network정보를 가지는 class
 */
 
 #include"WindowsHeader.h"

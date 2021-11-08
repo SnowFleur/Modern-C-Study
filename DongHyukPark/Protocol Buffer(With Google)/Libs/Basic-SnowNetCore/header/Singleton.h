@@ -1,10 +1,8 @@
 #pragma once
 
 /*
-- [2021.06.12]
--  싱글턴을 사용할 클래스가 상속받는 싱글턴 Class
--
--
+- Developer: PDH
+- Descriptor: 싱글턴
 */
 
 template<class _Ty>
