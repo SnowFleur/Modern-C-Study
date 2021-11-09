@@ -1,99 +1,81 @@
 #pragma once
+/*
+- Developer: PDH
+- Descriptor: Server 역할을 수행하는 Class
+- ProtoBuf 확인용 심플 서버임
+*/
 
-#include<vector>
-#include<SnowSession.h>
-#include<SnowThread.h>
 #include<atomic>
 #include<LogCollector.h>
-
+#include<SnowServer.h>
 #include"../protocol/TestProtocol.pb.h"
 #include"PacketHandler.h"
 
 
-#define SERVER_ADDDR "127.0.0.1"
-constexpr int MAX_SESSION      = 10000;
-constexpr int PORT             = 9000;
-
-class CServer {
+class CIocpServer : public CSnowServer
+{
 private:
-    CSnowSocket                     accpetSocket_;
-    CSnowThread                     accpetWaitThread_;
-    std::vector<CSnowSession*>      vecSession_;
     std::atomic<uint32_t>           stSessionIndex_;
+    std::vector<CSnowSession*>       vecSnowSession_;
 public:
-    CServer() :
-        accpetWaitThread_(&CServer::AcceptThread, this)
+    CIocpServer(uint32_t workerThreadCount) :
+        CSnowServer(workerThreadCount)
     {
-        vecSession_.reserve(MAX_SESSION);
     }
 
-    ~CServer()noexcept {
-        WSACleanup();
+    void StartIocpServer(const char* pServerIP, const USHORT port)
+    {
+        vecSnowSession_.reserve(1000);
+        StartSnowServer(pServerIP, port);
     }
 
-    void AcceptThread() {
-
-        WSADATA stWSAData;
-        // Initialize Winsock
-        if (WSAStartup(MAKEWORD(2, 2), &stWSAData) != 0) {
-            PRINT_ERROR_LOG("Can Not Load winsock.dll", WSAGetLastError());
+    void CompletedAccpet(CSnowSession* pAcceptCompleteSession) override
+    {
+        if (pAcceptCompleteSession == nullptr)
+        {
+            PRINT_ERROR_LOG("pAcceptCompleteSession is nullptr\n");
+            return;
         }
 
-        accpetWaitThread_.ToglePrintThreadResponsiveTime();
+        PRINT_INFO_LOG(__FUNCTION__,"\n");
+        vecSnowSession_.push_back(pAcceptCompleteSession);
+        pAcceptCompleteSession->OnRecv();
 
-        //Bind
-        SOCKADDR_IN serverAddr;
-        ZeroMemory(&serverAddr, sizeof(SOCKADDR_IN));
-        serverAddr.sin_family = AF_INET;
-        serverAddr.sin_port = htons(PORT);
-        inet_pton(AF_INET, SERVER_ADDDR, &serverAddr.sin_addr);
+    }
+    virtual void CompletedSend(CSnowSession* pSendCompleteSession, const DWORD sendByte)override
+    {
+        PRINT_INFO_LOG(__FUNCTION__, "Send Byte: ", sendByte, "\n");
 
-        accpetSocket_.InitSocket(SOCKET_TYPE::TCP_TYPE);
-        if (accpetSocket_.Bind(&serverAddr) == false) return;
-        if (accpetSocket_.Listen() == false)return;
-
-        accpetSocket_.SetReuseAddr(true);
-
-        while (true) {
-
-            SOCKADDR_IN clinetInfo;
-            ZeroMemory(&clinetInfo, sizeof(SOCKADDR_IN));
-
-            auto tempSocket = accpetSocket_.Accept(reinterpret_cast<SOCKADDR*>(&clinetInfo));
-
-            if (tempSocket != INVALID_SOCKET) {
-
-                CSnowSession* tempSession = new CSnowSession(SOCKET_TYPE::TCP_TYPE, ++stSessionIndex_);
-                tempSession->SetSocket(tempSocket);
-
-                tempSession->SetSessionAdder(reinterpret_cast<PSOCKADDR>(&clinetInfo));
-                PRINT_LOG("Accpet Session: ");
-                tempSession->PrintSessionAddrInfor();
-                vecSession_.push_back(tempSession);
-            }
-            else {
-                PRINT_ERROR_LOG("Accpet Error", WSAGetLastError());
-            }
-        }
+    }
+    virtual void CompletedRecv(CSnowSession* pRecvCompleteSession, const DWORD recvByte)override
+    {
+        PRINT_INFO_LOG(__FUNCTION__, "Recv Byte: ", recvByte, "\n");
     }
 
-    void EchoLoop() {
 
-        for (const auto session : vecSession_) {
+    void EchoLoop()
+    {
+
+        /*for (const auto session : vecSnowSession_)
+        {
 
             int32_t recvLen = session->OnRecv();
 
             TestProtocol::SC_LOING_RES cProtoBufferPacket;
-            if (DegeneratedProtoBuf(&cProtoBufferPacket, session->GetRecvBuffer(), session->GetRecvBufferSize()) == true) {
-                std::cout<<"Recv: "<< cProtoBufferPacket.sessionindex() << "\n";
-                
+            if (DegeneratedProtoBuf(&cProtoBufferPacket, session->GetRecvBuffer(), session->GetRecvBufferSize()) == true)
+            {
+                std::cout << "Recv: " << cProtoBufferPacket.sessionindex() << "\n";
+
                 cProtoBufferPacket.set_sessionindex(cProtoBufferPacket.sessionindex() + 1);
-                if (GeneratedProtoBuf(&cProtoBufferPacket, session->GetSendBuffer(), session->GetSendBufferSize(), PT::SC_LOING_RES) == true) {
+                if (GeneratedProtoBuf(&cProtoBufferPacket, session->GetSendBuffer(), session->GetSendBufferSize(), PT::SC_LOING_RES) == true)
+                {
                     session->OnSend();
                 }
             }
 
-        }
+        }*/
     }
+
+
 
 };
