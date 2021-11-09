@@ -98,7 +98,7 @@ public:
     }
 
     bool    OnBind(const SOCKADDR_IN* sockAddrIn);
-    bool    OnBind(const char* IP, const USHORT port, const USHORT sinFamily);
+    bool    OnBind(const char* IP, const USHORT port);
     bool    OnConnect(const SOCKADDR_IN* serverAddr);
     SOCKET  OnAccept(const SOCKADDR* socketAddr);
     bool    OnListen();

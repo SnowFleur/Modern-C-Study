@@ -13,11 +13,11 @@ enum class IO_EVENT : UINT8
 class OverlappedEx 
 {
 public:
-    OVERLAPPED		overlapped_;
-    WSABUF			wsabuf_;
-    IO_EVENT		ioEvent_;
-    CSnowSession*   pSession_;
-    char			m_buffer[BUFFER_SIZE];
+    OVERLAPPED         overlapped_;
+    WSABUF             wsabuf_;
+    IO_EVENT           ioEvent_;
+    CSnowSession*      pSession_;
+    char               m_buffer[BUFFER_SIZE];
 
     OverlappedEx(CSnowSession* pSession, IO_EVENT io) : pSession_(nullptr), ioEvent_(io) 
     {

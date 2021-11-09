@@ -11,14 +11,13 @@ using UptrSnowThread   = std::unique_ptr<CSnowThread>;
 
 class CSnowServer : public CIocpCore
 {
-    const int32_t WORERK_THREAD_ID = 1000;
+    const uint32_t WORERK_THREAD_ID = 1000;
 private:
     uint32_t                          workerThreadCount_;
-    uint32_t                          sessionCount_;
     std::vector<UptrSnowThread>       vecWorkerThread_;
     CNetAddress                       cNetAddress_;
 public:
-    CSnowServer(const uint32_t workerThreadCount,const uint32_t reserverSessionCount);
+    CSnowServer(const uint32_t workerThreadCount);
     ~CSnowServer()noexcept;
 
     CSnowServer(const CSnowServer&)                 = delete;
@@ -27,7 +26,7 @@ public:
     CSnowServer& operator=(CSnowServer&&) noexcept  = delete;
 public:
 
-    void StartServer(const char* pServerIP, const USHORT port);
+    void StartSnowServer(const char* pServerIP, const USHORT port);
     uint32_t ExcuteWorkerThread();
 
     virtual void CompletedAccpet(CSnowSession* pAcceptCompleteSession) = 0;
