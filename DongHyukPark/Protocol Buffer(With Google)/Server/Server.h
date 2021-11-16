@@ -25,10 +25,13 @@ public:
 
     void StartIocpServer(const char* pServerIP, const USHORT port)
     {
+        PRINT_INFO_LOG("Start Sever\n");
         vecSnowSession_.reserve(1000);
         StartSnowServer(pServerIP, port);
     }
 
+    //overrride Funcions
+public:
     void CompletedAccpet(CSnowSession* pAcceptCompleteSession) override
     {
         if (pAcceptCompleteSession == nullptr)
@@ -44,38 +47,23 @@ public:
     }
     virtual void CompletedSend(CSnowSession* pSendCompleteSession, const DWORD sendByte)override
     {
-        PRINT_INFO_LOG(__FUNCTION__, "Send Byte: ", sendByte, "\n");
-
+        PRINT_INFO_LOG(__FUNCTION__, "Send SessionID:", pSendCompleteSession->GetSessionID(), " Send Byte: ", sendByte, "\n");
+        pSendCompleteSession->OnRecv();
     }
     virtual void CompletedRecv(CSnowSession* pRecvCompleteSession, const DWORD recvByte)override
     {
-        PRINT_INFO_LOG(__FUNCTION__, "Recv Byte: ", recvByte, "\n");
-    }
+        PRINT_INFO_LOG(__FUNCTION__, "Recv SessionID:", pRecvCompleteSession->GetSessionID(), " Recv Byte: ", recvByte, "\n");
 
-
-    void EchoLoop()
-    {
-
-        /*for (const auto session : vecSnowSession_)
+        TestProtocol::SC_LOING_RES cProtoBufferPacket;
+        if (DegeneratedProtoBuf(&cProtoBufferPacket, pRecvCompleteSession->GetRecvBuffer(), pRecvCompleteSession->GetRecvBufferSize()) == true)
         {
-
-            int32_t recvLen = session->OnRecv();
-
-            TestProtocol::SC_LOING_RES cProtoBufferPacket;
-            if (DegeneratedProtoBuf(&cProtoBufferPacket, session->GetRecvBuffer(), session->GetRecvBufferSize()) == true)
+            cProtoBufferPacket.set_sessionindex(cProtoBufferPacket.sessionindex() + 1);
+            if (GeneratedProtoBuf(&cProtoBufferPacket, pRecvCompleteSession->GetSendBuffer(), pRecvCompleteSession->GetSendBufferSize(), PT::SC_LOING_RES) == true)
             {
-                std::cout << "Recv: " << cProtoBufferPacket.sessionindex() << "\n";
-
-                cProtoBufferPacket.set_sessionindex(cProtoBufferPacket.sessionindex() + 1);
-                if (GeneratedProtoBuf(&cProtoBufferPacket, session->GetSendBuffer(), session->GetSendBufferSize(), PT::SC_LOING_RES) == true)
-                {
-                    session->OnSend();
-                }
+                pRecvCompleteSession->OnSend();
             }
-
-        }*/
+        }
     }
-
 
 
 };

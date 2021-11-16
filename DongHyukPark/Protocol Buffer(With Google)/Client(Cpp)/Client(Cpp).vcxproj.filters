@@ -26,5 +26,8 @@
     <ClInclude Include="..\protocol\TestProtocol.pb.h">
       <Filter>Protocol</Filter>
     </ClInclude>
+    <ClInclude Include="DummyProcess.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

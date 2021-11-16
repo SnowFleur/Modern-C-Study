@@ -54,6 +54,11 @@ public:
         }
     }
 
+    virtual ~CIocpCore()noexcept
+    {
+        CloseHandle(hIocpHandle_);
+    }
+
     bool RegitIocp(SOCKET hSocket)
     {
         HANDLE resultHandle = CreateIoCompletionPort(reinterpret_cast<HANDLE>(hSocket), hIocpHandle_, NULL, NULL);
