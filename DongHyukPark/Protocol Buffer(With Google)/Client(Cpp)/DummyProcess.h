@@ -48,7 +48,7 @@ public:
         serverAddr.sin_port = htons(port);
         inet_pton(AF_INET, pServerIP, &serverAddr.sin_addr);
 
-        for (int32_t i = 0; i < dummyCount; ++i)
+        for (uint32_t i = 0; i < dummyCount; ++i)
         {
             CSnowSession* pDummySession = nullptr;
             pDummySession = new CSnowSession{ SOCKET_TYPE::TCP_TYPE ,++stSessionIndex_ };

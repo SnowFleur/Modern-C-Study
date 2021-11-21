@@ -39,7 +39,7 @@ public:
 public:
     
     inline SessionID GetSessionID()const                          { return sessionId_; }
-    inline void SeSessionID(const SessionID sessionId)            { sessionId_ = sessionId; }
+    inline void SetSessionID(const SessionID sessionId)           { sessionId_ = sessionId; }
     inline void SetAlive(const bool alive)                        { isAlive_ = alive; }
     inline bool GetAlive()const                                   { return isAlive_; }
     PSOCKADDR_IN GetSessionAddr()                                 { return sessionAddress_.GetAddrInfor(); }

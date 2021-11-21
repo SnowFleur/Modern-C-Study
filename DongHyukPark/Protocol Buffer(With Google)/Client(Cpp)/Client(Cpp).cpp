@@ -8,15 +8,13 @@
 #endif // _DEBUG
 
 #define PROTOBUF_USE_DLLS
-#define SERVER_ADDDR "127.0.0.1"
+#define SERVER_ADDDR         "127.0.0.1"
 constexpr int PORT            = 9000;
-
 
 #include"DummyProcess.h"
 
 int main()
 {
-
     GOOGLE_PROTOBUF_VERIFY_VERSION;
     CDummyManager cDummyManager(1);
     cDummyManager.StartDummyManager(SERVER_ADDDR, PORT, 5);

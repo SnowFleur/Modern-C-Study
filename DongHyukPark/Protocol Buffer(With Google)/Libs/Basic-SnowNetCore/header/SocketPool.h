@@ -50,7 +50,7 @@ public:
 
     inline SOCKET PopFreeList()
     {
-        STLockGuard lockguard(cs_);
+        stLockGuard lockguard(cs_);
         SOCKET temp = queFreeSocket_.front();
         queFreeSocket_.pop();
         return temp;
@@ -58,7 +58,7 @@ public:
 
     inline void PushFreeList(SOCKET socket)
     {
-        STLockGuard lockguard(cs_);
+        stLockGuard lockguard(cs_);
         queFreeSocket_.push(socket);
     }
 
