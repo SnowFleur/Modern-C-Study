@@ -15,7 +15,7 @@ class CSnowServer : public CIocpCore
 private:
     uint32_t                          workerThreadCount_;
     std::vector<UptrSnowThread>       vecWorkerThread_;
-    CNetAddress                       cNetAddress_;
+    CNetAddress                       netAddress_;
 public:
     CSnowServer(const uint32_t workerThreadCount);
     virtual ~CSnowServer()noexcept;

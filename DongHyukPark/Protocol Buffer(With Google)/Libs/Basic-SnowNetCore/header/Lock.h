@@ -4,16 +4,16 @@
 struct stLockGuard
 {
 public:
-    CRITICAL_SECTION& stOwnerLock;
+    CRITICAL_SECTION& ownerLock;
     explicit stLockGuard(CRITICAL_SECTION& lock) :
-        stOwnerLock(lock)
+        ownerLock(lock)
     {
-        EnterCriticalSection(&stOwnerLock);
+        EnterCriticalSection(&ownerLock);
     }
 
     ~stLockGuard()noexcept
     {
-        LeaveCriticalSection(&stOwnerLock);
+        LeaveCriticalSection(&ownerLock);
     }
 
     stLockGuard(stLockGuard&)                      = delete;

@@ -15,7 +15,7 @@
 class CIocpServer : public CSnowServer
 {
 private:
-    std::atomic<uint32_t>           stSessionIndex_;
+    std::atomic<uint32_t>            sessionIndex_;
     std::vector<CSnowSession*>       vecSnowSession_;
 public:
     CIocpServer(uint32_t workerThreadCount) :

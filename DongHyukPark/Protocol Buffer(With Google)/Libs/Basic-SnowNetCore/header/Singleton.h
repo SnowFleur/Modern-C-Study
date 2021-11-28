@@ -9,7 +9,7 @@ template<class _Ty>
 class CSingleton
 {
 private:
-    static _Ty* instance_;
+    static _Ty* pInstance_;
 protected:
     CSingleton() = default;
 public:
@@ -18,17 +18,19 @@ public:
     static _Ty* GetInstance() 
     {
 
-        if (instance_ == nullptr) {
-            instance_ = new _Ty();
+        if (pInstance_ == nullptr)
+        {
+            pInstance_ = new _Ty();
         }
-        return instance_;
+        return pInstance_;
     }
 
     static void Release()
     {
-        if (instance_ != nullptr) {
-            delete instance_;
-            instance_ = nullptr;
+        if (pInstance_ != nullptr)
+        {
+            delete pInstance_;
+            pInstance_ = nullptr;
         }
     }
 
@@ -36,5 +38,5 @@ public:
 
 
 template<class _Ty>
-_Ty* CSingleton<_Ty>::instance_ = nullptr;
+_Ty* CSingleton<_Ty>::pInstance_ = nullptr;
 
