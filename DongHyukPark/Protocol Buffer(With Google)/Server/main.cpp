@@ -26,7 +26,7 @@ constexpr int PORT = 9000;
 int main()
 {
     GOOGLE_PROTOBUF_VERIFY_VERSION;
-    CIocpServer server(4);
-    server.StartIocpServer(SERVER_ADDDR, PORT);
+    CIocpServer server(4, false, SERVER_ADDDR, PORT);
+    server.StartIocpServer();
 }
 

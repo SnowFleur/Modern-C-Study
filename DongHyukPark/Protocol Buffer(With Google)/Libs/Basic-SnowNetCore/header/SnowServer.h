@@ -17,7 +17,7 @@ private:
     std::vector<UptrSnowThread>       vecWorkerThread_;
     CNetAddress                       netAddress_;
 public:
-    CSnowServer(const uint32_t workerThreadCount);
+    CSnowServer(const char* pServerIP, const USHORT port);
     virtual ~CSnowServer()noexcept;
 
     CSnowServer(const CSnowServer&)                 = delete;
@@ -26,7 +26,8 @@ public:
     CSnowServer& operator=(CSnowServer&&) noexcept  = delete;
 
 protected:
-    void StartSnowServer(const char* pServerIP, const USHORT port);
+    void StartSnowServer();
+    bool CreateWorkerTherad(const uint32_t threadCount, const bool isStartThread);
     void StartWorkerThread();
     void WaitForWorkerThread();
 public:

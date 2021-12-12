@@ -1,15 +1,16 @@
 #pragma once
-#include<memory>
-#include<array>
-#include<algorithm>
-#include"DataTypes.h"
-#include"DefineUtilty.h"
 
 /*
 -   [2021.09.08]
 -   SImple Buffer 기능을 가지는 Class
 -   고정 Array만
 */
+
+#include<array>
+#include<algorithm>
+#include"DataTypes.h"
+#include"DefineUtilty.h"
+
 constexpr uint32_t                BUFFER_SIZE = 1024;
 
 template<class _Ty>

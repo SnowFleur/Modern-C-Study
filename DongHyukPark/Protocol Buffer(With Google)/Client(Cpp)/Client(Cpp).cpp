@@ -16,6 +16,6 @@ constexpr int PORT            = 9000;
 int main()
 {
     GOOGLE_PROTOBUF_VERIFY_VERSION;
-    CDummyManager cDummyManager(1);
-    cDummyManager.StartDummyManager(SERVER_ADDDR, PORT, 5);
+    CDummyManager cDummyManager(1, false, SERVER_ADDDR, PORT);
+    cDummyManager.StartDummyManager(SERVER_ADDDR, PORT,5);
 }

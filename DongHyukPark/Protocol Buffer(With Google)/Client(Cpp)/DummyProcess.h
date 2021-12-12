@@ -17,14 +17,17 @@
 class CDummyManager : public CSnowServer
 {
 private:
-    std::atomic<uint32_t>           stSessionIndex_;
+    std::atomic<uint32_t>           atSessionIndex;
     std::vector<CSnowSession*>      vecDummySession_;
 public:
-    CDummyManager(uint32_t workerThreadCount) :
-        CSnowServer(workerThreadCount)
+    CDummyManager(uint32_t workerThreadCount, bool isStartThread, const char* pServerIP, const USHORT port) :
+        CSnowServer(pServerIP, port)
+        , atSessionIndex(0)
     {
         vecDummySession_.reserve(1000);
+        CSnowServer::CreateWorkerTherad(workerThreadCount, isStartThread);
     }
+
     virtual ~CDummyManager()noexcept override
     {
         for (auto iter = vecDummySession_.begin(); iter != vecDummySession_.end(); ++iter)
@@ -34,16 +37,19 @@ public:
         vecDummySession_.clear();
     }
 
-    void StartDummyManager(const char* pServerIP, const USHORT port, uint32_t dummyCount)
+    void StartDummyManager(const char* pServerIP,USHORT port, uint32_t dummyCount)
     {
         PRINT_INFO_LOG("Start DummyManager\n");
 
         StartWorkerThread();
 
+
         //SERVER ADDR
         SOCKADDR_IN serverAddr;
         ZeroMemory(&serverAddr, sizeof(SOCKADDR_IN));
-
+        
+        // To do 라이브러리에서 어드레서 관련해서 접근이 불가능하네... 
+        // 지금은 그냥.. 이렇게 하자. 언젠간 바꾸겠지  ㅎㅎㅎ
         serverAddr.sin_family = AF_INET;
         serverAddr.sin_port = htons(port);
         inet_pton(AF_INET, pServerIP, &serverAddr.sin_addr);
@@ -51,13 +57,14 @@ public:
         for (uint32_t i = 0; i < dummyCount; ++i)
         {
             CSnowSession* pDummySession = nullptr;
-            pDummySession = new CSnowSession{ SOCKET_TYPE::TCP_TYPE ,++stSessionIndex_ };
+            pDummySession = new CSnowSession{ SOCKET_TYPE::TCP_TYPE ,++atSessionIndex };
 
             if (pDummySession == nullptr) continue;
 
-            if (pDummySession->OnConnect(&serverAddr) == true)
+
+            if (pDummySession->OnConnect(  &serverAddr) == true)
             {
-                PRINT_LOG("The server connection was successful");
+                PRINT_LOG("The server connection was successful\n");
                 vecDummySession_.emplace_back(std::move(pDummySession));
 
                 TestProtocol::SC_LOING_RES cProtoBufferPacket;
@@ -68,11 +75,11 @@ public:
                 if (GeneratedProtoBuf(&cProtoBufferPacket, pDummySession->GetSendBuffer(), pDummySession->GetSendBufferSize(), PT::SC_LOING_RES) == true)
                 {
                     int32_t sendByte = pDummySession->OnSend();
-                    PRINT_LOG("Send Byte:", sendByte);
+                    PRINT_LOG("Send Byte:", sendByte,"\n");
                 }
                 else
                 {
-                    PRINT_ERROR_LOG("Packet Generate");
+                    PRINT_ERROR_LOG("Packet Generate\n");
                 }
             }
         }

@@ -17,17 +17,22 @@ class CIocpServer : public CSnowServer
 private:
     std::atomic<uint32_t>            sessionIndex_;
     std::vector<CSnowSession*>       vecSnowSession_;
+
+private:
+
 public:
-    CIocpServer(uint32_t workerThreadCount) :
-        CSnowServer(workerThreadCount)
+    CIocpServer(uint32_t workerThreadCount, bool isStartThread, const char* pServerIP, const USHORT port) :
+        CSnowServer(pServerIP, port)
+        , sessionIndex_(0)
     {
+        CreateWorkerTherad(workerThreadCount, isStartThread);
+        vecSnowSession_.reserve(1000);
     }
 
-    void StartIocpServer(const char* pServerIP, const USHORT port)
+    void StartIocpServer()
     {
         PRINT_INFO_LOG("Start Sever\n");
-        vecSnowSession_.reserve(1000);
-        StartSnowServer(pServerIP, port);
+        CSnowServer::StartSnowServer();
     }
 
     //overrride Funcions

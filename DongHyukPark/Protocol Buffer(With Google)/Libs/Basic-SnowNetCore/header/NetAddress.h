@@ -9,7 +9,7 @@
 class CNetAddress
 {
 private:
-    SOCKADDR_IN    stSockAddrInfor_;
+    SOCKADDR_IN    sockAddrInfo_;
 public:
     CNetAddress();
     
