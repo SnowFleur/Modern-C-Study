@@ -1,14 +1,22 @@
 ﻿using System;
 using System.Net.Sockets;
-using System.Net;
 using System.Runtime.InteropServices;
 
-namespace CSnowNetwork
+/*
+ - C# NetCore Base Session Class
+ */
+
+namespace SnowNetCore
 {
-    class CSnowNetSession
+    internal class CSnowNetSession
     {
-        private Socket socket_;
-        public CSnowNetSession() { }
+        private Socket     socket_;
+        private Byte[] arrBuffer_ { get; }
+
+        public CSnowNetSession()
+        {
+            arrBuffer_ = new Byte[1024];
+        }
 
         ~CSnowNetSession()
         {
@@ -17,9 +25,8 @@ namespace CSnowNetwork
 
         public bool ConnectToServer(string addr, int port)
         {
-
             socket_ = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            //Connect 
+            //Connect
             try
             {
                 socket_.Connect(addr, port);
@@ -41,9 +48,14 @@ namespace CSnowNetwork
             }
         }
 
-        public bool SendMessage() { return true; }
+        protected Int32 OnSend( byte[] arrPacket, Int32 packetSize)
+        {
+            return socket_.Send(arrPacket);
+        }
 
-        public bool RecvMesage() { return true; }
-
+        protected Int32 OnRecv()
+        {
+            return socket_.Receive(arrBuffer_);
+        }
     }
 }

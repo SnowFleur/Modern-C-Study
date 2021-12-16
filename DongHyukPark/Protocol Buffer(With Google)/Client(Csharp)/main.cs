@@ -1,41 +1,65 @@
 ﻿/*
 -
--   Proto Buffer 테스트용 C#(클라이언트) BasicSnowNetCore는 사용하지 않고 
+-   Proto Buffer 테스트용 C#(클라이언트) BasicSnowNetCore는 사용하지 않고
 -   C#에서 제공하는 Net Socket 사용
 -
 */
 
 using System;
-using System.Net.Sockets;
-using System.Net;
-using CSnowNetwork;
+using System.Threading;
 
 namespace Client_Csharp_
 {
-
-    class Program
+    internal class Program
     {
-        const string SERVER_ADDR    = "127.0.0.1";
-        const int PORT              = 9000;
+        private const string SERVER_ADDR = "127.0.0.1";
+        private const int PORT = 9000;
 
-        CSnowNetSession session_;
+        private CGameSession gameSession_;
 
-        static void Main(string[] args)
+
+        private static void Main(string[] args)
         {
             Program pg = new Program();
             pg.Start();
         }
 
-        void Start() 
+        private void Start()
         {
             Console.WriteLine("Start!!");
+            gameSession_ = new CGameSession();
 
-            session_ = new CSnowNetSession();
-            session_.ConnectToServer(SERVER_ADDR, PORT);
+            bool isConnect = gameSession_.ConnectToServer(SERVER_ADDR, PORT);
 
-            while (true) { };
-        
+            if (isConnect == true)
+            {
+                ulong count = new ulong();
+
+                while (true)
+                {
+
+                    //1초에 한번씩 Send
+                    Thread.Sleep(1000);
+
+                    //Send
+                    gameSession_.Send_Login_REQ(++count);
+
+                    //Recv
+                    if (gameSession_.Recv() == true)
+                    {
+                        Console.WriteLine("Recv Sucess");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Recv Fail");
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine("Connect Fail");
+            }
+
         }
-
     }
 }
