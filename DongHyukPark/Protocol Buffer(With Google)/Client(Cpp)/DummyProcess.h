@@ -67,7 +67,6 @@ public:
                 vecDummySession_.emplace_back(std::move(pDummySession));
 
                 TestProtoBufProtocol::CS_LOGIN_REQ cProtoBufferPacket;
-                cProtoBufferPacket.set_sessionindex(15);
 
                 RegitIocp(pDummySession->GetSocket());
 
@@ -97,14 +96,20 @@ public:
 
     virtual void CompletedRecv(CSnowSession* pRecvCompleteSession, const DWORD recvByte)override
     {
-        PRINT_INFO_LOG(__FUNCTION__, "Recv SessionID:", pRecvCompleteSession->GetSessionID(), " Recv Byte: ", recvByte, "\n");
-        TestProtoBufProtocol::CS_LOGIN_REQ cProtoBufferPacket;
-        if (DegeneratedProtoBuf(&cProtoBufferPacket, pRecvCompleteSession->GetRecvBuffer(), pRecvCompleteSession->GetRecvBufferSize()) == true)
+        PRINT_INFO_LOG(__FUNCTION__, " SessionID:", pRecvCompleteSession->GetSessionID(), " Recv Byte: ", recvByte, "\n");
+        TestProtoBufProtocol::CS_LOGIN_REQ  csLoginPacket;
+        if (DegeneratedProtoBuf(&csLoginPacket, pRecvCompleteSession->GetRecvBuffer(), pRecvCompleteSession->GetRecvBufferSize()) == true)
         {
-            cProtoBufferPacket.set_sessionindex(cProtoBufferPacket.sessionindex() + 1);
-            if (GeneratedProtoBuf(&cProtoBufferPacket, pRecvCompleteSession->GetSendBuffer(), pRecvCompleteSession->GetSendBufferSize(), PT::SC_LOING_RES) == true)
+            TestProtoBufProtocol::SC_LOING_RES scLoginPacket;
+
+            scLoginPacket.set_sessionindex(pRecvCompleteSession->GetSessionID());
+            if (GeneratedProtoBuf(&scLoginPacket, pRecvCompleteSession->GetSendBuffer(), pRecvCompleteSession->GetSendBufferSize(), PT::SC_LOING_RES) == true)
             {
-                pRecvCompleteSession->OnSend();
+                if (pRecvCompleteSession->OnSend() > 0)
+                {
+                    PRINT_INFO_LOG("Send\n");
+                }
+
             }
         }
     }

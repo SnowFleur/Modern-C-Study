@@ -159,11 +159,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\protocol\TestProtocol.pb.cc" />
+    <ClCompile Include="..\protocol\TestProtoBufProtocol.pb.cc" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\protocol\TestProtocol.pb.h" />
+    <ClInclude Include="..\protocol\TestProtoBufProtocol.pb.h" />
     <ClInclude Include="PacketHandler.h" />
     <ClInclude Include="PacketHeader.h" />
     <ClInclude Include="Server.h" />

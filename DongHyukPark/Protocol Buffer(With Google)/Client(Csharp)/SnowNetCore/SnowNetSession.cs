@@ -10,8 +10,8 @@ namespace SnowNetCore
 {
     internal class CSnowNetSession
     {
-        private Socket     socket_;
-        protected Byte[]   arrBuffer_;
+        private Socket socket_;
+        protected Byte[] arrBuffer_;
 
         public CSnowNetSession()
         {
@@ -54,7 +54,6 @@ namespace SnowNetCore
             try
             {
                 sendByte = socket_.Send(arrBuffer_, PacketSize, SocketFlags.None);
-
             }
             catch (Exception ex)
             {

@@ -17,7 +17,6 @@ namespace Client_Csharp_
 
         private CGameSession gameSession_;
 
-
         private static void Main(string[] args)
         {
             Program pg = new Program();
@@ -33,16 +32,14 @@ namespace Client_Csharp_
 
             if (isConnect == true)
             {
-                ulong count = new ulong();
 
                 while (true)
                 {
-
                     //1초에 한번씩 Send
                     Thread.Sleep(1000);
 
                     //Send
-                    gameSession_.Send_Login_REQ(++count);
+                    gameSession_.Send_Login_REQ();
 
                     //Recv
                     if (gameSession_.Recv() == true)
@@ -59,7 +56,6 @@ namespace Client_Csharp_
             {
                 Console.WriteLine("Connect Fail");
             }
-
         }
     }
 }
