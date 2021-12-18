@@ -1,8 +1,9 @@
-﻿using TestProtocol;
+﻿using TestProtoBufProtocol;
 using SnowNetCore;
 using Google.Protobuf;
 using System;
 using System.IO;
+using Client_Csharp_.Protocol;
 
 namespace Client_Csharp_
 {
@@ -11,10 +12,7 @@ namespace Client_Csharp_
 
         public void Send_Login_REQ(ulong index)
         {
-            SC_LOING_RES loginRes = new SC_LOING_RES();
-            loginRes.SessionIndex = index;
-
-            OnSend( loginRes.ToByteArray(), loginRes.CalculateSize());
+            Console.WriteLine("Send Byte: " + OnSend((PacketHandler.Generated_CS_LOGIN_REQ(index, ref arrBuffer_))));
         }
         public bool Recv()
         {

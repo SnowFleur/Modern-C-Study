@@ -11,7 +11,7 @@ namespace SnowNetCore
     internal class CSnowNetSession
     {
         private Socket     socket_;
-        private Byte[] arrBuffer_ { get; }
+        protected Byte[]   arrBuffer_;
 
         public CSnowNetSession()
         {
@@ -48,9 +48,20 @@ namespace SnowNetCore
             }
         }
 
-        protected Int32 OnSend( byte[] arrPacket, Int32 packetSize)
+        protected Int32 OnSend(Int32 PacketSize)
         {
-            return socket_.Send(arrPacket);
+            Int32 sendByte = -1;
+            try
+            {
+                sendByte = socket_.Send(arrBuffer_, PacketSize, SocketFlags.None);
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return sendByte;
         }
 
         protected Int32 OnRecv()

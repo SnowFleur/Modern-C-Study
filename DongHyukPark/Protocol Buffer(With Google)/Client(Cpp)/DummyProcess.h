@@ -10,9 +10,8 @@
 #include<atomic>
 #include<SnowServer.h>
 
-#include"../protocol/TestProtocol.pb.h"
 #include"../Server/PacketHandler.h"
-#include"../protocol/TestProtocol.pb.h"
+#include"../protocol/TestProtoBufProtocol.pb.h"
 
 class CDummyManager : public CSnowServer
 {
@@ -67,7 +66,7 @@ public:
                 PRINT_LOG("The server connection was successful\n");
                 vecDummySession_.emplace_back(std::move(pDummySession));
 
-                TestProtocol::SC_LOING_RES cProtoBufferPacket;
+                TestProtoBufProtocol::CS_LOGIN_REQ cProtoBufferPacket;
                 cProtoBufferPacket.set_sessionindex(15);
 
                 RegitIocp(pDummySession->GetSocket());
@@ -99,7 +98,7 @@ public:
     virtual void CompletedRecv(CSnowSession* pRecvCompleteSession, const DWORD recvByte)override
     {
         PRINT_INFO_LOG(__FUNCTION__, "Recv SessionID:", pRecvCompleteSession->GetSessionID(), " Recv Byte: ", recvByte, "\n");
-        TestProtocol::SC_LOING_RES cProtoBufferPacket;
+        TestProtoBufProtocol::CS_LOGIN_REQ cProtoBufferPacket;
         if (DegeneratedProtoBuf(&cProtoBufferPacket, pRecvCompleteSession->GetRecvBuffer(), pRecvCompleteSession->GetRecvBufferSize()) == true)
         {
             cProtoBufferPacket.set_sessionindex(cProtoBufferPacket.sessionindex() + 1);
