@@ -60,6 +60,7 @@ void PrintAnyThing(const  std::any& a)
 			std::cout << "일치하는 항목이 없습니다.\n";
 		}
 	}
+	//잘못된 캐스팅은 이 에러를 뱉는다.
 	catch (std::bad_any_cast& cast)
 	{
 		std::cout << cast.what() << "\n";
