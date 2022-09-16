@@ -1,0 +1,27 @@
+NomoneyPlayers:  []
+
+ Started the round 1
+Street "preflop" started. (community card = []) // All Stack: 5940 // stack: {'Smart1': 1000, 'Smart2': 980, 'Random0': 960, 'Random1': 1000, 'Honest0': 1000, 'Honest1': 1000}
+"Random1" declared "fold:0"
+"Honest0" declared "call:40"
+"Honest1" declared "fold:0"
+"Smart1" declared "raise:60"
+"Smart2" declared "raise:80"
+"Random0" declared "raise:267"
+"Honest0" declared "fold:0"
+"Smart1" declared "raise:454"
+"Smart2" declared "raise:641"
+"Random0" declared "raise:845"
+"Smart1" declared "call:845"
+"Smart2" declared "call:845"
+Street "flop" started. (community card = ['HT', 'DJ', 'H5']) // All Stack: 3425 // stack: {'Smart1': 155, 'Smart2': 155, 'Random0': 155, 'Random1': 1000, 'Honest0': 960, 'Honest1': 1000}
+"Smart2" declared "fold:0"
+"Random0" declared "raise:104"
+"Smart1" declared "call:104"
+Street "turn" started. (community card = ['HT', 'DJ', 'H5', 'DQ']) // All Stack: 3217 // stack: {'Smart1': 51, 'Smart2': 155, 'Random0': 51, 'Random1': 1000, 'Honest0': 960, 'Honest1': 1000}
+"Random0" declared "raise:48"
+"Smart1" declared "call:48"
+Street "river" started. (community card = ['HT', 'DJ', 'H5', 'DQ', 'D3']) // All Stack: 3121 // stack: {'Smart1': 3, 'Smart2': 155, 'Random0': 3, 'Random1': 1000, 'Honest0': 960, 'Honest1': 1000}
+"Random0" declared "raise:-1"
+"['Smart1']" won the round 1 (stack = {'Smart1': 2882, 'Smart2': 155, 'Random0': 3, 'Random1': 1000, 'Honest0': 960, 'Honest1': 1000}) 
+

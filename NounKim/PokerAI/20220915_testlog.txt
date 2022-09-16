@@ -1,0 +1,6 @@
+CommunityCard =  None
+CommunityCard =  None
+{'Player 1 Win': 33.28, 'Player 1 Tie': 0.17, 'Player 2 Win': 25.79, 'Player 2 Tie': 0.17, 'Player 3 Win': 9.24, 'Player 3 Tie': 1.27, 'Player 4 Win': 17.08, 'Player 4 Tie': 1.93, 'Player 5 Win': 1.01, 'Player 5 Tie': 3.03, 'Player 6 Win': 10.55, 'Player 6 Tie': 1.27}
+sss 
+
+{'Player 1': 'TD TS', 'Player 2': '8H KC', 'Player 3': '4D 3H', 'Player 4': '9S JD', 'Player 5': '9D 3S', 'Player 6': '3D 5C', 'Community Cards': ''}
