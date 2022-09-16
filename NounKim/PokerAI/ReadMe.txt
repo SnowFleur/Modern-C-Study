@@ -11,3 +11,10 @@ pip install -r requirement.txt
 python PokerAI.py > log.txt
 
 실행시 로그 생성 가능
+
+PokerAI.py 에서
+config = setup_config(max_round=1, initial_stack=1000, small_blind_amount=20)
+
+max_round : 포커를 진행할 라운드  
+initial_stack: 플레이어가 가진 칩의 양
+small_blind_amount: 스몰 블라인드가 내야할 칩의 개수
