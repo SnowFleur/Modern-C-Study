@@ -1,0 +1,1 @@
+몬테카를로 CFR(Counterfactual Regret Minimization) 를 기반으로 한 포커 AI를 제작할 예정. 현재 https://github.com/johnsoong216/PokerOddsCalc.git 과 pypokerengine 을 기반으로 작성 중
