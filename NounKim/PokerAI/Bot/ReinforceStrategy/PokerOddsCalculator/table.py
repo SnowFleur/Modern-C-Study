@@ -126,7 +126,7 @@ class Table:
                     outcome_dict[outcome_key] = np.round(temp_arr.sum() / num_outcomes * 100, 2)
         return outcome_dict
 
-    def next_round(self, verbose=True, bios = 0):
+    def next_round(self, verbose=True, bios = 0, negative=True):
 
         hand_player_cards = True
         for player in self.player_hands:
@@ -135,7 +135,7 @@ class Table:
 
                 #20220916 고칠 부분
                 #added_card = self.random_card(self.player_hands[player].hand_limit)
-                added_card = self.random_card_progress(self.player_hands[player].hand_limit, bios)
+                added_card = self.random_card_progress(self.player_hands[player].hand_limit, bios, negative=True)
                 
                 #print("added_card: ", added_card)
  
@@ -158,7 +158,7 @@ class Table:
         return self.deck_arr[rand_indices]
 
     #20220915 round progress, hand progress
-    def random_card_progress(self, num_cards, bios = 0):
+    def random_card_progress(self, num_cards, bios = 0, negative=True):
 
         #bios 만큼 주어진 패로 더 강한 덱 만들기 -> 상대방의 패를 강할거라고 추측하기 위해서
         #커뮤니티 카드 가져오기 -> 패 만들기 -> 평가하기 -> 가장 좋은 조합으로 보내기(상대방의 패 제작)
@@ -192,18 +192,32 @@ class Table:
             player_rank = np.zeros(All_player_num, dtype=np.int)
             player_hand_type = np.zeros(All_player_num, dtype=np.int)
             
-            for player_num in inst_Players_hands:
-                # print("community_arr: ", self.community_arr)
-                # print("Hands: ", inst_Players_hands[player_num].hand_evaluation(self.community_arr)            
-                player_combos, player_res_arr = inst_Players_hands[player_num].hand_value(self.community_arr)
-                player_rank[player_num - 1] = np.max(player_res_arr)
-                player_hand_type[player_num - 1] = np.max(player_res_arr)
+            if(negative):
+                for player_num in inst_Players_hands:
+                    # print("community_arr: ", self.community_arr)
+                    # print("Hands: ", inst_Players_hands[player_num].hand_evaluation(self.community_arr)            
+                    player_combos, player_res_arr = inst_Players_hands[player_num].hand_value(self.community_arr)
+                    player_rank[player_num - 1] = np.max(player_res_arr)
+                    player_hand_type[player_num - 1] = np.max(player_res_arr)
 
-            winners, =np.where(np.max(player_rank) == player_rank)
-            #print("winner player: ", winners, "hand: ", CombArray[int(winners)])
+                winners, =np.where(np.max(player_rank) == player_rank)
+                #print("winner player: ", winners, "hand: ", CombArray[int(winners)])
 
-            #가장 좋은 패를 반환함
-            return  self.deck_arr[np.asarray(CombArray[int(winners)])]
+                #가장 좋은 패를 반환함
+                return  self.deck_arr[np.asarray(CombArray[int(winners)])]
+            else:
+                for player_num in inst_Players_hands:
+                    # print("community_arr: ", self.community_arr)
+                    # print("Hands: ", inst_Players_hands[player_num].hand_evaluation(self.community_arr)            
+                    player_combos, player_res_arr = inst_Players_hands[player_num].hand_value(self.community_arr)
+                    player_rank[player_num - 1] = np.min(player_res_arr)
+                    player_hand_type[player_num - 1] = np.min(player_res_arr)
+
+                loosers, =np.where(np.min(player_rank) == player_rank)
+                #print("winner player: ", winners, "hand: ", CombArray[int(winners)])
+
+                #가장 나쁜 패를 반환함
+                return  self.deck_arr[np.asarray(CombArray[int(loosers)])]                
 
     def view_table(self):
         res_dict = {"Player " + str(player): str(self.player_hands[player]) for player in self.player_hands}
