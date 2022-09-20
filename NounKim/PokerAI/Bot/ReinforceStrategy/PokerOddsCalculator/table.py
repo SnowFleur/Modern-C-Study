@@ -261,7 +261,7 @@ class HoldemTable(Table):
                                           hand_limit=2,
                                           deck_type=deck_type)
 
-    def simulate(self, num_scenarios=150000, odds_type="tie_win", final_hand=False):
+    def simulate(self, num_scenarios=100, odds_type="tie_win", final_hand=False):
 
         start = timeit.default_timer()
         community_cards, undrawn_combos = self.simulation_preparation(num_scenarios)

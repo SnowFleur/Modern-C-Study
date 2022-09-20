@@ -1,0 +1,1 @@
+python PokerAI.py > %DATE%_log.txt

@@ -19,12 +19,17 @@ class Node:
 
 
 
+
+
+# 형식 저장 {"CCCRFR" : {"20.3, 60.5"  : [{21 : "36_27_4_7.2,3.4,6.6..."}, {}, {},...]}, {}, {}, {}...}     
+# 걸린 돈/전체 판돈 기준 소수점 2번째 자리까지
+
 class reinforce_learning_20220919:
     def __init__(self):
         pass
     
     
-    def Bet_Interpretation(self, RootNode): # 앞선 상대방의 결정을 모아 어떤 전략을 행할지 결정, 1라운드 동안 전략이 지속되니 프리플롭에서 실행될 것.
+    def Bet_Interpretation(self, RootNode): # 매 베팅 라운드마다 앞선 상대방의 결정을 모아 어떤 전략을 행할지 결정
         pass
 
     def Strategy_Dicision(self): # 총 4개의 전략이 있음. Fold, Call. Raise, 균형 전략이 있다.

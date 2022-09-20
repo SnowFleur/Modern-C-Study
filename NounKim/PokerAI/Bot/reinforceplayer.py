@@ -21,7 +21,7 @@ class ReinforcePlayer(BasePokerPlayer):
         
         #Simulation_Bios = 추측의 강도, negative = 내 입장에서 긍정적 추측(상대의 패가 나쁘게 나옴)인지 부정적 추측(상대의 패가 좋게 나옴)인지
         ht.next_round(Simulation_Bios, negative=True)
-        SimulationResult = ht.simulate()
+        SimulationResult = ht.simulate(num_scenarios=1)
         winrate = SimulationResult['Player 1 Win']
 
         WinrateBios = self.get_turn_bios(round_state)

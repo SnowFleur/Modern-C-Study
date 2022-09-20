@@ -1,0 +1,21 @@
+NomoneyPlayers:  []
+
+ Started the round 1
+Street "preflop" started. (community card = []) // All Stack: 5940 // stack: {'Smart1': 1000, 'Smart2': 980, 'Random0': 960, 'Random1': 1000, 'Honest0': 1000, 'Honest1': 1000}
+"Random1" declared "raise:918"
+"Honest0" declared "fold:0"
+"Honest1" declared "call:918"
+"Smart1" declared "call:918"
+"Smart2" declared "call:918"
+"Random0" declared "raise:-1"
+Street "flop" started. (community card = ['SA', 'H5', 'D6']) // All Stack: 2288 // stack: {'Smart1': 82, 'Smart2': 82, 'Random0': 960, 'Random1': 82, 'Honest0': 1000, 'Honest1': 82}
+"Smart2" declared "fold:0"
+"Random1" declared "raise:51"
+"Honest1" declared "call:51"
+"Smart1" declared "call:51"
+Street "turn" started. (community card = ['SA', 'H5', 'D6', 'C5']) // All Stack: 2135 // stack: {'Smart1': 31, 'Smart2': 82, 'Random0': 960, 'Random1': 31, 'Honest0': 1000, 'Honest1': 31}
+"Random1" declared "raise:-1"
+"Honest1" declared "call:0"
+"Smart1" declared "fold:0"
+"['Honest1']" won the round 1 (stack = {'Smart1': 31, 'Smart2': 82, 'Random0': 960, 'Random1': 31, 'Honest0': 1000, 'Honest1': 3896}) 
+
