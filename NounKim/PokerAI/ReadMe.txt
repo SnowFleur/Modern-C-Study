@@ -4,8 +4,37 @@ reinforceplayer.py 에 몬테카를로 CFR(Counterfactual Regret Minimization)  
 
 2022.09.16 현재 몬테카를로-부정적 추측 승률 계산 시뮬레이션만 적용되어 있음.
 
+
+
 ---------------------------------------------------------
 
+오후 3:55 2022-09-20
+
+패치노트 작성 개시
+AI_Test.bat 파일 실행시 로그 폴더에 로그 생성 가능
+config에 
+
+max_round=3
+initial_stack=500
+small_blind_amount=20
+FishPlayer=0
+RandomPlayer=0
+HonestPlayer=0
+ReinforcePlayer=6
+
+입력하여  AI 테스트 가능
+
+---------------------------------------------------------
+
+오후 4:39 2022-09-20
+
+버그노트 작성 개시
+ReinforcePlayer들만 놓을 경우 프리플랍에서 미친듯이 레이즈를 하는 경우
+
+
+
+
+---------------------------------------------------------
 터미널에서
 
 pip install -r requirement.txt

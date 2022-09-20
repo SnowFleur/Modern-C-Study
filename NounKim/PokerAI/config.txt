@@ -1,0 +1,7 @@
+max_round=3
+initial_stack=500
+small_blind_amount=20
+FishPlayer=0
+RandomPlayer=2
+HonestPlayer=2
+ReinforcePlayer=2

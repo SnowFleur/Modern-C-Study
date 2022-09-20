@@ -56,6 +56,7 @@ class Table:
             if len(self.player_hands[player].card_arr) < self.player_hands[player].hand_limit:
                 raise HandException(f"Please Deal a Starting Hand to Player {player}")
         #덱의 장수, 공개되지 않은 커뮤니티 카드의 개수
+        #print("len(self.community_arr): ", len(self.community_arr), "5-c: ", 5 - len(self.community_arr))
         total_idx = comb_index(len(self.deck_arr), 5 - len(self.community_arr))
         undrawn_combos = self.deck_arr[total_idx]
         if num_scenarios != 'all':
@@ -261,7 +262,7 @@ class HoldemTable(Table):
                                           hand_limit=2,
                                           deck_type=deck_type)
 
-    def simulate(self, num_scenarios=100, odds_type="tie_win", final_hand=False):
+    def simulate(self, num_scenarios=150000, odds_type="tie_win", final_hand=False):
 
         start = timeit.default_timer()
         community_cards, undrawn_combos = self.simulation_preparation(num_scenarios)
@@ -277,10 +278,13 @@ class HoldemTable(Table):
 
         if final_hand:
             final_hand_dict = self.hand_strength_analysis(res_arr)
-            logging.info(f"{min([len(undrawn_combos), num_scenarios]) * 21 * self.num_players} Simulations in {np.round(timeit.default_timer() - start, 2)}s")
+            #logging.info(f"{min([len(undrawn_combos), num_scenarios]) * 21 * self.num_players} Simulations in {np.round(timeit.default_timer() - start, 2)}s")
             return outcome_dict, final_hand_dict
 
-        logging.info(f"{min([len(undrawn_combos), num_scenarios]) * 21 * self.num_players} Simulations in {np.round(timeit.default_timer() - start, 2)}s")
+        #logging.info(f"{min([len(undrawn_combos), num_scenarios]) * 21 * self.num_players} Simulations in {np.round(timeit.default_timer() - start, 2)}s")
+        
+        #초기화 해준다.
+        #self.community_arr = np.zeros(shape=(0, 2), dtype=np.int)
         return outcome_dict
 
     def simulate_calculation(self, community_cards, undrawn_combos):
@@ -303,6 +307,7 @@ class HoldemTable(Table):
                 [np.repeat([self.player_hands[player + 1].card_arr], len(undrawn_combos), axis=0),
                  community_cards,
                  undrawn_combos], axis=1)
+        #print("\n cur_player_cards len: ", len(cur_player_cards), "player: ", player, "len(res_arr): ", len(res_arr) , "\n comb_index(7, 5): ", comb_index(7, 5))
         res_arr[:, player] =  Ranker.rank_all_hands(cur_player_cards[:, comb_index(7, 5), :])
 
 

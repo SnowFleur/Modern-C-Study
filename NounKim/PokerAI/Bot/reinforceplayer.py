@@ -1,33 +1,49 @@
 from pypokerengine.players import BasePokerPlayer
 from .ReinforceStrategy.PokerOddsCalculator.table import HoldemTable
 
-TurnDic = {"preflop":0, "flop":5, "turn":10, "river":15}
+#from joblib import Parallel, delayed
+#import multiprocessing
+
+TurnDic = {"preflop":10, "flop":15, "turn":20, "river":25}
 Simulation_Bios = 0 #최소 0
+
 
 class ReinforcePlayer(BasePokerPlayer):
 
     def declare_action(self, valid_actions, hole_card, round_state):
 
-        ht = HoldemTable(num_players=self.get_number_of_players(round_state), deck_type='full')
+
+        Diversification = 3
+        Winrate = 0
+        CommunityExist = False
 
         reverse_card1 = self.reverse_card(hole_card[0])
         reverse_card2 = self.reverse_card(hole_card[1])
-        ht.add_to_hand(1, [reverse_card1, reverse_card2])
-
+        
         if round_state['community_card'] != []:
             reverse_community_cards = [self.reverse_card(rev_com_card) for rev_com_card in  round_state['community_card']]
-            #print(reverse_community_cards) #정상작동
-            ht.add_to_community(reverse_community_cards)
-        
-        #Simulation_Bios = 추측의 강도, negative = 내 입장에서 긍정적 추측(상대의 패가 나쁘게 나옴)인지 부정적 추측(상대의 패가 좋게 나옴)인지
-        ht.next_round(Simulation_Bios, negative=True)
-        SimulationResult = ht.simulate(num_scenarios=1)
-        winrate = SimulationResult['Player 1 Win']
+            CommunityExist = True   
 
+        for i in range(Diversification):
+
+            ht = HoldemTable(num_players=self.get_number_of_players(round_state), deck_type='full')
+            ht.add_to_hand(1, [reverse_card1, reverse_card2])
+            if(CommunityExist):
+                ht.add_to_community(reverse_community_cards)
+            
+            #Simulation_Bios = 추측의 강도, negative = 내 입장에서 긍정적 추측(상대의 패가 나쁘게 나옴)인지 부정적 추측(상대의 패가 좋게 나옴)인지
+            ht.next_round(Simulation_Bios, negative=True)
+            SimulationResult = ht.simulate(num_scenarios=1000)
+            print("SimulationResult['Player 1 Win']: ", SimulationResult['Player 1 Win'])
+            Winrate += SimulationResult['Player 1 Win']
+
+
+        Winrate /= Diversification
+    
         WinrateBios = self.get_turn_bios(round_state)
 
-        if winrate < WinrateBios: action = valid_actions[0] #fold
-        elif winrate >= WinrateBios: #raise
+        if Winrate < WinrateBios: action = valid_actions[0] #fold
+        elif Winrate >= WinrateBios: #raise
             action = valid_actions[2]
             action['amount'] = valid_actions[2]["amount"]["min"]
             if action['amount'] == -1:
@@ -67,3 +83,9 @@ class ReinforcePlayer(BasePokerPlayer):
     def get_turn_bios(self, round_state):
         street = round_state["street"]
         return TurnDic[street]
+
+    def TypeSimulate(self, ht, Simulation_Bios ):
+        ht.next_round(Simulation_Bios, negative=True)
+        SimulationResult = ht.simulate(num_scenarios=100)
+        print(SimulationResult['Player 1 Win'])
+        Winrate += SimulationResult['Player 1 Win']

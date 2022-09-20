@@ -17,6 +17,7 @@ def num_combinations(total, selected):
 
 def comb_index(n, k):
     count = comb(n, k, exact=True)
+    #print("n: ", n, "k ", k, "\n")
     index = np.fromiter(chain.from_iterable(combinations(range(n), k)),
                         int, count=count*k)
     if index.size > 0:

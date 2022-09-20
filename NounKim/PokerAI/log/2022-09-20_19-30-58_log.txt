@@ -1,0 +1,113 @@
+NomoneyPlayers:  []
+
+ Started the round 1
+Street "preflop" started. (community card = []) // All Stack: 2940 // stack: {'Random0': 500, 'Random1': 480, 'Honest0': 460, 'Honest1': 500, 'Reinforce0': 500, 'Reinforce1': 500}
+"Honest1" declared "fold:0"
+SimulationResult['Player 1 Win']:  28.9
+SimulationResult['Player 1 Win']:  30.3
+SimulationResult['Player 1 Win']:  33.4
+"Reinforce0" declared "raise:60"
+SimulationResult['Player 1 Win']:  42.1
+SimulationResult['Player 1 Win']:  48.7
+SimulationResult['Player 1 Win']:  49.3
+"Reinforce1" declared "raise:80"
+"Random0" declared "raise:282"
+"Random1" declared "raise:493"
+"Honest0" declared "fold:0"
+SimulationResult['Player 1 Win']:  45.5
+SimulationResult['Player 1 Win']:  19.9
+SimulationResult['Player 1 Win']:  31.7
+"Reinforce0" declared "call:493"
+SimulationResult['Player 1 Win']:  68.9
+SimulationResult['Player 1 Win']:  46.3
+SimulationResult['Player 1 Win']:  51.1
+"Reinforce1" declared "call:493"
+"Random0" declared "raise:-1"
+Street "flop" started. (community card = ['SK', 'D8', 'H8']) // All Stack: 1199 // stack: {'Random0': 218, 'Random1': 7, 'Honest0': 460, 'Honest1': 500, 'Reinforce0': 7, 'Reinforce1': 7}
+"Random1" declared "raise:-1"
+SimulationResult['Player 1 Win']:  87.17
+SimulationResult['Player 1 Win']:  96.46
+SimulationResult['Player 1 Win']:  99.29
+"Reinforce0" declared "call:0"
+SimulationResult['Player 1 Win']:  8.99
+SimulationResult['Player 1 Win']:  98.99
+SimulationResult['Player 1 Win']:  82.93
+"Reinforce1" declared "call:0"
+Street "turn" started. (community card = ['SK', 'D8', 'H8', 'C6']) // All Stack: 1199 // stack: {'Random0': 218, 'Random1': 7, 'Honest0': 460, 'Honest1': 500, 'Reinforce0': 7, 'Reinforce1': 7}
+SimulationResult['Player 1 Win']:  90.91
+SimulationResult['Player 1 Win']:  4.55
+SimulationResult['Player 1 Win']:  84.09
+"Reinforce0" declared "call:0"
+SimulationResult['Player 1 Win']:  93.18
+SimulationResult['Player 1 Win']:  100.0
+SimulationResult['Player 1 Win']:  4.55
+"Reinforce1" declared "call:0"
+Street "river" started. (community card = ['SK', 'D8', 'H8', 'C6', 'HJ']) // All Stack: 1199 // stack: {'Random0': 218, 'Random1': 7, 'Honest0': 460, 'Honest1': 500, 'Reinforce0': 7, 'Reinforce1': 7}
+SimulationResult['Player 1 Win']:  100.0
+SimulationResult['Player 1 Win']:  0.0
+SimulationResult['Player 1 Win']:  100.0
+"Reinforce0" declared "call:0"
+SimulationResult['Player 1 Win']:  100.0
+SimulationResult['Player 1 Win']:  100.0
+SimulationResult['Player 1 Win']:  0.0
+"Reinforce1" declared "call:0"
+"['Reinforce0']" won the round 1 (stack = {'Random0': 218, 'Random1': 7, 'Honest0': 460, 'Honest1': 500, 'Reinforce0': 1808, 'Reinforce1': 7}) 
+
+NomoneyPlayers:  ['Random1', 'Reinforce1']
+
+ Started the round 2
+Street "preflop" started. (community card = []) // All Stack: 2940 // stack: {'Random0': 218, 'Random1': 7, 'Honest0': 440, 'Honest1': 460, 'Reinforce0': 1808, 'Reinforce1': 7}
+SimulationResult['Player 1 Win']:  34.9
+SimulationResult['Player 1 Win']:  23.2
+SimulationResult['Player 1 Win']:  41.3
+"Reinforce0" declared "raise:60"
+"Random0" declared "raise:85"
+"Honest0" declared "call:85"
+"Honest1" declared "call:85"
+SimulationResult['Player 1 Win']:  39.0
+SimulationResult['Player 1 Win']:  30.9
+SimulationResult['Player 1 Win']:  43.4
+"Reinforce0" declared "raise:110"
+"Random0" declared "raise:196"
+"Honest0" declared "call:196"
+"Honest1" declared "call:196"
+SimulationResult['Player 1 Win']:  32.7
+SimulationResult['Player 1 Win']:  33.2
+SimulationResult['Player 1 Win']:  50.5
+"Reinforce0" declared "raise:282"
+"Random0" declared "fold:0"
+"Honest0" declared "call:282"
+"Honest1" declared "call:282"
+Street "flop" started. (community card = ['SJ', 'SA', 'ST']) // All Stack: 1958 // stack: {'Random0': 22, 'Random1': 7, 'Honest0': 178, 'Honest1': 218, 'Reinforce0': 1526, 'Reinforce1': 7}
+"Honest0" declared "fold:0"
+"Honest1" declared "call:0"
+SimulationResult['Player 1 Win']:  100.0
+SimulationResult['Player 1 Win']:  100.0
+SimulationResult['Player 1 Win']:  100.0
+"Reinforce0" declared "raise:40"
+"Honest1" declared "call:40"
+Street "turn" started. (community card = ['SJ', 'SA', 'ST', 'CT']) // All Stack: 1878 // stack: {'Random0': 22, 'Random1': 7, 'Honest0': 178, 'Honest1': 178, 'Reinforce0': 1486, 'Reinforce1': 7}
+"Honest1" declared "call:0"
+SimulationResult['Player 1 Win']:  100.0
+SimulationResult['Player 1 Win']:  100.0
+SimulationResult['Player 1 Win']:  100.0
+"Reinforce0" declared "raise:40"
+"Honest1" declared "call:40"
+Street "river" started. (community card = ['SJ', 'SA', 'ST', 'CT', 'HQ']) // All Stack: 1798 // stack: {'Random0': 22, 'Random1': 7, 'Honest0': 178, 'Honest1': 138, 'Reinforce0': 1446, 'Reinforce1': 7}
+"Honest1" declared "call:0"
+SimulationResult['Player 1 Win']:  100.0
+SimulationResult['Player 1 Win']:  100.0
+SimulationResult['Player 1 Win']:  100.0
+"Reinforce0" declared "raise:40"
+"Honest1" declared "call:40"
+"['Reinforce0']" won the round 2 (stack = {'Random0': 22, 'Random1': 7, 'Honest0': 178, 'Honest1': 98, 'Reinforce0': 2688, 'Reinforce1': 7}) 
+
+NomoneyPlayers:  ['Random1', 'Reinforce1']
+
+ Started the round 3
+Street "preflop" started. (community card = []) // All Stack: 2940 // stack: {'Random0': 22, 'Random1': 7, 'Honest0': 178, 'Honest1': 78, 'Reinforce0': 2648, 'Reinforce1': 7}
+"Random0" declared "raise:-1"
+"Honest0" declared "fold:0"
+"Honest1" declared "fold:0"
+"['Reinforce0']" won the round 3 (stack = {'Random0': 22, 'Random1': 7, 'Honest0': 178, 'Honest1': 78, 'Reinforce0': 2708, 'Reinforce1': 7}) 
+
