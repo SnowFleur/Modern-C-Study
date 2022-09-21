@@ -1,5 +1,8 @@
+import datetime
+
 from pypokerengine.players import BasePokerPlayer
 from .ReinforceStrategy.PokerOddsCalculator.table import HoldemTable
+
 
 #from joblib import Parallel, delayed
 #import multiprocessing
@@ -13,7 +16,7 @@ class ReinforcePlayer(BasePokerPlayer):
     def declare_action(self, valid_actions, hole_card, round_state):
 
 
-        Diversification = 3
+        Diversification = 10 # 서로 다른 손패로 시뮬레이션 할 횟수, 10회에 3초 가량 걸림.
         Winrate = 0
         CommunityExist = False
 
@@ -24,6 +27,7 @@ class ReinforcePlayer(BasePokerPlayer):
             reverse_community_cards = [self.reverse_card(rev_com_card) for rev_com_card in  round_state['community_card']]
             CommunityExist = True   
 
+        #start = datetime.datetime.now()
         for i in range(Diversification):
 
             ht = HoldemTable(num_players=self.get_number_of_players(round_state), deck_type='full')
@@ -32,18 +36,20 @@ class ReinforcePlayer(BasePokerPlayer):
                 ht.add_to_community(reverse_community_cards)
             
             #Simulation_Bios = 추측의 강도, negative = 내 입장에서 긍정적 추측(상대의 패가 나쁘게 나옴)인지 부정적 추측(상대의 패가 좋게 나옴)인지
-            ht.next_round(Simulation_Bios, negative=True)
+            ht.next_round(bios = Simulation_Bios, negative=True)
             SimulationResult = ht.simulate(num_scenarios=1000)
-            print("SimulationResult['Player 1 Win']: ", SimulationResult['Player 1 Win'])
+            #print("SimulationResult['Player 1 Win']: ", SimulationResult['Player 1 Win'])
             Winrate += SimulationResult['Player 1 Win']
-
+        #end = datetime.datetime.now()
+        #print("걸린 시간: ", end-start)
 
         Winrate /= Diversification
-    
+        #print("Total: ", Winrate)
+
         WinrateBios = self.get_turn_bios(round_state)
 
-        if Winrate < WinrateBios: action = valid_actions[0] #fold
-        elif Winrate >= WinrateBios: #raise
+        if Winrate < WinrateBios + 20: action = valid_actions[0] #fold
+        elif Winrate >= WinrateBios + 20: #raise
             action = valid_actions[2]
             action['amount'] = valid_actions[2]["amount"]["min"]
             if action['amount'] == -1:

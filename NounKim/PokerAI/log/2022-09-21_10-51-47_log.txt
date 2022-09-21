@@ -1,0 +1,56 @@
+NomoneyPlayers:  []
+
+ Started the round 1
+Street "preflop" started. (community card = []) // All Stack: 2940 // stack: {'Random0': 500, 'Random1': 480, 'Honest0': 460, 'Honest1': 500, 'Reinforce0': 500, 'Reinforce1': 500}
+"Honest1" declared "call:40"
+걸린 시간:  0:00:03.353825
+"Reinforce0" declared "fold:0"
+걸린 시간:  0:00:03.430022
+"Reinforce1" declared "fold:0"
+"Random0" declared "fold:0"
+"Random1" declared "fold:0"
+"Honest0" declared "call:40"
+Street "flop" started. (community card = ['SK', 'D9', 'H4']) // All Stack: 2900 // stack: {'Random0': 500, 'Random1': 480, 'Honest0': 460, 'Honest1': 460, 'Reinforce0': 500, 'Reinforce1': 500}
+"Honest0" declared "call:0"
+"Honest1" declared "call:0"
+Street "turn" started. (community card = ['SK', 'D9', 'H4', 'S7']) // All Stack: 2900 // stack: {'Random0': 500, 'Random1': 480, 'Honest0': 460, 'Honest1': 460, 'Reinforce0': 500, 'Reinforce1': 500}
+"Honest0" declared "call:0"
+"Honest1" declared "call:0"
+Street "river" started. (community card = ['SK', 'D9', 'H4', 'S7', 'S3']) // All Stack: 2900 // stack: {'Random0': 500, 'Random1': 480, 'Honest0': 460, 'Honest1': 460, 'Reinforce0': 500, 'Reinforce1': 500}
+"Honest0" declared "call:0"
+"Honest1" declared "call:0"
+"['Honest1']" won the round 1 (stack = {'Random0': 500, 'Random1': 480, 'Honest0': 460, 'Honest1': 560, 'Reinforce0': 500, 'Reinforce1': 500}) 
+
+NomoneyPlayers:  []
+
+ Started the round 2
+Street "preflop" started. (community card = []) // All Stack: 2940 // stack: {'Random0': 500, 'Random1': 480, 'Honest0': 440, 'Honest1': 520, 'Reinforce0': 500, 'Reinforce1': 500}
+걸린 시간:  0:00:03.357947
+"Reinforce0" declared "fold:0"
+걸린 시간:  0:00:03.407844
+"Reinforce1" declared "fold:0"
+"Random0" declared "raise:369"
+"Random1" declared "raise:-1"
+"Honest0" declared "call:369"
+"Honest1" declared "fold:0"
+Street "flop" started. (community card = ['S8', 'H3', 'CT']) // All Stack: 2222 // stack: {'Random0': 131, 'Random1': 480, 'Honest0': 91, 'Honest1': 520, 'Reinforce0': 500, 'Reinforce1': 500}
+"Honest0" declared "fold:0"
+"['Random0']" won the round 2 (stack = {'Random0': 909, 'Random1': 480, 'Honest0': 91, 'Honest1': 520, 'Reinforce0': 500, 'Reinforce1': 500}) 
+
+NomoneyPlayers:  []
+
+ Started the round 3
+Street "preflop" started. (community card = []) // All Stack: 2940 // stack: {'Random0': 909, 'Random1': 480, 'Honest0': 91, 'Honest1': 500, 'Reinforce0': 460, 'Reinforce1': 500}
+걸린 시간:  0:00:03.303000
+"Reinforce1" declared "fold:0"
+"Random0" declared "raise:541"
+"Random1" declared "raise:-1"
+"Honest0" declared "call:541"
+"Honest1" declared "fold:0"
+걸린 시간:  0:00:03.683646
+"Reinforce0" declared "call:541"
+Street "flop" started. (community card = ['D2', 'DK', 'CA']) // All Stack: 1848 // stack: {'Random0': 368, 'Random1': 480, 'Honest0': 0, 'Honest1': 500, 'Reinforce0': 0, 'Reinforce1': 500}
+Street "turn" started. (community card = ['D2', 'DK', 'CA', 'D7']) // All Stack: 1848 // stack: {'Random0': 368, 'Random1': 480, 'Honest0': 0, 'Honest1': 500, 'Reinforce0': 0, 'Reinforce1': 500}
+Street "river" started. (community card = ['D2', 'DK', 'CA', 'D7', 'H8']) // All Stack: 1848 // stack: {'Random0': 368, 'Random1': 480, 'Honest0': 0, 'Honest1': 500, 'Reinforce0': 0, 'Reinforce1': 500}
+"['Honest0']" won the round 3 (stack = {'Random0': 409, 'Random1': 480, 'Honest0': 293, 'Honest1': 500, 'Reinforce0': 818, 'Reinforce1': 500}) 
+

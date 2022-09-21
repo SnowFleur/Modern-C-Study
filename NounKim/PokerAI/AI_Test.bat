@@ -1,1 +1,1 @@
-python PokerAI.py > log/%DATE%_%time:~0,2%-%time:~3,2%-%time:~6,2%_log.txt
+python PokerAI.py > ./\log\%DATE%_%time:~0,2%-%time:~3,2%-%time:~6,2%_log.txt

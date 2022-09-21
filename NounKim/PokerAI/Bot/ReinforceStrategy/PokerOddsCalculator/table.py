@@ -141,7 +141,7 @@ class Table:
                 #print("added_card: ", added_card)
  
                 self.add_to_hand(player, added_card)
-                logging.info(f"Giving Player {player} {' '.join(card_arr_to_str(added_card))}")
+                #logging.info(f"Giving Player {player} {' '.join(card_arr_to_str(added_card))}")
 
         if hand_player_cards:
             if len(self.community_arr) == 0:
