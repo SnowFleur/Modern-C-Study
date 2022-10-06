@@ -1,4 +1,5 @@
 import datetime
+import random
 
 from pypokerengine.players import BasePokerPlayer
 from .ReinforceStrategy.PokerOddsCalculator.table import HoldemTable
@@ -7,7 +8,7 @@ from .ReinforceStrategy.PokerOddsCalculator.table import HoldemTable
 #from joblib import Parallel, delayed
 #import multiprocessing
 
-TurnDic = {"preflop":10, "flop":15, "turn":20, "river":25}
+TurnDic = {"preflop":30, "flop":35, "turn":40, "river":45}
 Simulation_Bios = 0 #최소 0
 
 
@@ -48,11 +49,11 @@ class ReinforcePlayer(BasePokerPlayer):
 
         WinrateBios = self.get_turn_bios(round_state)
 
-        if Winrate < WinrateBios + 20: action = valid_actions[0] #fold
-        elif Winrate >= WinrateBios + 20: #raise
+        if Winrate < WinrateBios : action = valid_actions[0] #fold
+        elif Winrate >= WinrateBios: #raise
             action = valid_actions[2]
             action['amount'] = valid_actions[2]["amount"]["min"]
-            if action['amount'] == -1:
+            if action['amount'] == -1 or random.randrange(0,2) == 1:
                 action = valid_actions[1]
         else: action = valid_actions[1] # call
         

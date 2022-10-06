@@ -1,25 +1,4 @@
 
-TurnDic = {"preflop":0, "flop":5, "turn":10, "river":15}
-
-class Node:
-    def __init__(self):
-        
-        poker_fold = 0
-        poker_call = 1
-        poker_raise = 2
-        
-        user_name = ""
-
-        user_choise = [poker_fold, poker_call, poker_raise]
-
-        user_money = 0
-        user_stake = 0
-        total_stake = 0
-        pass
-
-
-
-
 
 # 형식 저장 {"CCCRFR" : {"20.3, 60.5"  : [{21.4(승률) : "36_27_4_7.2,3.4,6.6..."}, {}, {},...]}, {}, {}, {}...}     
 # 걸린 돈/전체 판돈 기준 소수점 2번째 자리까지

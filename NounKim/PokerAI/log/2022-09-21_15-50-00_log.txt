@@ -1,0 +1,123 @@
+NomoneyPlayers:  []
+
+ Started the round 1
+Street "preflop" started. (community card = []) // All Stack: 5850 // stack: {'Random0': 1000, 'Random1': 950, 'Honest0': 900, 'Honest1': 1000, 'Reinforce0': 1000, 'Reinforce1': 1000}
+"Honest1" declared "fold:0"
+"Reinforce0" declared "fold:0"
+"Reinforce1" declared "fold:0"
+"Random0" declared "raise:397"
+"Random1" declared "raise:697"
+"Honest0" declared "fold:0"
+"Random0" declared "raise:1000"
+"Random1" declared "raise:-1"
+"['Random0']" won the round 1 (stack = {'Random0': 1797, 'Random1': 303, 'Honest0': 900, 'Honest1': 1000, 'Reinforce0': 1000, 'Reinforce1': 1000}) 
+
+NomoneyPlayers:  []
+
+ Started the round 2
+Street "preflop" started. (community card = []) // All Stack: 5850 // stack: {'Random0': 1797, 'Random1': 303, 'Honest0': 850, 'Honest1': 900, 'Reinforce0': 1000, 'Reinforce1': 1000}
+"Reinforce0" declared "fold:0"
+"Reinforce1" declared "fold:0"
+"Random0" declared "fold:0"
+"Random1" declared "raise:204"
+"Honest0" declared "fold:0"
+"Honest1" declared "fold:0"
+"['Random1']" won the round 2 (stack = {'Random0': 1797, 'Random1': 453, 'Honest0': 850, 'Honest1': 900, 'Reinforce0': 1000, 'Reinforce1': 1000}) 
+
+NomoneyPlayers:  []
+
+ Started the round 3
+Street "preflop" started. (community card = []) // All Stack: 5850 // stack: {'Random0': 1797, 'Random1': 453, 'Honest0': 850, 'Honest1': 850, 'Reinforce0': 900, 'Reinforce1': 1000}
+"Reinforce1" declared "fold:0"
+"Random0" declared "raise:1662"
+"Random1" declared "raise:-1"
+"Honest0" declared "fold:0"
+"Honest1" declared "fold:0"
+"Reinforce0" declared "call:1662"
+Street "flop" started. (community card = ['HA', 'H7', 'C8']) // All Stack: 3288 // stack: {'Random0': 135, 'Random1': 453, 'Honest0': 850, 'Honest1': 850, 'Reinforce0': 0, 'Reinforce1': 1000}
+Street "turn" started. (community card = ['HA', 'H7', 'C8', 'CT']) // All Stack: 3288 // stack: {'Random0': 135, 'Random1': 453, 'Honest0': 850, 'Honest1': 850, 'Reinforce0': 0, 'Reinforce1': 1000}
+Street "river" started. (community card = ['HA', 'H7', 'C8', 'CT', 'H6']) // All Stack: 3288 // stack: {'Random0': 135, 'Random1': 453, 'Honest0': 850, 'Honest1': 850, 'Reinforce0': 0, 'Reinforce1': 1000}
+"['Random0']" won the round 3 (stack = {'Random0': 2847, 'Random1': 453, 'Honest0': 850, 'Honest1': 850, 'Reinforce0': 0, 'Reinforce1': 1000}) 
+
+NomoneyPlayers:  ['Reinforce0']
+
+ Started the round 4
+Street "preflop" started. (community card = []) // All Stack: 5850 // stack: {'Random0': 2747, 'Random1': 453, 'Honest0': 850, 'Honest1': 850, 'Reinforce0': 0, 'Reinforce1': 950}
+"Random1" declared "raise:437"
+"Honest0" declared "fold:0"
+"Honest1" declared "fold:0"
+"Reinforce1" declared "fold:0"
+"Random0" declared "raise:2705"
+"Random1" declared "fold:0"
+"['Random0']" won the round 4 (stack = {'Random0': 3334, 'Random1': 16, 'Honest0': 850, 'Honest1': 850, 'Reinforce0': 0, 'Reinforce1': 950}) 
+
+NomoneyPlayers:  ['Random1', 'Reinforce0']
+
+ Started the round 5
+Street "preflop" started. (community card = []) // All Stack: 5850 // stack: {'Random0': 3284, 'Random1': 16, 'Honest0': 750, 'Honest1': 850, 'Reinforce0': 0, 'Reinforce1': 950}
+"Honest1" declared "fold:0"
+"Reinforce1" declared "fold:0"
+"Random0" declared "fold:0"
+"['Honest0']" won the round 5 (stack = {'Random0': 3284, 'Random1': 16, 'Honest0': 900, 'Honest1': 850, 'Reinforce0': 0, 'Reinforce1': 950}) 
+
+NomoneyPlayers:  ['Random1', 'Reinforce0']
+
+ Started the round 6
+Street "preflop" started. (community card = []) // All Stack: 5850 // stack: {'Random0': 3284, 'Random1': 16, 'Honest0': 850, 'Honest1': 750, 'Reinforce0': 0, 'Reinforce1': 950}
+"Reinforce1" declared "fold:0"
+"Random0" declared "raise:3067"
+"Honest0" declared "fold:0"
+"Honest1" declared "call:3067"
+Street "flop" started. (community card = ['SA', 'D7', 'S7']) // All Stack: 2033 // stack: {'Random0': 217, 'Random1': 16, 'Honest0': 850, 'Honest1': 0, 'Reinforce0': 0, 'Reinforce1': 950}
+Street "turn" started. (community card = ['SA', 'D7', 'S7', 'HQ']) // All Stack: 2033 // stack: {'Random0': 217, 'Random1': 16, 'Honest0': 850, 'Honest1': 0, 'Reinforce0': 0, 'Reinforce1': 950}
+Street "river" started. (community card = ['SA', 'D7', 'S7', 'HQ', 'CT']) // All Stack: 2033 // stack: {'Random0': 217, 'Random1': 16, 'Honest0': 850, 'Honest1': 0, 'Reinforce0': 0, 'Reinforce1': 950}
+"['Honest1']" won the round 6 (stack = {'Random0': 2434, 'Random1': 16, 'Honest0': 850, 'Honest1': 1750, 'Reinforce0': 0, 'Reinforce1': 950}) 
+
+NomoneyPlayers:  ['Random1', 'Reinforce0']
+
+ Started the round 7
+Street "preflop" started. (community card = []) // All Stack: 5850 // stack: {'Random0': 2434, 'Random1': 16, 'Honest0': 800, 'Honest1': 1650, 'Reinforce0': 0, 'Reinforce1': 950}
+"Reinforce1" declared "fold:0"
+"Random0" declared "fold:0"
+"Honest0" declared "fold:0"
+"['Honest1']" won the round 7 (stack = {'Random0': 2434, 'Random1': 16, 'Honest0': 800, 'Honest1': 1800, 'Reinforce0': 0, 'Reinforce1': 950}) 
+
+NomoneyPlayers:  ['Random1', 'Reinforce0']
+
+ Started the round 8
+Street "preflop" started. (community card = []) // All Stack: 5850 // stack: {'Random0': 2434, 'Random1': 16, 'Honest0': 800, 'Honest1': 1750, 'Reinforce0': 0, 'Reinforce1': 850}
+"Random0" declared "raise:521"
+"Honest0" declared "call:521"
+"Honest1" declared "call:521"
+"Reinforce1" declared "fold:0"
+Street "flop" started. (community card = ['C9', 'S2', 'C6']) // All Stack: 4337 // stack: {'Random0': 1913, 'Random1': 16, 'Honest0': 279, 'Honest1': 1279, 'Reinforce0': 0, 'Reinforce1': 850}
+"Honest1" declared "call:0"
+"Random0" declared "raise:1575"
+"Honest0" declared "fold:0"
+"Honest1" declared "call:1575"
+Street "turn" started. (community card = ['C9', 'S2', 'C6', 'S6']) // All Stack: 1483 // stack: {'Random0': 338, 'Random1': 16, 'Honest0': 279, 'Honest1': 0, 'Reinforce0': 0, 'Reinforce1': 850}
+Street "river" started. (community card = ['C9', 'S2', 'C6', 'S6', 'H3']) // All Stack: 1483 // stack: {'Random0': 338, 'Random1': 16, 'Honest0': 279, 'Honest1': 0, 'Reinforce0': 0, 'Reinforce1': 850}
+"['Honest1']" won the round 8 (stack = {'Random0': 634, 'Random1': 16, 'Honest0': 279, 'Honest1': 4221, 'Reinforce0': 0, 'Reinforce1': 850}) 
+
+NomoneyPlayers:  ['Random1', 'Reinforce0']
+
+ Started the round 9
+Street "preflop" started. (community card = []) // All Stack: 5850 // stack: {'Random0': 534, 'Random1': 16, 'Honest0': 279, 'Honest1': 4221, 'Reinforce0': 0, 'Reinforce1': 800}
+"Honest0" declared "fold:0"
+"Honest1" declared "call:100"
+"Reinforce1" declared "fold:0"
+"Random0" declared "fold:0"
+"['Honest1']" won the round 9 (stack = {'Random0': 534, 'Random1': 16, 'Honest0': 279, 'Honest1': 4371, 'Reinforce0': 0, 'Reinforce1': 800}) 
+
+NomoneyPlayers:  ['Random1', 'Reinforce0']
+
+ Started the round 10
+Street "preflop" started. (community card = []) // All Stack: 5850 // stack: {'Random0': 484, 'Random1': 16, 'Honest0': 179, 'Honest1': 4371, 'Reinforce0': 0, 'Reinforce1': 800}
+"Honest1" declared "fold:0"
+"Reinforce1" declared "raise:150"
+"Random0" declared "raise:382"
+"Honest0" declared "fold:0"
+"Reinforce1" declared "raise:614"
+"Random0" declared "raise:-1"
+"['Reinforce1']" won the round 10 (stack = {'Random0': 152, 'Random1': 16, 'Honest0': 179, 'Honest1': 4371, 'Reinforce0': 0, 'Reinforce1': 1282}) 
+
