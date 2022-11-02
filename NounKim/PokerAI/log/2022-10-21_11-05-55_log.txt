@@ -1,0 +1,150 @@
+NomoneyPlayers:  []
+
+ Started the round 1
+Street "preflop" started. (community card = []) // All Stack: 5850 // stack: {'Reinforce0': 1000, 'Reinforce1': 950, 'Reinforce2': 900, 'Reinforce3': 1000, 'Reinforce4': 1000, 'Reinforce5': 1000}
+"Reinforce3" declared "fold:0"
+"Reinforce4" declared "raise:150"
+"Reinforce5" declared "fold:0"
+"Reinforce0" declared "raise:200"
+"Reinforce1" declared "fold:0"
+"Reinforce2" declared "fold:0"
+"Reinforce4" declared "raise:250"
+"Reinforce0" declared "call:250"
+Street "flop" started. (community card = ['C3', 'ST', 'SJ']) // All Stack: 5350 // stack: {'Reinforce0': 750, 'Reinforce1': 950, 'Reinforce2': 900, 'Reinforce3': 1000, 'Reinforce4': 750, 'Reinforce5': 1000}
+"Reinforce4" declared "fold:0"
+"['Reinforce0']" won the round 1 (stack = {'Reinforce0': 1400, 'Reinforce1': 950, 'Reinforce2': 900, 'Reinforce3': 1000, 'Reinforce4': 750, 'Reinforce5': 1000}) 
+
+NomoneyPlayers:  []
+
+ Started the round 2
+Street "preflop" started. (community card = []) // All Stack: 5850 // stack: {'Reinforce0': 1400, 'Reinforce1': 950, 'Reinforce2': 850, 'Reinforce3': 900, 'Reinforce4': 750, 'Reinforce5': 1000}
+"Reinforce4" declared "fold:0"
+"Reinforce5" declared "fold:0"
+"Reinforce0" declared "fold:0"
+"Reinforce1" declared "fold:0"
+"Reinforce2" declared "call:100"
+"Reinforce3" declared "raise:150"
+"Reinforce2" declared "call:150"
+Street "flop" started. (community card = ['D2', 'C5', 'S8']) // All Stack: 5700 // stack: {'Reinforce0': 1400, 'Reinforce1': 950, 'Reinforce2': 750, 'Reinforce3': 850, 'Reinforce4': 750, 'Reinforce5': 1000}
+"Reinforce2" declared "fold:0"
+"['Reinforce3']" won the round 2 (stack = {'Reinforce0': 1400, 'Reinforce1': 950, 'Reinforce2': 750, 'Reinforce3': 1150, 'Reinforce4': 750, 'Reinforce5': 1000}) 
+
+NomoneyPlayers:  []
+
+ Started the round 3
+Street "preflop" started. (community card = []) // All Stack: 5850 // stack: {'Reinforce0': 1400, 'Reinforce1': 950, 'Reinforce2': 750, 'Reinforce3': 1100, 'Reinforce4': 650, 'Reinforce5': 1000}
+"Reinforce5" declared "fold:0"
+"Reinforce0" declared "fold:0"
+"Reinforce1" declared "fold:0"
+"Reinforce2" declared "fold:0"
+"Reinforce3" declared "call:100"
+"Reinforce4" declared "raise:150"
+"Reinforce3" declared "raise:200"
+"Reinforce4" declared "call:200"
+Street "flop" started. (community card = ['H8', 'C9', 'DQ']) // All Stack: 5600 // stack: {'Reinforce0': 1400, 'Reinforce1': 950, 'Reinforce2': 750, 'Reinforce3': 950, 'Reinforce4': 550, 'Reinforce5': 1000}
+"Reinforce3" declared "raise:100"
+"Reinforce4" declared "call:100"
+Street "turn" started. (community card = ['H8', 'C9', 'DQ', 'CK']) // All Stack: 5400 // stack: {'Reinforce0': 1400, 'Reinforce1': 950, 'Reinforce2': 750, 'Reinforce3': 850, 'Reinforce4': 450, 'Reinforce5': 1000}
+"Reinforce3" declared "fold:0"
+"['Reinforce4']" won the round 3 (stack = {'Reinforce0': 1400, 'Reinforce1': 950, 'Reinforce2': 750, 'Reinforce3': 850, 'Reinforce4': 1050, 'Reinforce5': 1000}) 
+
+NomoneyPlayers:  []
+
+ Started the round 4
+Street "preflop" started. (community card = []) // All Stack: 5850 // stack: {'Reinforce0': 1400, 'Reinforce1': 950, 'Reinforce2': 750, 'Reinforce3': 850, 'Reinforce4': 1000, 'Reinforce5': 900}
+"Reinforce0" declared "raise:150"
+"Reinforce1" declared "fold:0"
+"Reinforce2" declared "fold:0"
+"Reinforce3" declared "fold:0"
+"Reinforce4" declared "fold:0"
+"Reinforce5" declared "call:150"
+Street "flop" started. (community card = ['HK', 'S4', 'H8']) // All Stack: 5650 // stack: {'Reinforce0': 1250, 'Reinforce1': 950, 'Reinforce2': 750, 'Reinforce3': 850, 'Reinforce4': 1000, 'Reinforce5': 850}
+"Reinforce5" declared "raise:100"
+"Reinforce0" declared "raise:200"
+"Reinforce5" declared "fold:0"
+"['Reinforce0']" won the round 4 (stack = {'Reinforce0': 1700, 'Reinforce1': 950, 'Reinforce2': 750, 'Reinforce3': 850, 'Reinforce4': 1000, 'Reinforce5': 750}) 
+
+NomoneyPlayers:  []
+
+ Started the round 5
+Street "preflop" started. (community card = []) // All Stack: 5850 // stack: {'Reinforce0': 1600, 'Reinforce1': 950, 'Reinforce2': 750, 'Reinforce3': 850, 'Reinforce4': 1000, 'Reinforce5': 700}
+"Reinforce1" declared "raise:150"
+"Reinforce2" declared "fold:0"
+"Reinforce3" declared "fold:0"
+"Reinforce4" declared "call:150"
+"Reinforce5" declared "fold:0"
+"Reinforce0" declared "fold:0"
+Street "flop" started. (community card = ['C2', 'DK', 'H9']) // All Stack: 5550 // stack: {'Reinforce0': 1600, 'Reinforce1': 800, 'Reinforce2': 750, 'Reinforce3': 850, 'Reinforce4': 850, 'Reinforce5': 700}
+"Reinforce1" declared "call:0"
+"Reinforce4" declared "fold:0"
+"['Reinforce1']" won the round 5 (stack = {'Reinforce0': 1600, 'Reinforce1': 1250, 'Reinforce2': 750, 'Reinforce3': 850, 'Reinforce4': 850, 'Reinforce5': 700}) 
+
+NomoneyPlayers:  []
+
+ Started the round 6
+Street "preflop" started. (community card = []) // All Stack: 5850 // stack: {'Reinforce0': 1550, 'Reinforce1': 1150, 'Reinforce2': 750, 'Reinforce3': 850, 'Reinforce4': 850, 'Reinforce5': 700}
+"Reinforce2" declared "fold:0"
+"Reinforce3" declared "fold:0"
+"Reinforce4" declared "fold:0"
+"Reinforce5" declared "call:100"
+"Reinforce0" declared "fold:0"
+"Reinforce1" declared "call:100"
+Street "flop" started. (community card = ['S4', 'S8', 'DA']) // All Stack: 5750 // stack: {'Reinforce0': 1550, 'Reinforce1': 1150, 'Reinforce2': 750, 'Reinforce3': 850, 'Reinforce4': 850, 'Reinforce5': 600}
+"Reinforce1" declared "fold:0"
+"['Reinforce5']" won the round 6 (stack = {'Reinforce0': 1550, 'Reinforce1': 1150, 'Reinforce2': 750, 'Reinforce3': 850, 'Reinforce4': 850, 'Reinforce5': 850}) 
+
+NomoneyPlayers:  []
+
+ Started the round 7
+Street "preflop" started. (community card = []) // All Stack: 5850 // stack: {'Reinforce0': 1550, 'Reinforce1': 1100, 'Reinforce2': 650, 'Reinforce3': 850, 'Reinforce4': 850, 'Reinforce5': 850}
+"Reinforce3" declared "fold:0"
+"Reinforce4" declared "fold:0"
+"Reinforce5" declared "fold:0"
+"Reinforce0" declared "fold:0"
+"Reinforce1" declared "fold:0"
+"['Reinforce2']" won the round 7 (stack = {'Reinforce0': 1550, 'Reinforce1': 1100, 'Reinforce2': 800, 'Reinforce3': 850, 'Reinforce4': 850, 'Reinforce5': 850}) 
+
+NomoneyPlayers:  []
+
+ Started the round 8
+Street "preflop" started. (community card = []) // All Stack: 5850 // stack: {'Reinforce0': 1550, 'Reinforce1': 1100, 'Reinforce2': 750, 'Reinforce3': 750, 'Reinforce4': 850, 'Reinforce5': 850}
+"Reinforce4" declared "fold:0"
+"Reinforce5" declared "fold:0"
+"Reinforce0" declared "fold:0"
+"Reinforce1" declared "raise:150"
+"Reinforce2" declared "raise:200"
+"Reinforce3" declared "raise:250"
+"Reinforce1" declared "fold:0"
+"Reinforce2" declared "call:250"
+Street "flop" started. (community card = ['H3', 'D5', 'CA']) // All Stack: 5350 // stack: {'Reinforce0': 1550, 'Reinforce1': 950, 'Reinforce2': 550, 'Reinforce3': 600, 'Reinforce4': 850, 'Reinforce5': 850}
+"Reinforce2" declared "fold:0"
+"['Reinforce3']" won the round 8 (stack = {'Reinforce0': 1550, 'Reinforce1': 950, 'Reinforce2': 550, 'Reinforce3': 1250, 'Reinforce4': 850, 'Reinforce5': 850}) 
+
+NomoneyPlayers:  []
+
+ Started the round 9
+Street "preflop" started. (community card = []) // All Stack: 5850 // stack: {'Reinforce0': 1550, 'Reinforce1': 950, 'Reinforce2': 550, 'Reinforce3': 1200, 'Reinforce4': 750, 'Reinforce5': 850}
+"Reinforce5" declared "fold:0"
+"Reinforce0" declared "fold:0"
+"Reinforce1" declared "raise:150"
+"Reinforce2" declared "fold:0"
+"Reinforce3" declared "fold:0"
+"Reinforce4" declared "fold:0"
+"['Reinforce1']" won the round 9 (stack = {'Reinforce0': 1550, 'Reinforce1': 1100, 'Reinforce2': 550, 'Reinforce3': 1200, 'Reinforce4': 750, 'Reinforce5': 850}) 
+
+NomoneyPlayers:  []
+
+ Started the round 10
+Street "preflop" started. (community card = []) // All Stack: 5850 // stack: {'Reinforce0': 1550, 'Reinforce1': 1100, 'Reinforce2': 550, 'Reinforce3': 1200, 'Reinforce4': 700, 'Reinforce5': 750}
+"Reinforce0" declared "fold:0"
+"Reinforce1" declared "fold:0"
+"Reinforce2" declared "fold:0"
+"Reinforce3" declared "call:100"
+"Reinforce4" declared "call:100"
+"Reinforce5" declared "call:100"
+Street "flop" started. (community card = ['HQ', 'D3', 'SJ']) // All Stack: 5700 // stack: {'Reinforce0': 1550, 'Reinforce1': 1100, 'Reinforce2': 550, 'Reinforce3': 1100, 'Reinforce4': 650, 'Reinforce5': 750}
+"Reinforce4" declared "call:0"
+"Reinforce5" declared "fold:0"
+"Reinforce3" declared "fold:0"
+"['Reinforce4']" won the round 10 (stack = {'Reinforce0': 1550, 'Reinforce1': 1100, 'Reinforce2': 550, 'Reinforce3': 1100, 'Reinforce4': 950, 'Reinforce5': 750}) 
+

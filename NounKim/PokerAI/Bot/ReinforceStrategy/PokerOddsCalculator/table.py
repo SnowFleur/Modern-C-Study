@@ -59,10 +59,10 @@ class Table:
         #print("len(self.community_arr): ", len(self.community_arr), "5-c: ", 5 - len(self.community_arr))
         total_idx = comb_index(len(self.deck_arr), 5 - len(self.community_arr))
         undrawn_combos = self.deck_arr[total_idx]
-        if num_scenarios != 'all':
-            if len(undrawn_combos) > num_scenarios:
-                undrawn_combos = undrawn_combos[np.array(random.sample(range(len(undrawn_combos)), num_scenarios))]
-
+    
+        if len(undrawn_combos) > num_scenarios:
+            undrawn_combos = undrawn_combos[np.array(random.sample(range(len(undrawn_combos)), num_scenarios))]
+        
         if len(self.community_arr) > 0:
             community_cards = np.repeat([self.community_arr], len(undrawn_combos), axis=0)
         else:
